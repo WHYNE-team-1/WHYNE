@@ -1,0 +1,19 @@
+.social {
+  display: flex;
+  width: 400px;
+  height: 52px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 40px;
+  border: 1px solid #a3a3a3;
+  background: #fff;
+}
+
+.text {
+  color: #31302f;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.3px;
+}

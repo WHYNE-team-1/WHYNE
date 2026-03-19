@@ -1,5 +1,10 @@
-import SocialLoginBtn from "@/components/common/button/SocialLoginBtn";
-
+import GoogleLoginBtn from "@/components/common/button/GoogleLoginBtn";
+import KakaoLoginBtn from "@/components/common/button/KakaoLoginBtn";
 export default function buttonPage() {
-  return <SocialLoginBtn />;
+  return (
+    <div>
+      <GoogleLoginBtn />
+      <KakaoLoginBtn />
+    </div>
+  );
 }
