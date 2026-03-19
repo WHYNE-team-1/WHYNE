@@ -33,6 +33,7 @@
 }
 .previewWrap {
   position: relative;
+  overflow: hidden;
 }
 .preview {
   z-index: 9;

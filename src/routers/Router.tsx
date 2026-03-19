@@ -5,7 +5,7 @@ import SignUp from "@/pages/Signup/index";
 import SignIn from "@/pages/Signin/index";
 import List from "@/pages/List/index";
 import AddItem from "@/pages/AddItem/index";
-import ImgAddButton from "@/components/common/ImgAddButton";
+import ImageAddButton from "@/storybook/img-add-btn";
 
 export default function AppRoutes() {
   return (
@@ -19,7 +19,7 @@ export default function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
 
-        <Route path="/storybook/wineImgAdd" element={<ImgAddButton />} />
+        <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
       </Routes>
     </BrowserRouter>
   );
