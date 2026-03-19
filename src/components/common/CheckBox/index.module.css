@@ -1,0 +1,78 @@
+.scentWrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 8px;
+  max-width: 768px;
+}
+
+.scent,
+.type {
+  padding: 12px 18px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-gray-200);
+  color: var(--color-gray-800);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.scent input,
+.type input,
+.rating input {
+  display: none;
+}
+.scent.active {
+  border: 1px solid var(--color-gray-700);
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-200);
+}
+
+.typeWrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 8px;
+  max-width: 768px;
+}
+.type {
+  padding: 8px 16px 8px 8px;
+}
+.type img {
+}
+.type.active {
+  background-color: var(--color-primary-red);
+  color: var(--color-primary-red-100);
+}
+.ratingWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rating {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  color: var(--color-primary-black);
+  font-weight: 500;
+}
+.rating .checkboxBorder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 4px;
+}
+
+.rating.active .checkboxChecker {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: var(--color-primary-red);
+}
