@@ -6,7 +6,7 @@ import SignIn from "@/pages/Signin/index";
 import List from "@/pages/List/index";
 import AddItem from "@/pages/AddItem/index";
 import TextareaTestPage from "@/storybook/textarea";
-
+import Button from "@/storybook/button";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -19,6 +19,7 @@ export default function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
+        <Route path="/storybook/button" element={<Button />} />
       </Routes>
     </BrowserRouter>
   );
