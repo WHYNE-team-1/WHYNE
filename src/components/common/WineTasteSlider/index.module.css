@@ -1,0 +1,90 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* 가로 한 줄 */
+.sliderRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* 바디감을 감싸는 박스 ( 구분선 포함) */
+.labelSection {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 8px;
+  width: 75px;
+  height: 25px;
+  border-right: 1px solid #D1D1D1;
+}
+
+/* 세로형이면 라벨 없앰 */
+.labelSection.stacked {
+  border-right: none;
+}
+
+/* '바디감' 폰트 */
+.mainLabel {
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #484746;
+}
+
+/* '가벼워요' 폰트 */
+.descText {
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #A3A3A3;
+  width: 75px; 
+  text-align: center;
+}
+
+/*  슬라이더 박스 */
+.sliderTrack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px; /* 점 사이 간격 */
+  width: 220px;
+  height: 10px;
+}
+
+/* 슬라이더 박스 한개 */
+.segment {
+  height: 10px;
+  flex-grow: 1; 
+  background: #EBEBEB; 
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* 채워진 슬라이더 박스 */
+.segment.filled {
+  background: #9B1B30; 
+}
+
+
+.segment:first-child {
+  border-radius: 999px 0px 0px 999px; 
+}
+
+.segment:last-child {
+  border-radius: 0px 999px 999px 0px;
+}
