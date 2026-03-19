@@ -30,11 +30,17 @@ export default function ImgAddButton({
     const imgFileURL = URL.createObjectURL(imgFile);
 
     setImgSrc(imgFileURL);
+    return () => {
+      URL.revokeObjectURL(imgFileURL);
+    };
   }
 
   // 삭제
   function handleDelete() {
     setImgSrc(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   }
 
   return (
@@ -52,14 +58,14 @@ export default function ImgAddButton({
           className={cn(styles.imgAddBtn, error && styles.error)}
           onClick={() => fileInputRef.current?.click()}
         >
-          <img src={cameraIcon} width="24" height="24" />
+          <img src={cameraIcon} width="24" height="24" alt="Camera Icon" />
         </button>
       )}
       {imgSrc && (
         <div className={styles.previewWrap}>
           <img className={styles.preview} src={imgSrc ?? undefined} />
           <button className={styles.imgDelBtn} onClick={handleDelete}>
-            <img src={deleteIcon} width="24" height="24" />
+            <img src={deleteIcon} width="24" height="24" alt="이미지 삭제" />
           </button>
         </div>
       )}
