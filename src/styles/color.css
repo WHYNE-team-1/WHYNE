@@ -1,0 +1,31 @@
+:root {
+  /* Primary Colors */
+  --color-primary-red: #9b1b30;
+  --color-primary-red-100: #f5e9eb;
+  --color-primary-black: #1a1918;
+
+  /* Basic Colors */
+  --color-white: #ffffff;
+  --color-black: #1a1918;
+  --color-black-50: rgba(0, 0, 0, 0.5); /* 000000, 50% */
+
+  /* Gray Scale */
+  --color-gray-100: #f2f2f2;
+  --color-gray-200: #d1d1d1;
+  --color-gray-300: #bababa;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #9facbd;
+  --color-gray-600: #8c8c8b;
+  --color-gray-700: #484746;
+  --color-gray-800: #31302f;
+  --color-gray-900: #2d3034;
+
+  /* Error & Feedback (추천해주신 컬러 반영) */
+  --color-error-icon: #e53935;
+  --color-error-border: #ff5252;
+  --color-like-icon: #c00f0c;
+
+  /* UI Elements */
+  --color-camera-icon: rgba(204, 204, 204, 0.7); /* CCCCCC, 70% */
+  --color-profile-hover: rgba(26, 25, 24, 0.5); /* 1A1918, 50% */
+}
