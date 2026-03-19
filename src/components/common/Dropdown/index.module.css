@@ -1,0 +1,56 @@
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 126px;
+  padding: 3px 4px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-100);
+  border-radius: 12px;
+  box-shadow:
+    0px 4px 4px -4px rgba(12, 12, 13, 0.05),
+    0px 16px 32px -4px rgba(12, 12, 13, 0.1);
+  z-index: 10;
+}
+
+.menuItem {
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--color-gray-900);
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/* 호버 상태 */
+.menuItem:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+}
+
+/* 클릭 상태 */
+.menuItem:active {
+  background-color: var(--color-gray-700);
+  color: var(--color-white);
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 768px) {
+  .menu {
+    width: 101px;
+  }
+
+  .menuItem {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

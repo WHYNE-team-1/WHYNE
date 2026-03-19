@@ -6,6 +6,8 @@ import SignIn from "@/pages/Signin/index";
 import List from "@/pages/List/index";
 import AddItem from "@/pages/AddItem/index";
 
+import DropdownSample from "@/storybook/drop-down";
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -17,6 +19,8 @@ export default function AppRoutes() {
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+
+        <Route path="/storybook/dropdown" element={<DropdownSample />} />
       </Routes>
     </BrowserRouter>
   );
