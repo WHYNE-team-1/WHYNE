@@ -6,6 +6,7 @@ import SignIn from "@/pages/Signin/index";
 import List from "@/pages/List/index";
 import AddItem from "@/pages/AddItem/index";
 import ImageAddButton from "@/storybook/img-add-btn";
+import TextareaTestPage from "@/storybook/textarea";
 
 export default function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function AppRoutes() {
         <Route path="/signin" element={<SignIn />} />
 
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
+        <Route path="/storybook/textarea" element={<TextareaTestPage />} />
       </Routes>
     </BrowserRouter>
   );
