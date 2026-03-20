@@ -88,3 +88,49 @@
 .segment:last-child {
   border-radius: 0px 999px 999px 0px;
 }
+
+
+.graphBox {
+  display: flex;
+  align-items: center;
+  flex: 1; /* 남는 공간을 다 차지함 */
+}
+
+
+@media (max-width: 767px) {
+  .sliderRow {
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  /* 1층: 바디감 */
+  .labelSection {
+    width: 100%; 
+    border-right: none; 
+    display: flex; 
+    justify-content: center; 
+    padding: 0;
+  }
+
+  .mainLabel {
+    font-size: 14px; 
+    font-weight: 600;
+  }
+
+  /* 2층: 양끝 텍스트 */
+  .descText {
+    width:60px;
+    flex-shrink: 0; 
+    font-size: 14px; 
+    color: #A3A3A3; 
+  }
+
+  /* 🥈 2층: 가운데 슬라이더 점들 */
+  .sliderTrack {
+    flex: 1; 
+    max-width: 206px;
+    margin: 0 10px; 
+    height: 10px;
+  }
+}
