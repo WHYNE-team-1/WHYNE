@@ -5,26 +5,37 @@ import IconRed from "@/assets/icons/ic-wine-red.svg";
 import IconWhite from "@/assets/icons/ic-wine-white.svg";
 import IconSparkling from "@/assets/icons/ic-wine-sparkling.svg";
 
-export function ReviewScentCheckbox({}) {
-  const [selectedScents, setSelectedScents] = useState([]);
+const scents = [
+  { id: "apple", label: "사과" },
+  { id: "cherry", label: "체리" },
+  { id: "chocolate", label: "초콜렛" },
+  { id: "citrus", label: "시트러스" },
+  { id: "coconut", label: "코코넛" },
+  { id: "flower", label: "꽃" },
+  { id: "grass", label: "풀" },
+  { id: "herb", label: "허브" },
+  { id: "mineral", label: "미네랄" },
+  { id: "oak", label: "오크" },
+  { id: "peach", label: "복숭아" },
+  { id: "grape", label: "포도" },
+  { id: "toast", label: "제빵" },
+  { id: "tropical", label: "트로피칼" },
+  { id: "WetSoil", label: "흙흙" },
+];
 
-  const scents = [
-    { id: "apple", label: "사과" },
-    { id: "cherry", label: "체리" },
-    { id: "chocolate", label: "초콜렛" },
-    { id: "citrus", label: "시트러스" },
-    { id: "coconut", label: "코코넛" },
-    { id: "flower", label: "꽃" },
-    { id: "grass", label: "풀" },
-    { id: "herb", label: "허브" },
-    { id: "mineral", label: "미네랄" },
-    { id: "oak", label: "오크" },
-    { id: "peach", label: "복숭아" },
-    { id: "grape", label: "포도" },
-    { id: "toast", label: "제빵" },
-    { id: "tropical", label: "트로피칼" },
-    { id: "WetSoil", label: "흙흙" },
-  ];
+const types = ["Red", "White", "Sparkling"];
+
+const ratings = [
+  "전체",
+  "4.1 - 5.0",
+  "3.1 - 4.0",
+  "2.1 - 3.0",
+  "1.1 - 2.0",
+  "0.1 - 1.0",
+];
+
+export function ReviewScentCheckbox({}) {
+  const [selectedScents, setSelectedScents] = useState<string[]>([]);
 
   function handleChange(id: string) {
     setSelectedScents((prev) =>
@@ -63,9 +74,7 @@ export function ReviewScentCheckbox({}) {
 }
 
 export function FilterTypeCheckbox({}) {
-  const types = ["Red", "White", "Sparkling"];
-
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   function handleChange(value: string) {
     setSelectedTypes((prev) =>
@@ -116,16 +125,7 @@ export function FilterTypeCheckbox({}) {
 }
 
 export function FilterRatingCheckbox({}) {
-  const ratings = [
-    "전체",
-    "4.1 - 5.0",
-    "3.1 - 4.0",
-    "2.1 - 3.0",
-    "1.1 - 2.0",
-    "0.1 - 1.0",
-  ];
-
-  const [selectedRatings, setSelectedRatings] = useState([]);
+  const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
 
   function handleChange(value: string) {
     setSelectedRatings((prev) => {
