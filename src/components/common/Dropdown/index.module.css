@@ -44,8 +44,8 @@
   color: var(--color-white);
 }
 
-/* 모바일 (768px 이하) */
-@media (max-width: 768px) {
+/* 모바일 (767px 이하) */
+@media (max-width: 767px) {
   .menu {
     width: 101px;
   }
