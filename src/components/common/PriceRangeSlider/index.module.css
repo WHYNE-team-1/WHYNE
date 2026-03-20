@@ -1,0 +1,15 @@
+.rangeWarp {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rangeTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.rangeTop span {
+  font-size: 18px;
+  color: var(--color-primary-black);
+}
