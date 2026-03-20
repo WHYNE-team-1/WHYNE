@@ -5,6 +5,7 @@ import SignUp from "@/pages/Signup/index";
 import SignIn from "@/pages/Signin/index";
 import List from "@/pages/List/index";
 import AddItem from "@/pages/AddItem/index";
+import WineTasteSliderStorybook from '@/storybook/wine-taste-silder';
 import ImageAddButton from "@/storybook/img-add-btn";
 import TextareaTestPage from "@/storybook/textarea";
 import Button from "@/storybook/button";
@@ -26,6 +27,7 @@ export default function AppRoutes() {
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
         <Route path="/storybook/aroma" element={<AromaStoryBook />} />
+        <Route path="/storybook/wine-taste-slider" element={<WineTasteSliderStorybook />} />
       </Routes>
     </BrowserRouter>
   );
