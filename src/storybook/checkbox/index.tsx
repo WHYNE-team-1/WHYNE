@@ -1,10 +1,13 @@
-import {
-  ReviewScentCheckbox,
-  FilterTypeCheckbox,
-  FilterRatingCheckbox,
-} from "@/components/common/CheckBox";
+import { useState } from "react";
+import ReviewAromaCheckbox from "@/components/common/ReviewAromaCheckbox";
+import FilterTypeCheckbox from "@/components/common/FilterTypeCheckbox";
+import FilterRatingCheckbox from "@/components/common/FilterRatingCheckbox";
 
 export default function CheckBoxStory() {
+  const [types, setTypes] = useState<string[]>([]);
+  const [ratings, setRatings] = useState<string[]>([]);
+  const [aromas, setAromas] = useState<string[]>([]);
+
   return (
     <div
       style={{
@@ -14,9 +17,15 @@ export default function CheckBoxStory() {
         gap: 32,
       }}
     >
-      <ReviewScentCheckbox />
-      <FilterTypeCheckbox />
-      <FilterRatingCheckbox />
+      <h2>리뷰 - 향</h2>
+
+      <ReviewAromaCheckbox value={aromas} onChange={setAromas} />
+      <h2>필터 - 타입</h2>
+
+      <FilterTypeCheckbox value={types} onChange={setTypes} />
+      <h2>필터 - 평점</h2>
+
+      <FilterRatingCheckbox value={ratings} onChange={setRatings} />
     </div>
   );
 }
