@@ -8,9 +8,9 @@ import variantFlower from "@/assets/images/img-variant-flower.png";
 import variantGrass from "@/assets/images/img-variant-grass.png";
 import variantHerb from "@/assets/images/img-variant-herb.png";
 import variantMineral from "@/assets/images/img-variant-mineral.png";
-import variantOakCask from "@/assets/images/img-variant-Oak Cask.png";
+import variantOakCask from "@/assets/images/img-variant-Oak-Cask.png";
 import variantPeach from "@/assets/images/img-variant-peach.png";
-import variantGrape from "@/assets/images/img-variant-prape.png";
+import variantGrape from "@/assets/images/img-variant-grape.png";
 import variantToast from "@/assets/images/img-variant-toast.png";
 import variantTropical from "@/assets/images/img-variant-tropical.png";
 import variantWetSoil from "@/assets/images/img-variant-wet soil.png";
@@ -30,7 +30,7 @@ const Aromas = [
   { id: "grape", label: "포도", image: variantGrape },
   { id: "toast", label: "제빵", image: variantToast },
   { id: "tropical", label: "트로피칼", image: variantTropical },
-  { id: "WetSoil", label: "흙흙", image: variantWetSoil },
+  { id: "WetSoil", label: "흙", image: variantWetSoil },
 ];
 
 export function ReviewAroma() {
@@ -45,17 +45,17 @@ export function ReviewAroma() {
   );
 }
 
-export function DetailAroma() {
+export function DetailAroma({ usersCount = "2" }) {
   return (
-    <div className={styles.detailAroma}>
+    <div className={styles.detailAromaContainer}>
       <div className={styles.detailAromaTop}>
         <p className={styles.title}>어떤 향이 있나요?</p>
-        <p className={styles.users}>(53명 참여)</p>
+        <p className={styles.users}>({usersCount}명 참여)</p>
       </div>
       <div className={styles.detailAromaWrap}>
         {Aromas.map((aroma) => (
           <div key={aroma.id} className={styles.detailAroma}>
-            <img src={aroma.image} alt={aroma.label} width={40} height={40} />
+            <img src={aroma.image} alt={aroma.label} />
             <span className={styles.label}>{aroma.label}</span>
           </div>
         ))}

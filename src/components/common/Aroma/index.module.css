@@ -12,6 +12,12 @@
   content: "・";
 }
 
+.detailAromaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .detailAromaTop {
   display: flex;
   flex-direction: row;
@@ -29,6 +35,7 @@
   font-weight: 400;
   color: var(--color-gray-300);
 }
+
 .detailAromaWrap {
   display: flex;
   flex-direction: row;
@@ -41,7 +48,6 @@
   flex-direction: column;
   gap: 24px;
 }
-
 .detailAroma img {
   width: 100px;
   height: 100px;
