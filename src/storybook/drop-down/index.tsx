@@ -1,5 +1,7 @@
 import Dropdown from "@/components/common/Dropdown";
 import type { DropdownOption } from "@/components/common/Dropdown";
+import IcDefaultProfile from "@/assets/icons/ic-default-profile.svg";
+import IcHamburger from "@/assets/icons/ic-hamburger.svg";
 
 export default function DropdownSample() {
   const profileOptions: DropdownOption[] = [
@@ -29,6 +31,7 @@ export default function DropdownSample() {
       style={{
         padding: "50px",
         minHeight: "100vh",
+        paddingLeft: "150px",
       }}
     >
       <h1>드롭다운 컴포넌트 테스트 페이지</h1>
@@ -37,13 +40,20 @@ export default function DropdownSample() {
       <div style={{ display: "flex", gap: "50px", alignItems: "flex-start" }}>
         <div>
           <h3 style={{ fontSize: "16px", marginBottom: "20px", color: "#555" }}>
-            1. 프로필 사진 (위치: center, 간격: 18px)
+            1. 프로필 사진
           </h3>
           <Dropdown
             trigger={
-              <span style={{ cursor: "pointer", fontWeight: "bold" }}>
-                프로필 아이콘 추가
-              </span>
+              <img
+                src={IcDefaultProfile}
+                alt="프로필 메뉴 열기"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
             }
             options={profileOptions}
             offset={18}
@@ -52,13 +62,19 @@ export default function DropdownSample() {
 
         <div style={{ paddingLeft: "40px", borderLeft: "1px solid #ddd" }}>
           <h3 style={{ fontSize: "16px", marginBottom: "20px", color: "#555" }}>
-            2. 더보기 아이콘 (위치: left, 간격: 26px)
+            2. 더보기 아이콘
           </h3>
           <Dropdown
             trigger={
-              <span style={{ cursor: "pointer", fontWeight: "bold" }}>
-                아이콘 추가
-              </span>
+              <img
+                src={IcHamburger}
+                alt="더보기 메뉴 열기"
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  display: "block",
+                }}
+              />
             }
             options={editOptions}
             offset={26}
