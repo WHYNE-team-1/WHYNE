@@ -1,0 +1,139 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 100%;
+}
+.container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 90px;
+  height: 60px;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.page {
+  padding: 40px;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.actionButton {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background-color: #2d3034;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.modalContent {
+  width: 528px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.contentTitle {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 32px;
+}
+
+.contentDescription {
+  margin: 12px 0 20px;
+  color: #4b5563;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow-y: auto;
+}
+
+.contentButton {
+  width: 100%;
+  height: 50px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 16px;
+  background-color: #111827;
+  color: #ffffff;
+  cursor: pointer;
+}
+/* 2. 태블릿 구간 (1080px ~ 768px) */
+@media (max-width: 1080px) {
+  /* 태블릿에서 바뀔 스타일을 여기에 적으세요 */
+}
+/* 3. 모바일 구간 (767px 이하) */
+@media (max-width: 767px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+  }
+
+  .modalContent {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+}
