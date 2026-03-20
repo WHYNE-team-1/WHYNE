@@ -27,7 +27,7 @@ export default function ConfirmModal({
   onConfirm,
   title,
   description,
-  confirmText = "변경하기",
+  confirmText = "확인",
   cancelText = "취소",
 }: ConfirmModalProps) {
   useEffect(() => {

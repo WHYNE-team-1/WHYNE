@@ -1,9 +1,4 @@
-import {
-  useEffect,
-  type KeyboardEvent as ReactKeyboardEvent,
-  type MouseEvent,
-  type ReactNode,
-} from "react";
+import { useEffect, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import closeIcon from "@/assets/icons/ic-close.svg";
 import styles from "./index.module.css";
@@ -64,11 +59,6 @@ export default function Modal({
       role="dialog"
       aria-modal="true"
       onClick={handleBackdropClick}
-      onKeyDown={(event: ReactKeyboardEvent<HTMLDivElement>) => {
-        if (event.key === "Escape") {
-          onClose?.();
-        }
-      }}
       className={styles.overlay}
     >
       <div onClick={stopPropagation} className={styles.container}>

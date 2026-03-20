@@ -26,21 +26,18 @@ export default function ModalTestPage() {
           <h2 className={styles.contentTitle}>리뷰 등록</h2>
           <div className={styles.contentDescription}>
             <div>
-              children 영역입니다. <br /> <br />
-              children 영역입니다.
-              <br /> <br />
-              children 영역입니다.
-              <br /> <br />
-              children 영역입니다.
-              <br /> <br />
-              children 영역입니다. children 영역입니다. <br /> <br />
-              children 영역입니다.
-              <br /> <br />
-              children 영역입니다.
-              <br /> <br />
-              children 영역입니다.
-              <br /> <br />
-              children 영역입니다.
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
+              <p>children 영역입니다.</p>
             </div>
           </div>
           <button
