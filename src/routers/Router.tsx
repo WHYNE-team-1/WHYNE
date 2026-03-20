@@ -7,8 +7,9 @@ import List from "@/pages/List/index";
 import AddItem from "@/pages/AddItem/index";
 
 import DropdownSample from "@/storybook/drop-down";
+import ImageAddButton from "@/storybook/img-add-btn";
 import TextareaTestPage from "@/storybook/textarea";
-
+import Button from "@/storybook/button";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -22,7 +23,9 @@ export default function AppRoutes() {
         <Route path="/signin" element={<SignIn />} />
 
         <Route path="/storybook/dropdown" element={<DropdownSample />} />
+        <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
+        <Route path="/storybook/button" element={<Button />} />
       </Routes>
     </BrowserRouter>
   );
