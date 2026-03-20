@@ -3,29 +3,29 @@ import type { DropdownOption } from "@/components/common/Dropdown";
 import IcDefaultProfile from "@/assets/icons/ic-default-profile.svg";
 import IcHamburger from "@/assets/icons/ic-hamburger.svg";
 
+const profileOptions: DropdownOption[] = [
+  {
+    label: "마이페이지",
+    onClick: () => alert("마이페이지로 이동합니다!"),
+  },
+  {
+    label: "로그아웃",
+    onClick: () => alert("로그아웃 되었습니다!"),
+  },
+];
+
+const editOptions: DropdownOption[] = [
+  {
+    label: "수정하기",
+    onClick: () => alert("수정되었습니다."),
+  },
+  {
+    label: "삭제하기",
+    onClick: () => alert("삭제되었습니다."),
+  },
+];
+
 export default function DropdownSample() {
-  const profileOptions: DropdownOption[] = [
-    {
-      label: "마이페이지",
-      onClick: () => alert("마이페이지로 이동합니다!"),
-    },
-    {
-      label: "로그아웃",
-      onClick: () => alert("로그아웃 되었습니다!"),
-    },
-  ];
-
-  const editOptions: DropdownOption[] = [
-    {
-      label: "수정하기",
-      onClick: () => alert("수정되었습니다."),
-    },
-    {
-      label: "삭제하기",
-      onClick: () => alert("삭제되었습니다."),
-    },
-  ];
-
   return (
     <div
       style={{

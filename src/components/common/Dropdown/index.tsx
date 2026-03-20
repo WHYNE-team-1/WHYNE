@@ -50,13 +50,15 @@ export default function Dropdown({
 
   return (
     <div className={styles.dropdownContainer} ref={dropdownRef}>
-      <button onClick={handleToggle}>{trigger}</button>
+      <button type="button" onClick={handleToggle}>
+        {trigger}
+      </button>
 
       {isOpen && (
         <ul className={styles.menu} style={{ top: `calc(100% + ${offset}px)` }}>
-          {options.map((option, index) => (
+          {options.map((option) => (
             <li
-              key={index}
+              key={option.label}
               className={styles.menuItem}
               onClick={() => handleOptionClick(option.onClick)}
             >
