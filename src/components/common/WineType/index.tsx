@@ -21,7 +21,7 @@ export default function WineType({
     ${styles.wrapper} 
     ${isReadOnly ? styles.readOnly : ''} 
     ${isSelected ? styles.selected : ''}
-  `;
+  `.trim();
 
   return (
     <label 
@@ -34,8 +34,7 @@ export default function WineType({
         <input 
           type="radio" 
           checked={isSelected} 
-          className={styles.hiddenInput} 
-          readOnly 
+          className={styles.hiddenInput}
         />
       )}
       <img src={info.image} alt={info.label} className={styles.icon} />

@@ -1,5 +1,5 @@
 import WineType from "@/components/common/WineType";
-import type { WineTypeKind } from "@/constants/WineType.constants";
+import { WINE_TYPE_KEYS, type WineTypeKind } from "@/constants/WineType.constants";
 import { useState } from "react";
 
 export default function WineTypeTestPage() {
@@ -12,32 +12,23 @@ export default function WineTypeTestPage() {
       <div>
         <h2 style={{ margin: '16px' }}>상세 페이지용 - 칩 모드</h2>
         <div style={{ display: 'flex', gap: '12px' }}>
-          <WineType type="RED" isReadOnly />
-          <WineType type="WHITE" isReadOnly />
-          <WineType type="SPARKLING" isReadOnly />
+          {WINE_TYPE_KEYS.map((type) => (
+            <WineType key={type} type={type} isReadOnly />
+          ))}
         </div>
       </div>
 
       <div>
         <h2 style={{ margin: '16px' }}>등록 페이지용 - 라디오 버튼 모드</h2>
         <div style={{ display: 'flex', gap: '12px' }}>
-          <WineType 
-            type="RED" 
-            isSelected={selectedType === 'RED'} 
-            onSelect={(type) => setSelectedType(type)}
-          />
-          
-          <WineType 
-            type="WHITE" 
-            isSelected={selectedType === 'WHITE'} 
-            onSelect={(type) => setSelectedType(type)} 
-          />
-          
-          <WineType 
-            type="SPARKLING" 
-            isSelected={selectedType === 'SPARKLING'} 
-            onSelect={(type) => setSelectedType(type)} 
-          />
+          {WINE_TYPE_KEYS.map((type) => (
+            <WineType
+              key={type}
+              type={type}
+              isSelected={selectedType === type}
+              onSelect={setSelectedType}
+            />
+          ))}
         </div>
 
         <p style={{ margin: '16px', fontSize: '14px' }}>
