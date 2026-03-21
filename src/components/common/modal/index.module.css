@@ -1,0 +1,124 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 100%;
+}
+.container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 83px;
+  height: 60px;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.button {
+  position: absolute;
+  top: 29px;
+  right: 24px;
+}
+.page {
+  padding: 40px;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.actionButton {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background-color: #2d3034;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.modalContent {
+  width: 528px;
+  max-width: 100%;
+  max-height: 1006px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.contentTitle {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 32px;
+}
+
+.contentDescription {
+  margin: 12px 0 20px;
+  color: #4b5563;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow-y: auto;
+}
+
+.contentButton {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.contentButton button {
+  width: 100%;
+  height: 100%;
+}
+.contentButton button span {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+}
+
+/* 3. 모바일 구간 (767px 이하) */
+@media (max-width: 767px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+  }
+
+  .modalContent {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+}
