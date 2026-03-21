@@ -20,6 +20,7 @@ import ConfirmModalTestPage from "@/storybook/confirm-modal";
 import WineTypeTestPage from "@/storybook/wine-type";
 import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
+import SearchBarSample from "@/storybook/search-bar";
 import PriceRangeSlider from "@/storybook/price-range-slider";
 
 export default function AppRoutes() {
@@ -59,6 +60,7 @@ export default function AppRoutes() {
 
         <Route path="/storybook/checkbox" element={<CheckBoxStory />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
+        <Route path="/storybook/search-bar" element={<SearchBarSample />} />
       </Routes>
     </BrowserRouter>
   );
