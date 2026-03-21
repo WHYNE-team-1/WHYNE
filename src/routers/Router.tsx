@@ -8,6 +8,7 @@ import AddItem from "@/pages/AddItem/index";
 import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
 import ImageAddButton from "@/storybook/img-add-btn";
 import Button from "@/storybook/button";
+import WineTypeTestPage from "@/storybook/wine-type";
 import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
 
@@ -26,6 +27,8 @@ export default function AppRoutes() {
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
+        <Route path="/storybook/wineType" element={<WineTypeTestPage />} />
+        <Route path="/storybook/wine-taste-slider" element={<WineTasteSliderStorybook />} />
         <Route
           path="/storybook/wine-taste-slider"
           element={<WineTasteSliderStorybook />}
