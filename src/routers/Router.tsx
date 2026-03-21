@@ -16,6 +16,7 @@ import ConfirmModalTestPage from "@/storybook/confirm-modal";
 import WineTypeTestPage from "@/storybook/wine-type";
 import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
+import PriceRangeSlider from "@/storybook/price-range-slider";
 
 export default function AppRoutes() {
   return (
@@ -33,7 +34,15 @@ export default function AppRoutes() {
         <Route path="/storybook/button" element={<Button />} />
         <Route path="/storybook/aroma" element={<AromaStoryBook />} />
         <Route path="/storybook/wineType" element={<WineTypeTestPage />} />
-        <Route path="/storybook/wine-taste-slider" element={<WineTasteSliderStorybook />} />
+        <Route
+          path="/storybook/wine-taste-slider"
+          element={<WineTasteSliderStorybook />}
+        />
+
+        <Route
+          path="/storybook/price-range-slider"
+          element={<PriceRangeSlider />}
+        />
         <Route
           path="/storybook/wine-taste-slider"
           element={<WineTasteSliderStorybook />}
