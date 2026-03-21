@@ -14,6 +14,8 @@ import variantGrape from "@/assets/images/img-variant-grape.png";
 import variantToast from "@/assets/images/img-variant-toast.png";
 import variantTropical from "@/assets/images/img-variant-tropical.png";
 import variantWetSoil from "@/assets/images/img-variant-wet soil.png";
+import noAromaImg from "@/assets/icons/ic-no-image.svg";
+import cn from "classnames";
 
 const Aromas = [
   { id: "apple", label: "사과", image: variantApple },
@@ -69,13 +71,24 @@ export function DetailAroma({
         <p className={styles.title}>어떤 향이 있나요?</p>
         <p className={styles.users}>({usersCount}명 참여)</p>
       </div>
-      <div className={styles.detailAromaWrap}>
-        {displayAromas.map((aroma) => (
-          <div key={aroma.id} className={styles.detailAroma}>
-            <img src={aroma.image} alt={aroma.label} />
-            <span className={styles.label}>{aroma.label}</span>
+      <div className={cn(styles.detailAromaWrap, styles.emptyWrap)}>
+        {displayAromas.length === 0 ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className={cn(styles.detailAroma, styles.empty)}>
+              <img src={noAromaImg} alt="no Aroma Img" />
+              <span className={styles.label}>-</span>
+            </div>
+          ))
+        ) : (
+          <div className={styles.detailAromaWrap}>
+            {displayAromas.map((aroma) => (
+              <div key={aroma.id} className={styles.detailAroma}>
+                <img src={aroma.image} alt={aroma.label} />
+                <span className={styles.label}>{aroma.label}</span>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
