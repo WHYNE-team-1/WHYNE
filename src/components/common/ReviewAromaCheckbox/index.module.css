@@ -1,0 +1,29 @@
+.aromaWrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 8px;
+  max-width: 768px;
+}
+
+.aroma {
+  padding: 12px 18px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-gray-200);
+  color: var(--color-gray-800);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.aroma input {
+  display: none;
+}
+.aroma.active {
+  border: 1px solid var(--color-gray-700);
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-200);
+}
