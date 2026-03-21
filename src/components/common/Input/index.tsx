@@ -5,7 +5,7 @@ import ErrorIcon from "@/assets/icons/ic-error.svg";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  status?: "default" | "error" | "modalError" | "success";
+  status?: "default" | "error" | "modalError";
   errorMessage?: string;
 }
 
@@ -21,11 +21,7 @@ export default function Input({
   const inputId = id || uniqueId;
 
   const inputStatusClass =
-    status === "error" || status === "modalError"
-      ? styles.inputError
-      : status === "success"
-        ? styles.inputSuccess
-        : "";
+    status === "error" || status === "modalError" ? styles.inputError : "";
 
   return (
     <div className={`${styles.wrapper} ${className || ""}`}>
@@ -50,10 +46,8 @@ export default function Input({
         />
 
         {(status === "error" || status === "modalError") && (
-          <img src={ErrorIcon} alt="에러 발생" className={styles.errorIcon} />
+          <img src={ErrorIcon} alt="" className={styles.errorIcon} />
         )}
-
-        {status === "success" && <div className={styles.successIcon}></div>}
       </div>
 
       {status === "error" && errorMessage && (
