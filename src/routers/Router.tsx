@@ -10,7 +10,7 @@ import ImageAddButton from "@/storybook/img-add-btn";
 import Button from "@/storybook/button";
 import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
-import SearchBar from "@/storybook/search-bar";
+import SearchBarSample from "@/storybook/search-bar";
 
 export default function AppRoutes() {
   return (
@@ -33,7 +33,7 @@ export default function AppRoutes() {
         />
         <Route path="/storybook/checkbox" element={<CheckBoxStory />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
-        <Route path="/storybook/search-bar" element={<SearchBar />} />
+        <Route path="/storybook/search-bar" element={<SearchBarSample />} />
       </Routes>
     </BrowserRouter>
   );

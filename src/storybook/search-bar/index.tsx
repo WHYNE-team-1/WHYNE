@@ -3,6 +3,7 @@ import SearchBar from "@/components/common/SearchBar";
 
 export default function SearchBarSample() {
   const [searchValue, setSearchValue] = useState("");
+  const [submittedValue, setSubmittedValue] = useState("");
 
   return (
     <div
@@ -22,10 +23,30 @@ export default function SearchBarSample() {
           <SearchBar
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
+            onSearchSubmit={() => {
+              if (searchValue.trim() === "") {
+                alert("검색어를 입력해주세요!");
+                return;
+              }
+              setSubmittedValue(searchValue);
+              alert(`'${searchValue}' (으)로 검색합니다.`);
+            }}
           />
-          <p style={{ marginTop: "10px", fontSize: "14px" }}>
-            입력값: {searchValue}
+
+          <p style={{ marginTop: "10px", fontSize: "14px", color: "#666" }}>
+            실시간 입력값: {searchValue}
           </p>
+
+          {submittedValue && (
+            <p
+              style={{
+                marginTop: "10px",
+                fontSize: "14px",
+              }}
+            >
+              최종 검색어: {submittedValue}
+            </p>
+          )}
         </div>
       </div>
     </div>
