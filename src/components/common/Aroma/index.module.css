@@ -1,0 +1,88 @@
+.reviewAromaWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 0px;
+}
+.reviewAroma {
+  color: var(--color-gray-400);
+}
+
+.reviewAroma + .reviewAroma::before {
+  content: "・";
+}
+
+.detailAromaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detailAromaTop {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-gray-800);
+}
+.users {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-gray-300);
+}
+
+.detailAromaWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px 16px;
+  justify-content: center;
+}
+.detailAroma {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.detailAroma img {
+  width: 100px;
+  height: 100px;
+}
+
+.detailAroma .label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-gray-800);
+  text-align: center;
+}
+.emptyWrap {
+}
+
+@media (max-width: 767px) {
+  .detailAromaTop {
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .detailAromaWrap {
+    gap: 20px 16px;
+    justify-content: flex-start;
+  }
+  .detailAroma {
+    gap: 12px;
+  }
+  .detailAroma img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .emptyWrap .empty:nth-child(2) + .empty {
+    display: none;
+  }
+}
