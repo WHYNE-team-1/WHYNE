@@ -32,11 +32,22 @@ const Aromas = [
   { id: "tropical", label: "트로피칼", image: variantTropical },
   { id: "WetSoil", label: "흙", image: variantWetSoil },
 ];
+type ReviewAromaProps = {
+  selectedAromaIds: string[];
+};
 
-export function ReviewAroma() {
+type DetailAromaProps = {
+  usersCount?: number;
+  selectedAromaIds: string[];
+};
+
+export function ReviewAroma({ selectedAromaIds }: ReviewAromaProps) {
+  const displayAromas = Aromas.filter((aroma) =>
+    selectedAromaIds.includes(aroma.id),
+  );
   return (
     <div className={styles.reviewAromaWrap}>
-      {Aromas.map((aroma) => (
+      {displayAromas.map((aroma) => (
         <div key={aroma.id} className={styles.reviewAroma}>
           {aroma.label}
         </div>
@@ -45,7 +56,13 @@ export function ReviewAroma() {
   );
 }
 
-export function DetailAroma({ usersCount = "2" }) {
+export function DetailAroma({
+  usersCount,
+  selectedAromaIds,
+}: DetailAromaProps) {
+  const displayAromas = Aromas.filter((aroma) =>
+    selectedAromaIds.includes(aroma.id),
+  );
   return (
     <div className={styles.detailAromaContainer}>
       <div className={styles.detailAromaTop}>
@@ -53,7 +70,7 @@ export function DetailAroma({ usersCount = "2" }) {
         <p className={styles.users}>({usersCount}명 참여)</p>
       </div>
       <div className={styles.detailAromaWrap}>
-        {Aromas.map((aroma) => (
+        {displayAromas.map((aroma) => (
           <div key={aroma.id} className={styles.detailAroma}>
             <img src={aroma.image} alt={aroma.label} />
             <span className={styles.label}>{aroma.label}</span>
