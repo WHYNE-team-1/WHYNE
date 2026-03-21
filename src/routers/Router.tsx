@@ -6,9 +6,12 @@ import SignIn from "@/pages/Signin/index";
 import WinesList from "@/pages/WinesList/index";
 import WinesDetail from "@/pages/WinesDetail/index";
 import AddItem from "@/pages/AddItem/index";
+
+import DropdownSample from "@/storybook/drop-down";
 import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
 import ImageAddButton from "@/storybook/img-add-btn";
 import Button from "@/storybook/button";
+import Input from "@/storybook/input";
 import AromaStoryBook from "@/storybook/aroma";
 
 import ModalTestPage from "@/storybook/modal";
@@ -32,9 +35,11 @@ export default function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
 
+        <Route path="/storybook/dropdown" element={<DropdownSample />} />
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
+        <Route path="/storybook/input" element={<Input />} />
         <Route path="/storybook/aroma" element={<AromaStoryBook />} />
         <Route path="/storybook/wineType" element={<WineTypeTestPage />} />
         <Route
@@ -46,11 +51,6 @@ export default function AppRoutes() {
           path="/storybook/price-range-slider"
           element={<PriceRangeSlider />}
         />
-        <Route
-          path="/storybook/wine-taste-slider"
-          element={<WineTasteSliderStorybook />}
-        />
-
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
           path="/storybook/confirm-modal"
