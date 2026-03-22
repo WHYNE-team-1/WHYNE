@@ -7,7 +7,7 @@ type ProfileProps = {
   imageUrl?: string;
   nickname?: string;
 };
-// 프로파일 카드 컴포넌트
+
 export default function Profile({
   imageUrl,
   nickname = "주말에 와인",
