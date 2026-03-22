@@ -22,6 +22,8 @@ import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
 import SearchBarSample from "@/storybook/search-bar";
 import PriceRangeSlider from "@/storybook/price-range-slider";
+import ProfileTestPage from "@/storybook/profile";
+import ProfileSmallTestPage from "@/storybook/profilesmall";
 
 export default function AppRoutes() {
   return (
@@ -51,6 +53,11 @@ export default function AppRoutes() {
         <Route
           path="/storybook/price-range-slider"
           element={<PriceRangeSlider />}
+        />
+        <Route path="/storybook/profile" element={<ProfileTestPage />} />
+        <Route
+          path="/storybook/profilesmall"
+          element={<ProfileSmallTestPage />}
         />
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
