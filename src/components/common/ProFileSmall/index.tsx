@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 import defaultProfileIcon from "@/assets/icons/ic-default-profile.svg";
-
+// 프로파일 스몰 컴포넌트
 type ProFileSmallProps = {
   imageUrl?: string;
   nickname?: string;

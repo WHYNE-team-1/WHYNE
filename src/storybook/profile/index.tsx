@@ -1,5 +1,6 @@
 import Profile from "@/components/common/Profile";
 
+// 프로파일 컴포넌트 스토리북 페이지
 export default function ProfileTestPage() {
   return (
     <div>

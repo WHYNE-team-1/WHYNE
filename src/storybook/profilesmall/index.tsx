@@ -1,5 +1,6 @@
 import ProFileSmall from "@/components/common/ProFileSmall";
 
+// 프로파일 스몰 컴포넌트 스토리북 페이지
 export default function ProFileSmallTestPage() {
   return (
     <div style={{ display: "grid", gap: 24, padding: 40 }}>
