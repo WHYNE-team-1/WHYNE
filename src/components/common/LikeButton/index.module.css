@@ -1,17 +1,28 @@
 .like {
-  display: flex;
-  padding: 6px 14px 6px;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  position: absolute;
   bottom: -2px;
   border-radius: 8px;
 }
 
+/*사이즈*/
+.sm {
+  padding: 4px 12px 4px;
+  gap: 2px;
+}
+
+.md {
+  padding: 6px 14px 6px;
+  gap: 6px;
+}
+
+/*활성 비활성*/
 .active {
   border: 1px solid var(--color-like-icon);
+  color: var(--color-like-icon);
 }
 
 .inActive {
   border: 1px solid var(--color-gray-200);
+  color: black;
 }

@@ -15,6 +15,7 @@ import arrowUp from "@/assets/icons/ic-arrow-up.svg";
 import cameraIcon from "@/assets/icons/ic-camera.svg";
 import profile from "@/assets/icons/ic-default-profile.svg";
 import noProfile from "@/assets/icons/ic-no-profile.svg";
+import LikeButton from "@/components/common/LikeButton";
 
 export default function buttonPage() {
   return (
@@ -186,7 +187,10 @@ export default function buttonPage() {
       </section>
 
       <section className={styles.section}>
-        <div className={styles.row}></div>
+        <div className={styles.row}>
+          <LikeButton size="md" />
+          <LikeButton size="sm" />
+        </div>
       </section>
 
       <section className={styles.section}>
