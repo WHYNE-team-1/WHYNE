@@ -11,7 +11,8 @@ import Button from "@/storybook/button";
 
 import ModalTestPage from "@/storybook/modal";
 import ConfirmModalTestPage from "@/storybook/confirm-modal";
-
+import ProfileTestPage from "@/storybook/profile";
+import ProfilesmallTestPage from "@/storybook/profilesmall";
 import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
 
@@ -29,11 +30,20 @@ export default function AppRoutes() {
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
+
         <Route
           path="/storybook/wine-taste-slider"
           element={<WineTasteSliderStorybook />}
         />
-
+        <Route
+          path="/storybook/wine-taste-slider"
+          element={<WineTasteSliderStorybook />}
+        />
+        <Route path="/storybook/profile" element={<ProfileTestPage />} />
+        <Route
+          path="/storybook/profilesmall"
+          element={<ProfilesmallTestPage />}
+        />
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
           path="/storybook/confirm-modal"
