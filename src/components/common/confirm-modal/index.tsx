@@ -1,7 +1,7 @@
 import { useEffect, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import styles from "./index.module.css";
-import ModalBtn from "@/components/common/button/Modal/ModalBtn";
+import ModalBtn from "@/components/common/Button";
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -63,7 +63,7 @@ export default function ConfirmModal({
             <ModalBtn variant="cancel" onClick={onClose}>
               {cancelText}
             </ModalBtn>
-            <ModalBtn variant={confirmVariant} onClick={onConfirm}>
+            <ModalBtn variant="danger" onClick={onConfirm}>
               {confirmText}
             </ModalBtn>
           </div>

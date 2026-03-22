@@ -1,6 +1,6 @@
 import { useEffect, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import XBtn2 from "@/components/common/button/IconBtn/XBtn2";
+import XBtn2 from "@/components/common/Button";
 import styles from "./index.module.css";
 
 interface ModalProps {
