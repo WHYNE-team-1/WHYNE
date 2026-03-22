@@ -1,0 +1,72 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+}
+
+/*사이즈*/
+.stretch {
+  /*와인 등록하기*/
+  height: 50px;
+  width: 100%;
+  align-self: stretch;
+}
+
+.Wine {
+  display: inline-flex;
+  height: 64px;
+  padding: 0 96px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.headerIcon {
+  padding: 8px 16px;
+  gap: 10px;
+}
+
+.joinM {
+  /*가입하기*/
+  height: 50px;
+  width: 400px;
+}
+
+.joinS {
+  /*가입하기*/
+  height: 50px;
+  width: 229px;
+}
+
+/*color*/
+.black {
+  background: var(--color-black);
+  color: var(--color-gray-100);
+}
+
+.white {
+  border: 1px solid var(--color-gray-400);
+  color: var(--color-gray-700);
+}
+
+.red {
+  background: var(--color-primary-red);
+  color: var(--color-gray-100);
+}
+
+.charcoal {
+  background: var(--color-gray-700);
+  color: var(--color-gray-100);
+}
+
+.whiteLine {
+  border: 1px solid var(--color-gray-500);
+  background: rgba(0, 0, 0, 0);
+  color: var(--color-gray-100);
+}

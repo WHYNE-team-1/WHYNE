@@ -47,7 +47,7 @@ export default function buttonPage() {
       <section className={styles.section}>
         <div className={styles.row}>
           {/*와인 등록하기*/}
-          <Button color="black" size="stretch">
+          <Button color="black" size="stretch" type="submit">
             와인 등록하기
           </Button>
         </div>
