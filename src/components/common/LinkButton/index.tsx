@@ -14,3 +14,5 @@ type Props = {
   color?: "black" | "white" | "red";
   size?: "stretch" | "s" | "m" | "l";
 };
+
+export default function LinkButton() {}

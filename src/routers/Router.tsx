@@ -11,6 +11,7 @@ import DropdownSample from "@/storybook/drop-down";
 import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
 import ImageAddButton from "@/storybook/img-add-btn";
 import Button from "@/storybook/button";
+import LinkButton from "@/storybook/link-button";
 import Input from "@/storybook/input";
 import AromaStoryBook from "@/storybook/aroma";
 
@@ -40,6 +41,7 @@ export default function AppRoutes() {
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
+        <Route path="/storybook/link-button" element={<LinkButton />} />
         <Route path="/storybook/input" element={<Input />} />
         <Route path="/storybook/aroma" element={<AromaStoryBook />} />
         <Route path="/storybook/wineType" element={<WineTypeTestPage />} />
