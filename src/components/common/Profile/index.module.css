@@ -46,6 +46,7 @@
 }
 .profileCardBtn button {
   flex: none;
+  width:98px;
   height: 42px;
 }
 .imageOverlay {

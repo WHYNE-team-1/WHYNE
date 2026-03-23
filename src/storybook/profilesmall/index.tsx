@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import ProfileSmall from "@/components/common/ProFileSmall";
-=======
-import ProfileSmall from "@/components/common/ProfileSmall";
->>>>>>> f8b4f4b56468f1734f184d07be99ceaccc11cafe
 
 // 프로파일 스몰 컴포넌트 스토리북 페이지
 export default function ProfileSmallTestPage() {
@@ -33,8 +29,4 @@ export default function ProfileSmallTestPage() {
       </section>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f8b4f4b56468f1734f184d07be99ceaccc11cafe

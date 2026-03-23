@@ -1,5 +1,5 @@
 import styles from "./index.module.css";
-import ModalBtn from "@/components/common/button/Modal/ModalBtn";
+import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import cameraIcon from "@/assets/icons/ic-camera.svg";
 import defaultProfileIcon from "@/assets/icons/ic-default-profile.svg";
@@ -46,7 +46,9 @@ export default function Profile({
           className={styles.profileCardField}
         />
         <span className={styles.profileCardBtn}>
-          <ModalBtn variant="primary">변경하기</ModalBtn>
+          <Button color="black" size="BtnS">
+            변경하기
+          </Button>
         </span>
       </div>
     </div>
