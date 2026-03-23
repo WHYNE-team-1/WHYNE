@@ -24,9 +24,14 @@ import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
 import SearchBarSample from "@/storybook/search-bar";
 import PriceRangeSlider from "@/storybook/price-range-slider";
+<<<<<<< HEAD
 import AuthTest from "@/storybook/auth-test";
 import ProFileTestPage from "@/storybook/profile";
 import ProFileSmallTestPage from "@/storybook/profilesmall";
+=======
+import ProfileTestPage from "@/storybook/profile";
+import ProfileSmallTestPage from "@/storybook/profilesmall";
+>>>>>>> f8b4f4b56468f1734f184d07be99ceaccc11cafe
 
 export default function AppRoutes() {
   return (
@@ -61,6 +66,11 @@ export default function AppRoutes() {
         <Route
           path="/storybook/price-range-slider"
           element={<PriceRangeSlider />}
+        />
+        <Route path="/storybook/profile" element={<ProfileTestPage />} />
+        <Route
+          path="/storybook/profilesmall"
+          element={<ProfileSmallTestPage />}
         />
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
