@@ -1,7 +1,7 @@
 import { useEffect, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import styles from "./index.module.css";
-import ModalBtn from "@/components/common/button/Modal/ModalBtn";
+import ModalBtn from "@/components/common/Button";
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -12,7 +12,7 @@ interface ConfirmModalProps {
   confirmText?: string;
   cancelText?: string;
   // 확인 버튼 스타일 제어 (기본: danger)
-  confirmVariant?: "danger" | "primary";
+  confirmVariant?: "danger" | "primary" | "cancel";
 }
 
 export default function ConfirmModal({
@@ -60,10 +60,15 @@ export default function ConfirmModal({
           {title && <h2 className={styles.title}>{title}</h2>}
           {description && <p className={styles.description}>{description}</p>}
           <div className={styles.buttons}>
-            <ModalBtn variant="cancel" onClick={onClose}>
+            <ModalBtn color="white" size="Btn" onClick={onClose}>
               {cancelText}
             </ModalBtn>
-            <ModalBtn variant={confirmVariant} onClick={onConfirm}>
+            <ModalBtn
+              color="black"
+              size="Btn"
+              variant={confirmVariant}
+              onClick={onConfirm}
+            >
               {confirmText}
             </ModalBtn>
           </div>

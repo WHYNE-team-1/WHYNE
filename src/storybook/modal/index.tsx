@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "@/components/common/modal";
 import styles from "@/components/common/modal/index.module.css";
-import AddReviewBtn from "@/components/common/button/Modal/AddReviewBtn";
+import AddReviewBtn from "@/components/common/Button";
 
 export default function ModalTestPage() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +44,8 @@ export default function ModalTestPage() {
 
           <div className={styles.contentButton}>
             <AddReviewBtn
+              color="black"
+              size="Review"
               onClick={() => {
                 alert("리뷰 등록 로직이 들어갈 자리입니다.");
               }}
