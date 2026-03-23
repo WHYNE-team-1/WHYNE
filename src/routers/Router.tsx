@@ -16,8 +16,8 @@ import LinkButton from "@/storybook/link-button";
 import Input from "@/storybook/input";
 import AromaStoryBook from "@/storybook/aroma";
 
-import ModalTestPage from "@/storybook/modal";
-import ConfirmModalTestPage from "@/storybook/confirm-modal";
+import ModalTestPage from "@/storybook/Modal";
+import ConfirmModalTestPage from "@/storybook/ModalConfirm";
 
 import WineTypeTestPage from "@/storybook/wine-type";
 import CheckBoxStory from "@/storybook/checkbox";
@@ -62,7 +62,7 @@ export default function AppRoutes() {
         />
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
-          path="/storybook/confirm-modal"
+          path="/storybook/modalconfirm"
           element={<ConfirmModalTestPage />}
         />
 

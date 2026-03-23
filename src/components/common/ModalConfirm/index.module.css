@@ -16,31 +16,6 @@
   max-width: 100%;
 }
 
-.page {
-  padding: 40px;
-}
-
-.pageTitle {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.actionButton {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  background-color: #2d3034;
-  color: #ffffff;
-  cursor: pointer;
-}
-
 .content {
   width: 400px;
   max-width: 100%;
