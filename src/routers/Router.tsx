@@ -4,7 +4,7 @@ import Home from "@/pages/Home/index";
 import SignUp from "@/pages/Signup/index";
 import SignIn from "@/pages/Signin/index";
 import WinesList from "@/pages/WinesList/index";
-import WinesDetail from "@/pages/WinesDetail/index";
+import WineDetail from "@/pages/WineDetail/index";
 import AddItem from "@/pages/AddItem/index";
 
 import DropdownSample from "@/storybook/drop-down";
@@ -30,7 +30,7 @@ export default function AppRoutes() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/wines" element={<WinesList />} />
-          <Route path="/wines/:id" element={<WinesDetail />} />
+          <Route path="/wines/:id" element={<WineDetail />} />
           <Route path="/additem" element={<AddItem />} />
         </Route>
         <Route path="/signup" element={<SignUp />} />
