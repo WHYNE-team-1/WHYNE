@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "@/components/common/modal";
 import styles from "@/components/common/modal/index.module.css";
-import AddReviewBtn from "@/components/common/Button";
+import AddReviewBtn from "@/components/common/button";
 
 export default function ModalTestPage() {
   const [isOpen, setIsOpen] = useState(false);

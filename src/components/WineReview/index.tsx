@@ -1,4 +1,4 @@
-import Button from "@/components/common/Button";
+import Button from "@/components/common/button";
 import StarRating from "@/components/common/StarRating";
 import styles from "./index.module.css";
 import Modal from "@/components/common/modal";
@@ -29,7 +29,12 @@ export default function WineReview({ data }: { data: Review | null }) {
                 <div className={styles.barbg}>
                   <div
                     className={styles.bar}
-                    style={{ width: `${(value / data.reviewCount) * 100}%` }}
+                    style={{
+                      width:
+                        data.reviewCount > 0
+                          ? `${(value / data.reviewCount) * 100}%`
+                          : "0%",
+                    }}
                   ></div>
                 </div>
               </div>
@@ -46,8 +51,8 @@ export default function WineReview({ data }: { data: Review | null }) {
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        title="리뷰 등록"
-        buttonText="리뷰 등록하기기"
+        // title="리뷰 등록"
+        // buttonText="리뷰 등록하기기"
       ></Modal>
     </>
   );

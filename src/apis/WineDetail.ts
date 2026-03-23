@@ -1,8 +1,7 @@
 import { ENV } from "./env";
-import { getToken } from "@/utils/getToken";
 
 export async function getWineDetail(id: string) {
-  const token = getToken();
+  const token = localStorage.getItem("accessToken");
 
   // 👈 여기서 토큰이 어떻게 찍히는지 확인하세요!
   // 만약 "null" 이나 undefined 라면 에러가 납니다.
