@@ -13,8 +13,12 @@ export default function AuthTest() {
       setApiResult("서버에 요청 중...");
       const data = await apiFetch("/users/me");
       setApiResult(JSON.stringify(data, null, 2));
-    } catch (error: any) {
-      setApiResult(`🚨 에러 발생: ${error.message}\n(F12를 눌러 로컬 스토리지에 accessToken이 있는지 또는 만료되지 않았는지 확인하세요!)`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setApiResult(`🚨 에러 발생: ${error.message}\n(F12를 눌러 로컬 스토리지에 accessToken이 있는지 또는 토큰이 만료되지 않았는지 확인하세요!)`);
+      } else {
+        setApiResult(`🚨 알 수 없는 에러가 발생했습니다.`);
+      }
     }
   };
 
