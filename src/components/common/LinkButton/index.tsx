@@ -10,8 +10,7 @@ type Props = {
   children?: React.ReactNode;
   to?: string;
   color?: "black" | "white" | "red" | "charcoal" | "whiteLine";
-  size?: "stretch" | "sm" | "md" | "Wine" | "headerIcon" | "joinM" | "joinS";
-  leftIcon?: React.ReactNode;
+  size?: "stretch" | "Wine" | "headerIcon" | "joinM" | "joinS";
   className?: string;
 };
 
@@ -19,7 +18,7 @@ export default function LinkButton({
   to = "/",
   children,
   color = "black",
-  size = "md",
+  size = "stretch",
   className = "",
 }: Props) {
   const mergedClassName = `

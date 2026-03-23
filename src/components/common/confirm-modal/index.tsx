@@ -60,11 +60,17 @@ export default function ConfirmModal({
           {title && <h2 className={styles.title}>{title}</h2>}
           {description && <p className={styles.description}>{description}</p>}
           <div className={styles.buttons}>
-            <ModalBtn variant={confirmVariant} onClick={onClose}>
+            <ModalBtn
+              color="white"
+              size="Btn"
+              variant={confirmVariant}
+              onClick={onClose}
+            >
               {cancelText}
             </ModalBtn>
             <ModalBtn
               color="black"
+              size="Btn"
               variant={confirmVariant}
               onClick={onConfirm}
             >

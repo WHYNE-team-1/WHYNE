@@ -6,7 +6,7 @@ import { useState } from "react";
 type Props = {
   initialLiked?: boolean;
   count?: number;
-  size: string;
+  size: "sm" | "md";
 };
 
 export default function LikeButton({

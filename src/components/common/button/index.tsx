@@ -20,7 +20,7 @@ type Props = {
   onClick?: () => void;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
-  variant?: "google" | "kakao" | "danger" | "cancel" | "primary";
+  variant?: "danger" | "cancel" | "primary";
   color?:
     | "black"
     | "red"
