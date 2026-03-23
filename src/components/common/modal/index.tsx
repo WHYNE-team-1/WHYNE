@@ -9,6 +9,8 @@ interface ModalProps {
   onClose?: () => void;
   children?: ReactNode;
   closeOnBackdropClick?: boolean;
+  title?: string;
+  footer?: ReactNode;
 }
 
 export default function Modal({
@@ -16,6 +18,8 @@ export default function Modal({
   onClose,
   children,
   closeOnBackdropClick = true,
+  title,
+  footer,
 }: ModalProps) {
   useEffect(() => {
     if (!isOpen) {
@@ -55,14 +59,15 @@ export default function Modal({
     >
       <div onClick={stopPropagation} className={styles.container}>
         <div className={styles.button}>
-          <Button
-            onClick={onClose}
-            size="X"
-            color="pure"
-            leftIcon={<img src={X} alt="X" />}
-          />
+           <Button onClick={onClose} size="X" color="pure" leftIcon={<img src={X} alt="X" />} />
         </div>
-        {children}
+        <div className={styles.modalContent}>
+          {title && <h2 className={styles.contentTitle}>{title}</h2>}
+          <div className={styles.contentDescription}>
+            {children}
+          </div>
+          {footer && <div className={styles.contentButton}>{footer}</div>}
+        </div>
       </div>
     </div>,
     document.body,
