@@ -1,15 +1,54 @@
+import Button from "@/components/common/Button";
+import StarRating from "@/components/common/StarRating";
 import styles from "./index.module.css";
+import Modal from "@/components/common/modal";
+import { useState } from "react";
+
 type Review = any;
 
 export default function WineReview({ data }: { data: Review | null }) {
   if (!data) return <div>로딩중...</div>;
-  console.log("리뷰 데이터:", data);
+  const [isOpen, setIsOpen] = useState(false);
+
+  console.log("타입", data.avgRatings);
   return (
-    <div>
-      <div className={styles.rating}></div>
-      <button>리뷰 남기기기</button>
-      <div className={styles.ratingDetail}></div>
-      <button>리뷰 남기기기</button>
-    </div>
+    <>
+      {" "}
+      <div className={styles.ratingsWrap}>
+        <div className={styles.rating}>
+          <StarRating value={data.avgRating} />
+        </div>
+        <div className={styles.tableBtn}>
+          <Button size="stretch">리뷰 남기기</Button>
+        </div>
+        <div className={styles.ratingDetails}>
+          {Object.entries(data.avgRatings as Record<string, number>).map(
+            ([key, value]) => (
+              <div className={styles.ratingDetail} key={key}>
+                <span className={styles.label}>{key}점</span>
+                <div className={styles.barbg}>
+                  <div
+                    className={styles.bar}
+                    style={{ width: `${(value / data.reviewCount) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+            ),
+          )}
+        </div>
+
+        <div className={styles.basicBtn}>
+          <Button size="stretch" onClick={() => setIsOpen(true)}>
+            리뷰 남기기
+          </Button>
+        </div>
+      </div>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="리뷰 등록"
+        buttonText="리뷰 등록하기기"
+      ></Modal>
+    </>
   );
 }

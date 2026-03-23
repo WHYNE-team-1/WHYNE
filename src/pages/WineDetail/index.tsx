@@ -1,26 +1,32 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getReviews } from "@/apis/Review";
+import { getWineDetail } from "@/apis/WineDetail";
 import WineReview from "@/components/WineReview";
 
-function WinesDetail() {
+function WineDetail() {
   const { id } = useParams();
-
-  const [data, setData] = useState(null);
-
-  console.log("부모 data:", data);
+  const [wine, setWine] = useState<any>(null);
 
   useEffect(() => {
-    if (!id) return;
+    async function fetchData() {
+      const data = await getWineDetail(id!);
+      console.log("와인 데이터:", data);
+      setWine(data);
+    }
 
-    getReviews(id).then(setData);
+    fetchData();
   }, [id]);
+
+  if (!wine) return <div>로딩중...</div>;
+
   return (
     <div>
       <div>와인 상세</div>
-      <div>{data && <WineReview data={data} />}</div>
+      <div>
+        <WineReview data={wine} />
+      </div>
     </div>
   );
 }
 
-export default WinesDetail;
+export default WineDetail;
