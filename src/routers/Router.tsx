@@ -24,6 +24,7 @@ import CheckBoxStory from "@/storybook/checkbox";
 import TextareaTestPage from "@/storybook/textarea";
 import SearchBarSample from "@/storybook/search-bar";
 import PriceRangeSlider from "@/storybook/price-range-slider";
+import AuthTest from "@/storybook/auth-test";
 
 
 export default function AppRoutes() {
@@ -41,7 +42,7 @@ export default function AppRoutes() {
 
         
 
-
+        <Route path="/storybook/auth-test" element={<AuthTest />} />
         <Route path="/storybook/dropdown" element={<DropdownSample />} />
 
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
