@@ -35,31 +35,6 @@
   top: 29px;
   right: 24px;
 }
-.page {
-  padding: 40px;
-}
-
-.title {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.actionButton {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  background-color: #2d3034;
-  color: #ffffff;
-  cursor: pointer;
-}
-
 .modalContent {
   width: 528px;
   max-width: 100%;
