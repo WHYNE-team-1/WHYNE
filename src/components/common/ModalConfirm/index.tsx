@@ -1,7 +1,7 @@
 import { useEffect, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import styles from "./index.module.css";
-import ModalBtn from "@/components/common/Button";
+import Button from "@/components/common/Button";
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -11,6 +11,8 @@ interface ConfirmModalProps {
   description?: string;
   confirmText?: string;
   cancelText?: string;
+  confirmButton?: ReactNode;
+  cancelButton?: ReactNode;
   // 확인 버튼 스타일 제어 (기본: danger)
   confirmVariant?: "danger" | "primary" | "cancel";
 }
@@ -23,6 +25,8 @@ export default function ConfirmModal({
   description,
   confirmText = "확인",
   cancelText = "취소",
+  confirmButton,
+  cancelButton,
   confirmVariant = "danger",
 }: ConfirmModalProps) {
   useEffect(() => {
@@ -60,17 +64,21 @@ export default function ConfirmModal({
           {title && <h2 className={styles.title}>{title}</h2>}
           {description && <p className={styles.description}>{description}</p>}
           <div className={styles.buttons}>
-            <ModalBtn color="white" size="Btn" onClick={onClose}>
-              {cancelText}
-            </ModalBtn>
-            <ModalBtn
-              color="black"
-              size="Btn"
-              variant={confirmVariant}
-              onClick={onConfirm}
-            >
-              {confirmText}
-            </ModalBtn>
+            {cancelButton ?? (
+              <Button color="white" size="Btn" onClick={onClose}>
+                {cancelText}
+              </Button>
+            )}
+            {confirmButton ?? (
+              <Button
+                color="black"
+                size="Btn"
+                variant={confirmVariant}
+                onClick={onConfirm}
+              >
+                {confirmText}
+              </Button>
+            )}
           </div>
         </div>
       </div>

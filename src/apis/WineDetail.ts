@@ -3,10 +3,6 @@ import { ENV } from "./env";
 export async function getWineDetail(id: string) {
   const token = localStorage.getItem("accessToken");
 
-  // 👈 여기서 토큰이 어떻게 찍히는지 확인하세요!
-  // 만약 "null" 이나 undefined 라면 에러가 납니다.
-  console.log("보내는 토큰 확인:", `Bearer ${token}`);
-
   // 토큰이 없으면 요청조차 보내지 않도록 방어 로직 추가
   if (!token) {
     console.error("토큰이 없습니다. 로그인이 필요합니다.");

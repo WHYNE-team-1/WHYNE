@@ -10,7 +10,6 @@ export default function WineReview({ data }: { data: Review | null }) {
   if (!data) return <div>로딩중...</div>;
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log("타입", data.avgRatings);
   return (
     <>
       {" "}
@@ -53,7 +52,9 @@ export default function WineReview({ data }: { data: Review | null }) {
         onClose={() => setIsOpen(false)}
         // title="리뷰 등록"
         // buttonText="리뷰 등록하기기"
-      ></Modal>
+      >
+        ㅋㅋㅋ
+      </Modal>
     </>
   );
 }
