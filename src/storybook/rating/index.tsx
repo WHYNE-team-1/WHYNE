@@ -22,7 +22,7 @@ export default function StarRatingTestPage() {
       <div style={{ height: '40px' }} />
 
 
-      <h3 style={{ color: '#8D1429' }}> 통계 그래프 (만점 5.0 표시) </h3>
+      <h3> 만점 5.0 표시 </h3>
       <StarRating 
         mode="displayOnly" 
         size="graph" 

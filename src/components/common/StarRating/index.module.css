@@ -69,7 +69,7 @@
 .profile .countText { font-size: 14px; }
 
 
-/* 📱 태블릿 반응형 (1023px 이하) */
+/* 태블릿 반응형 (1023px 이하) */
 @media (max-width: 1080px) {
   /* 와인 상세 상단 */
   .detail .starWrapper { width: 20px; height: 20px; }
