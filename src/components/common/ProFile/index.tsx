@@ -4,6 +4,7 @@ import Input from "@/components/common/Input";
 import cameraIcon from "@/assets/icons/ic-camera.svg";
 import defaultProfileIcon from "@/assets/icons/ic-default-profile.svg";
 
+// 프로필 카드 컴포넌트
 type ProfileProps = {
   imageUrl?: string;
   nickname?: string;
