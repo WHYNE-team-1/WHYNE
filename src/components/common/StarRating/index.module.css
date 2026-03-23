@@ -128,10 +128,15 @@
 
 .scoreText {
   color: var(--color-gray-800);
-  font-weight: 700; 
+  font-weight: 590; 
 }
 
 .countText {
   color: var(--color-gray-400);
   font-weight: 400; 
+}
+
+.maxScore {
+  color: var(--color-gray-300);
+  font-weight: 700;
 }
