@@ -1,0 +1,34 @@
+.badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  width: 89px;
+  height: 40px;
+  box-sizing: border-box;
+  background: #F5E9EB; 
+  border-radius: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  flex: none; 
+}
+
+.starIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0; 
+  display: block;
+}
+
+.ratingText {
+  width: 33px;
+  height: 24px;
+  font-size: 22px; 
+  font-weight: 800;
+  color: #31302F;
+  font-stretch: 100;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  margin-top: 2px;
+}
