@@ -44,6 +44,8 @@ export default function ModalTestPage() {
 
           <div className={styles.contentButton}>
             <AddReviewBtn
+              color="black"
+              size="Review"
               onClick={() => {
                 alert("리뷰 등록 로직이 들어갈 자리입니다.");
               }}

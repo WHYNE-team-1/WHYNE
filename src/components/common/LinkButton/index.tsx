@@ -31,7 +31,7 @@ export default function LinkButton({
 
   return (
     <Link to={to} className={mergedClassName}>
-      {children && <span className={styles.text}>{children}</span>}
+      {children}
     </Link>
   );
 }

@@ -12,7 +12,7 @@ interface ConfirmModalProps {
   confirmText?: string;
   cancelText?: string;
   // 확인 버튼 스타일 제어 (기본: danger)
-  confirmVariant?: "danger" | "primary";
+  confirmVariant?: "danger" | "primary" | "cancel";
 }
 
 export default function ConfirmModal({
@@ -60,10 +60,14 @@ export default function ConfirmModal({
           {title && <h2 className={styles.title}>{title}</h2>}
           {description && <p className={styles.description}>{description}</p>}
           <div className={styles.buttons}>
-            <ModalBtn variant="cancel" onClick={onClose}>
+            <ModalBtn variant={confirmVariant} onClick={onClose}>
               {cancelText}
             </ModalBtn>
-            <ModalBtn variant="danger" onClick={onConfirm}>
+            <ModalBtn
+              color="black"
+              variant={confirmVariant}
+              onClick={onConfirm}
+            >
               {confirmText}
             </ModalBtn>
           </div>

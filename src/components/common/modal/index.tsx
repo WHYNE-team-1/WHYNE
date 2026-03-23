@@ -1,7 +1,8 @@
 import { useEffect, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import XBtn2 from "@/components/common/Button";
 import styles from "./index.module.css";
+import Button from "@/components/common/Button";
+import X from "@/assets/icons/X.svg";
 
 interface ModalProps {
   isOpen: boolean;
@@ -54,7 +55,12 @@ export default function Modal({
     >
       <div onClick={stopPropagation} className={styles.container}>
         <div className={styles.button}>
-          <XBtn2 onClick={onClose} />
+          <Button
+            onClick={onClose}
+            size="X"
+            color="pure"
+            leftIcon={<img src={X} alt="X" />}
+          />
         </div>
         {children}
       </div>
