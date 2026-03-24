@@ -18,15 +18,11 @@ export default function Signin() {
             label="이메일"
             type="email"
             placeholder="이메일을 입력해주세요"
-            // status="error"
-            // errorMessage="이메일 형식으로 작성해 주세요."
           />
           <Input
             label="비밀번호"
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            // status="error"
-            // errorMessage="비밀번호는 필수 입력입니다."
           />
         </div>
 

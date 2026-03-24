@@ -1,4 +1,4 @@
-import type{ ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import styles from "./index.module.css";
 import logoBlackIcon from "@/assets/icons/ic-logo-black.svg"; 

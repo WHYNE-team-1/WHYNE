@@ -5,7 +5,7 @@
   gap: 36px; 
 }
 
-.inputsGroup {
+.inputGroup {
   display: flex;
   flex-direction: column;
   gap: 16px; 

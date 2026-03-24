@@ -62,7 +62,6 @@
 
 .inputError:focus {
   border: 2px solid var(--color-error-border);
-  padding: 11px 15px;
 }
 
 .errorIcon {
