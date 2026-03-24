@@ -31,7 +31,7 @@ export async function addWineReview(_data: {
   softAcidic: number;
   aroma: [];
   content: string;
-  wineID: number;
+  wineId: number;
 }) {
   const res = await fetch(`${ENV.API_TEAM_BASE_URL}/reviews`, {
     method: "POST",
@@ -41,6 +41,8 @@ export async function addWineReview(_data: {
     },
     body: JSON.stringify(_data),
   });
+  console.log("전달 데이터", _data);
+
   if (!res.ok) {
     const error = await res.json();
     console.log("에러:", error); // 👈 이거 꼭 찍어

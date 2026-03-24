@@ -26,13 +26,13 @@ export default function WineReview({ data }: { data: Review | null }) {
   // WineTasteSlider는 body/tannin/sweetness/acidity 스코어를 요구하므로,
   // WineReview의 맛 필드명과 매핑해서 전달합니다.
   const sliderInitialScores: Record<
-    "body" | "tannin" | "sweetness" | "acidity",
+    "lightBold" | "smoothTannic" | "drySweet" | "softAcidic",
     number
   > = {
-    body: taste.lightBold,
-    tannin: taste.smoothTannic,
-    sweetness: taste.drySweet,
-    acidity: taste.softAcidic,
+    lightBold: taste.lightBold,
+    smoothTannic: taste.smoothTannic,
+    drySweet: taste.drySweet,
+    softAcidic: taste.softAcidic,
   };
 
   async function handleSubmit(e: React.FormEvent) {
@@ -46,13 +46,15 @@ export default function WineReview({ data }: { data: Review | null }) {
       smoothTannic: taste.smoothTannic,
       drySweet: taste.drySweet,
       softAcidic: taste.softAcidic,
-      aroma: aromas,
+      aroma: data.aroma ?? [],
       content,
-      wineID: data.id,
+      wineId: data.id,
     });
+
   }
   const modalButton = (
-    <Button color="black" size="stretch" type="submit" form="reviewForm">
+    <Button color="black" size="stretch" type="submit" form="reviewForm" 
+    onClick={() => setIsOpen(false)}>
       리뷰 남기기
     </Button>
   );
@@ -61,7 +63,11 @@ export default function WineReview({ data }: { data: Review | null }) {
       {" "}
       <div className={styles.ratingsWrap}>
         <div className={styles.rating}>
-          <StarRating value={data.avgRating} />
+          <StarRating 
+            mode="displayOnly" 
+            size="graph" value={data.avgRating}
+            showMaxScore={true}
+          />
         </div>
         <div className={styles.tableBtn}>
           <Button size="stretch">리뷰 남기기</Button>
@@ -141,10 +147,10 @@ export default function WineReview({ data }: { data: Review | null }) {
                 initialScores={sliderInitialScores}
                 onChange={(scores) => {
                   setTaste({
-                    lightBold: scores.body,
-                    smoothTannic: scores.tannin,
-                    drySweet: scores.sweetness,
-                    softAcidic: scores.acidity,
+                    lightBold: scores.lightBold,
+                    smoothTannic: scores.smoothTannic,
+                    drySweet: scores.drySweet,
+                    softAcidic: scores.softAcidic,
                   });
                 }}
               />
