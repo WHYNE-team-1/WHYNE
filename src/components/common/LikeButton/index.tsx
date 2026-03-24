@@ -32,7 +32,7 @@ export default function LikeButton({
       onClick={handleClick}
     >
       <span className={styles.icon}>
-        {liked ? <img src={likeActiveIcon} /> : <img src={likeInActiveIcon} />}
+        {liked ? <img className={styles.smallIcon} src={likeActiveIcon} /> : <img className={styles.smallIcon}src={likeInActiveIcon} />}
       </span>
       <span>{likeCount}</span>
     </button>
