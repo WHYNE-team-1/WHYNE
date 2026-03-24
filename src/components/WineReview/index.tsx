@@ -23,8 +23,6 @@ export default function WineReview({ data }: { data: Review | null }) {
     softAcidic: 0,
   });
 
-  // WineTasteSlider는 body/tannin/sweetness/acidity 스코어를 요구하므로,
-  // WineReview의 맛 필드명과 매핑해서 전달합니다.
   const sliderInitialScores: Record<
     "lightBold" | "smoothTannic" | "drySweet" | "softAcidic",
     number
@@ -70,7 +68,7 @@ export default function WineReview({ data }: { data: Review | null }) {
           />
         </div>
         <div className={styles.tableBtn}>
-          <Button size="stretch">리뷰 남기기</Button>
+          <Button size="stretch"  onClick={() => setIsOpen(true)}>리뷰 남기기</Button>
         </div>
         <div className={styles.ratingDetails}>
           {Object.entries(data.avgRatings as Record<string, number>).map(
