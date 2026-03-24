@@ -12,10 +12,10 @@ const StarIcon = ({ type }: { type: 'filled' | 'empty' }) => {
 };
 
 interface StarRatingProps {
-  // 'interactive' (모달) | 'displayOnly' (나머지 보이는 부분)
+  // 'interactive' = 모달에서만 | 'displayOnly' (나머지 보이는 부분)
   mode?: 'interactive' | 'displayOnly';
   
-  // 현재 점수 (1~5)
+
   // interactive 모드에서는 초기 선택값, displayOnly 모드에서는 선택,평균 점수
   value?: number; 
   
@@ -27,6 +27,9 @@ interface StarRatingProps {
   
   // 점수가 변경될 때 실행될 콜백 (interactive 모드 전용)
   onChange?: (rating: number) => void; 
+
+  // 5.0 만점 표시여부 
+  showMaxScore?: boolean;
 }
 
 
@@ -36,6 +39,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   count = 0,
   size = 'detail', // 기본 크기
   onChange,
+  showMaxScore = false,
 }) => {
   
   // 인터랙티브 모드 전용 상태, 사용자가 최종 선택한 점수
@@ -51,7 +55,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   onChange?.(rating);
 };
 
-// 반점 계산 로직 (🚨 완벽 수정판)
+// 반점 계산
   const renderDisplayStars = () => {
     const stars = [];
     const floorRating = Math.floor(value); 
@@ -59,7 +63,7 @@ const StarRating: React.FC<StarRatingProps> = ({
 
     for (let i = 1; i <= 5; i++) {
       if (i <= floorRating) {
-        // 🚨 꽉 찬 별도 starWrapper로 감싸기!
+        // 꽉 찬 별 starWrapper로 감싸기 ( 사이즈 바뀌는 이슈 있었음)
         stars.push(
           <div key={i} className={styles.starWrapper}>
             <StarIcon type="filled" />
@@ -76,7 +80,7 @@ const StarRating: React.FC<StarRatingProps> = ({
           </div>
         );
       } else {
-        // 🚨 빈 별도 starWrapper로 감싸기!
+        // 빈 별도 starWrapper로 감싸기
         stars.push(
           <div key={i} className={styles.starWrapper}>
             <StarIcon type="empty" />
@@ -131,7 +135,7 @@ const renderInteractiveStars = () => {
 
 
   return (
-    // classNames/bind (cx)를 사용해서 mode와 size에 따라 CSS 클래스를 동적으로 붙여줌
+    // classNames/bind cx를 사용해서 mode와 size에 따라 CSS 클래스를 동적으로 붙여줌
     <div className={cx('container', mode, size)}>
       
       {/* Display 모드 */}
@@ -139,7 +143,10 @@ const renderInteractiveStars = () => {
         <>
           {renderDisplayStars()}
           <div className={styles.ratingInfo}>
-            <span className={styles.scoreText}>{value.toFixed(1)}</span>
+
+            <span className={styles.scoreText}>{value.toFixed(1)}
+              {showMaxScore && <span className={styles.maxScore}> / 5.0</span>}
+            </span>
             {count > 0 && <span className={styles.countText}>{count.toLocaleString()}개의 후기</span>}
           </div>
         </>

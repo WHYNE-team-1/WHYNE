@@ -5,10 +5,10 @@ import styles from './index.module.css';
 const cx = classNames.bind(styles);
 
 const FLAVOR_CONFIG = [
-  { id: 'body', label: '바디감', descL: '가벼워요', descR: '진해요' },
-  { id: 'tannin', label: '탄닌', descL: '부드러워요', descR: '떫어요' },
-  { id: 'sweetness', label: '당도', descL: '드라이해요', descR: '달아요' },
-  { id: 'acidity', label: '산미', descL: '안셔요', descR: '많이셔요' },
+  { id: "lightBold", label: "바디감", descL: "가벼워요", descR: "진해요" },
+  { id: "smoothTannic", label: "탄닌", descL: "부드러워요", descR: "떫어요" },
+  { id: "drySweet", label: "당도", descL: "드라이해요", descR: "달아요" },
+  { id: "softAcidic", label: "산미", descL: "안셔요", descR: "많이셔요" },
 ] as const;
 
 type FlavorId = (typeof FLAVOR_CONFIG)[number]['id'];
@@ -45,15 +45,15 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
   onChange,
 }) => {
   
-  const DEFAULT_SCORES: Record<FlavorId, number> = { body: 0, tannin: 0, sweetness: 0, acidity: 0 };
+  const DEFAULT_SCORES: Record<FlavorId, number> = { lightBold: 0, smoothTannic: 0, drySweet: 0, softAcidic: 0 };
 
-  // 상태 관리: 만약 initialScores가 Props로 들어왔다면 그걸 쓰고, 없으면 기본값 0을 씁니다.
+  // 상태 관리: 만약 initialScores가 Props로 들어왔다면 그걸 쓰고, 없으면 기본값 0
   const [flavorScores, setFlavorScores] = useState<Record<FlavorId, number>>(
     initialScores || DEFAULT_SCORES
   );
 
   const handleScoreChange = (flavorId: FlavorId, score: number) => {
-    //  만약 읽기 전용 모드라면 점수를 바꾸지 않고 함수를 끝냅니다.
+    //  만약 읽기 전용 모드라면 점수를 바꾸지 않고 함수를 끝냄
     if (readOnly) return;
 
     const newScores = {
@@ -68,8 +68,8 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
   };
 
   return (
-    // classNames/bind (cx)를 사용해서 Props 값에 따라 CSS 클래스를 동적으로 붙여줍니다.
-    // variant, labelStyle 값이 그대로 클래스명이 됩니다. 예: styles.row, styles.box, styles.readOnly
+    // classNames/bind (cx)를 사용해서 Props 값에 따라 CSS 클래스를 동적으로
+    // variant, labelStyle 값이 그대로 클래스명이 됨 
     <div className={cx('container', variant, { readOnly: readOnly })}>
       
       {FLAVOR_CONFIG.map((item) => (
@@ -80,7 +80,7 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
             <span className={styles.mainLabel}>{item.label}</span>
           </div>
 
-          {/* 왼쪽 설명 (compact형일 때는 안 보여줍니다.) */}
+          {/* 왼쪽 설명 (compact형일 때는 안 보여줌) */}
           {variant !== 'compact' && (
             <span className={cx('descText', 'descL')}>{item.descL}</span>
           )}
