@@ -7,6 +7,8 @@ import WinesList from "@/pages/WinesList/index";
 import WinesDetail from "@/pages/WinesDetail/index";
 import AddItem from "@/pages/AddItem/index";
 
+import MyProfile from "@/pages/MyProfile/index";
+
 import DropdownSample from "@/storybook/drop-down";
 import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
 import ImageAddButton from "@/storybook/img-add-btn";
@@ -40,8 +42,7 @@ export default function AppRoutes() {
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-
-        
+        <Route path="/myprofile" element={<MyProfile />} />
 
         <Route path="/storybook/auth-test" element={<AuthTest />} />
         <Route path="/storybook/dropdown" element={<DropdownSample />} />

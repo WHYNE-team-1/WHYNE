@@ -26,6 +26,7 @@ export default function Profile({
   const [nicknameInput, setNicknameInput] = useState(nickname);
   const [profileNickname, setProfileNickname] = useState(nickname);
   const [profileImage, setProfileImage] = useState(imageUrl);
+  const [isImageError, setIsImageError] = useState(false);
 
   useEffect(() => {
     setNicknameInput(nickname);
@@ -34,9 +35,11 @@ export default function Profile({
 
   useEffect(() => {
     setProfileImage(imageUrl);
+    setIsImageError(false);
   }, [imageUrl]);
 
-  const profileSrc = profileImage?.trim() ? profileImage : defaultProfileIcon;
+  const profileSrc =
+    !isImageError && profileImage?.trim() ? profileImage : defaultProfileIcon;
 
   const handleImageClick = () => {
     const input = document.createElement("input");
@@ -80,7 +83,11 @@ export default function Profile({
     <div className={styles.profileCardInner}>
       <div className={styles.profileCard}>
         <div className={styles.profileCardImg}>
-          <img src={profileSrc} alt={`${profileNickname}님의 프로필 사진`} />
+          <img
+            src={profileSrc}
+            alt={`${profileNickname}님의 프로필 사진`}
+            onError={() => setIsImageError(true)}
+          />
 
           <button
             type="button"
