@@ -49,10 +49,12 @@ export default function Input({
           <img src={ErrorIcon} alt="" className={styles.errorIcon} />
         )}
       </div>
-
-      {status === "error" && errorMessage && (
-        <span className={styles.bottomErrorMessage}>{errorMessage}</span>
-      )}
+      
+      <div className={styles.errorWrap}>
+        {status === "error" && errorMessage && (
+          <span className={styles.bottomErrorMessage}>{errorMessage}</span>
+        )}
+      </div>
     </div>
   );
 }
