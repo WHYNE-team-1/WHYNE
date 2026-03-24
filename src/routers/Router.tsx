@@ -13,7 +13,7 @@ import AddItem from "@/pages/AddItem/index";
 import DropdownSample from "@/storybook/drop-down";
 import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
 import ImageAddButton from "@/storybook/img-add-btn";
-import Button from "@/storybook/Button";
+import Button from "@/storybook/button";
 import LinkButton from "@/storybook/link-button";
 
 import Input from "@/storybook/input";
