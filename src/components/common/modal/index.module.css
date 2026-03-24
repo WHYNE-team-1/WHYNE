@@ -21,7 +21,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 83px;
+  bottom: 101px;
   height: 60px;
   pointer-events: none;
   background: linear-gradient(
@@ -60,6 +60,7 @@
   min-height: 0;
   position: relative;
   overflow-y: auto;
+  max-height: 600px;
 }
 
 .contentButton {
