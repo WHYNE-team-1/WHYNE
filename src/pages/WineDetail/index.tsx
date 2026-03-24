@@ -2,18 +2,19 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getWineDetail } from "@/apis/WineDetail";
 import WineReview from "@/components/WineReview";
+import type { WineDetail } from "./WineDetail.types";
+
 
 function WineDetail() {
   const { id } = useParams();
-  const [wine, setWine] = useState<any>(null);
+  const [wine, setWine] = useState<WineDetail | null>(null);
+
+  async function fetchData() {
+    const data = await getWineDetail(id!);
+    setWine(data);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await getWineDetail(id!);
-      console.log("와인 데이터:", data);
-      setWine(data);
-    }
-
     fetchData();
   }, [id]);
 
@@ -23,7 +24,7 @@ function WineDetail() {
     <div>
       <div>와인 상세</div>
       <div>
-        <WineReview data={wine} />
+        <WineReview data={wine} onSuccess={fetchData} />
       </div>
     </div>
   );

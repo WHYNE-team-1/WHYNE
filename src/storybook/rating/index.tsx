@@ -38,7 +38,7 @@ export default function StarRatingTestPage() {
         size="modal"
         value={rating}
         onChange={(val) => {
-          setRating(val); //
+          setRating(val);
         }}
       />
 

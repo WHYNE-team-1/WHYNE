@@ -7,15 +7,41 @@ import Textarea from "@/components/common/Textarea";
 import ReviewAromaCheckbox from "@/components/common/ReviewAromaCheckbox";
 import WineTasteSlider from "@/components/common/WineTasteSlider";
 import { addWineReview } from "@/apis/WineDetail";
+import type { WineDetail } from "@/pages/WineDetail/WineDetail.types";
 
-type Review = any;
 
-export default function WineReview({ data }: { data: Review | null }) {
+type Props = {
+  data: WineDetail  | null;
+  onSuccess : () => void;
+};
+const aromaMap: Record<string, string> = {
+  apple: "APPLE",
+  cherry: "CHERRY",
+  chocolate: "CHOCOLATE",
+  citrus: "CITRUS",
+  coconut: "TROPICAL",
+  flower: "FLOWER",
+  grass: "GRASS",
+  herb: "GRASS",
+  mineral: "MINERAL",
+  oak: "OAK",
+  peach: "PEACH",
+  grape: "BERRY",
+  toast: "BAKING",
+  tropical: "TROPICAL",
+  WetSoil: "EARTH",
+};
+
+
+export default function WineReview({ data, onSuccess }: Props) {
   if (!data) return <div>로딩중...</div>;
+
+  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState("");
-  const [aromas, setAromas] = useState<string[]>([]);
+
   const [rating, setRating] = useState(3);
+  const [content, setContent] = useState("");
+  const [aroma, setAroma] = useState<string[]>([]);
   const [taste, setTaste] = useState({
     lightBold: 0,
     smoothTannic: 0,
@@ -36,24 +62,46 @@ export default function WineReview({ data }: { data: Review | null }) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!data?.id) return;
+    if (!data?.id || isLoading) return;
+    const trimmedContent = content.trim();
+    const normalizedRating = Math.max(1, Math.min(5, Math.round(rating)));
+    const mappedAroma = aroma.map((a) => aromaMap[a]).filter(Boolean);
+    if (!trimmedContent) {
+      alert("리뷰 내용을 입력해주세요.");
+      return;
+    }
+    if (mappedAroma.length === 0) {
+      alert("향을 최소 1개 선택해주세요.");
+      return;
+    }
 
-    await addWineReview({
-      rating,
-      lightBold: taste.lightBold,
-      smoothTannic: taste.smoothTannic,
-      drySweet: taste.drySweet,
-      softAcidic: taste.softAcidic,
-      aroma: data.aroma ?? [],
-      content,
-      wineId: data.id,
-    });
+    try{
+      setIsLoading(true);
+
+      await addWineReview({
+        rating: normalizedRating,
+        lightBold: taste.lightBold,
+        smoothTannic: taste.smoothTannic,
+        drySweet: taste.drySweet,
+        softAcidic: taste.softAcidic,
+        aroma: mappedAroma,
+        content: trimmedContent,
+        wineId: data.id,
+      });
+
+      onSuccess();
+      setIsOpen(false);
+    } catch(error){
+      console.error(error);
+      alert("리뷰 등록에 실패했습니다.");
+    } finally {
+      setIsLoading(false);
+    }
 
   }
   const modalButton = (
-    <Button color="black" size="stretch" type="submit" form="reviewForm" 
-    onClick={() => setIsOpen(false)}>
-      리뷰 남기기
+    <Button color="black" size="stretch" type="submit" form="reviewForm">
+      {isLoading ? "등록 중..." : "리뷰 남기기"}
     </Button>
   );
   return (
@@ -111,7 +159,7 @@ export default function WineReview({ data }: { data: Review | null }) {
           <div className={styles.reviewTop}>
             <div className={styles.wineInfo}>
               <div className={styles.imgWrap}>
-                <img src={data.image} alt={data.image} />
+                <img src={data.image} alt={data.name} />
               </div>
               <div className={styles.NameAndRegion}>
                 <p className={styles.name}>{data.name}</p>
@@ -125,7 +173,7 @@ export default function WineReview({ data }: { data: Review | null }) {
                 size="modal"
                 value={rating}
                 onChange={(val) => {
-                  setRating(val); //
+                  setRating(val);
                 }}
               />
             </div>
@@ -155,7 +203,7 @@ export default function WineReview({ data }: { data: Review | null }) {
             </div>
             <div className={styles.aroma}>
               <p className={styles.q}>기억에 남는 향이 있나요?</p>
-              <ReviewAromaCheckbox value={aromas} onChange={setAromas} />
+              <ReviewAromaCheckbox value={aroma} onChange={setAroma} />
             </div>
           </div>
         </form>
