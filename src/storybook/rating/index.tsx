@@ -21,6 +21,15 @@ export default function StarRatingTestPage() {
 
       <div style={{ height: '40px' }} />
 
+
+      <h3> 만점 5.0 표시 </h3>
+      <StarRating 
+        mode="displayOnly" 
+        size="graph" 
+        value={rating} 
+        showMaxScore={true}
+      />
+
       <h3> 유저 리뷰 뱃지 (StarRatingBadge) </h3>
       <StarRatingBadge rating={rating} />
 

@@ -16,7 +16,7 @@ import LinkButton from "@/storybook/link-button";
 import Input from "@/storybook/input";
 import AromaStoryBook from "@/storybook/aroma";
 
-import ModalTestPage from "@/storybook/Modal";
+import ModalTestPage from "@/storybook/modal";
 import ConfirmModalTestPage from "@/storybook/ModalConfirm";
 
 import WineTypeTestPage from "@/storybook/wine-type";
@@ -25,6 +25,8 @@ import TextareaTestPage from "@/storybook/textarea";
 import SearchBarSample from "@/storybook/search-bar";
 import PriceRangeSlider from "@/storybook/price-range-slider";
 import AuthTest from "@/storybook/auth-test";
+import StarRatingTestPage from "@/storybook/rating";
+
 import ProFileTestPage from "@/storybook/profile";
 import ProFileSmallTestPage from "@/storybook/profilesmall";
 
@@ -41,7 +43,7 @@ export default function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
 
-        
+        <Route path="/storybook/rating" element={<StarRatingTestPage />} />
 
         <Route path="/storybook/auth-test" element={<AuthTest />} />
         <Route path="/storybook/dropdown" element={<DropdownSample />} />
@@ -65,7 +67,7 @@ export default function AppRoutes() {
 
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
-          path="/storybook/modalconfirm"
+          path="/storybook/modalconfrim"
           element={<ConfirmModalTestPage />}
         />
 
