@@ -21,7 +21,8 @@ const MAX_LEVEL = 6;
 interface WineTasteSliderProps {
   // 배치 스타일 (Layout Variant)
   // 'row'(가로, 기본값) | 'stacked'(라벨이 위에 있는 세로형, 피그마 Row 1 우측) | 'compact'(라벨과 슬라이더만 있는 형태, 맨 아랫줄)
-  variant?: 'row' | 'stacked' | 'compact';
+  // reviewcard 용
+  variant?: 'row' | 'stacked' | 'compact' | 'grid';
 
   // 라벨 스타일 (Label Style)
   // 'box'(회색 박스 배경, 기본값) | 'text'(텍스트만 있는 형태, 피그마 Row 1 좌측)
@@ -35,6 +36,9 @@ interface WineTasteSliderProps {
   initialScores?: Record<FlavorId, number>; 
 
   onChange?: (scores: Record<FlavorId, number>) => void; // 점수가 바뀔 때 실행
+
+  hideLeftDesc?: boolean; // 왼쪽 텍스트 숨기기
+  hideSeparator?: boolean; // 세로선 숨기기
 }
 
 
@@ -44,6 +48,8 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
   readOnly = false, // 기본은 클릭 가능
   initialScores, // 상세페이지 등에서 전달받은 초기값
   onChange,
+  hideLeftDesc = false, // 기본값 false 
+  hideSeparator = false, // 기본값 false
 }) => {
   
   const DEFAULT_SCORES: Record<FlavorId, number> = { lightBold: 0, smoothTannic: 0, drySweet: 0, softAcidic: 0 };
@@ -77,12 +83,12 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
         <div key={item.id} className={styles.sliderRow}>
           
           {/* 라벨 섹션 (variant가 compact일 때는 라벨의 형태가 또 다를 수 있으니 variant 클래스도 같이 붙여줍니다.) */}
-          <div className={cx('labelSection', labelStyle, variant)}>
+          <div className={cx('labelSection', labelStyle, variant, { hideSeparator })}>
             <span className={styles.mainLabel}>{item.label}</span>
           </div>
 
           {/* 왼쪽 설명 (compact형일 때는 안 보여줌) */}
-          {variant !== 'compact' && (
+          {variant !== 'compact' && !hideLeftDesc && (
             <span className={cx('descText', 'descL')}>{item.descL}</span>
           )}
 

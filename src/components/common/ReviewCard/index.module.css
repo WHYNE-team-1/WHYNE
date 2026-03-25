@@ -1,0 +1,137 @@
+.card {
+  width: 100%;
+  max-width: 664px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #E8E8E8;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
+  font-family: 'Pretendard', sans-serif;
+  margin-bottom: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.headerTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.badgeGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timeProfile {
+  font-size: 14px;
+  color: #999999;
+}
+
+.kebabIcon {
+  font-size: 20px;
+  color: #CCCCCC;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 4px;
+}
+
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.wineImage {
+  width: 40px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.wineName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.wineRegion {
+  font-size: 14px;
+  color: #999999;
+  margin: 0;
+}
+
+.userImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #F0F0F0;
+}
+
+.nickname {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.timeDetail {
+  font-size: 14px;
+  color: #999999;
+}
+
+.body {
+  margin-bottom: 24px;
+}
+
+.aromaTags {
+  font-size: 14px;
+  color: #999999;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.content {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0 0 20px 0;
+}
+
+.tasteSliders {
+  margin-top: 20px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  border-top: 1px solid #F0F0F0;
+  padding-top: 16px;
+}
+
+.detailFooter {
+  justify-content: space-between; 
+}
+
+.expandBtn {
+  background: none;
+  border: none;
+  color: #999999;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+}
