@@ -126,11 +126,42 @@
     color: var(--color-gray-400);
   }
 
-  /* 🥈 2층: 가운데 슬라이더 점들 */
+  /* 2층: 가운데 슬라이더 점들 */
   .sliderTrack {
     flex: 1; 
     max-width: 206px;
     margin: 0 10px; 
     height: 10px;
   }
+}
+
+
+.container.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 16px;
+  max-width: none; /* 그리드일 때 max-width 480px 무시 */
+}
+
+
+.labelSection.hideSeparator {
+  border-right: none;
+}
+
+
+.labelSection.box {
+  background-color: #F2F2F2; 
+  color: #8C8C8B;
+  border-radius: 4px;        
+  padding: 4px 8px;          
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 50px;          
+}
+
+.labelSection.text {
+  background-color: transparent;
+  padding: 5px;
 }

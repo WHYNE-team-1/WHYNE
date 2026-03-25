@@ -32,7 +32,7 @@ import StarRatingTestPage from "@/storybook/rating";
 
 import ProFileTestPage from "@/storybook/profile";
 import ProFileSmallTestPage from "@/storybook/profilesmall";
-
+import ReviewCardStorybook from "@/storybook/review-card";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -50,7 +50,7 @@ export default function AppRoutes() {
 
         <Route path="/storybook/auth-test" element={<AuthTest />} />
         <Route path="/storybook/dropdown" element={<DropdownSample />} />
-
+        <Route path="/storybook/review-card" element={<ReviewCardStorybook/>}/>
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
