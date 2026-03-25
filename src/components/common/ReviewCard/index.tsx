@@ -149,6 +149,7 @@ export default function ReviewCard({
             onClick={() => setIsExpanded(!isExpanded)}
           >
             {isExpanded ? '˄' : '˅'}
+            "dadada"
           </button>
         )}
       </div>
