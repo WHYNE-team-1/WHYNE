@@ -1,5 +1,5 @@
 import type { WineTypeKind } from '@/constants/WineType.constants';
-import WineListCard from '../WineListCard';
+import WineListCard from '@/components/list/WineListCard';
 import styles from './index.module.css';
 
 export interface Wine {
