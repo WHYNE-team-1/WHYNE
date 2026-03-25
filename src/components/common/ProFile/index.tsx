@@ -1,11 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import styles from "./index.module.css";
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import cameraIcon from "@/assets/icons/ic-camera.svg";
 import defaultProfileIcon from "@/assets/icons/ic-default-profile.svg";
 
-// 프로필 카드 컴포넌트
+const DEFAULT_PROFILE_NICKNAME = "\uc640\uc778\uace0\ub974\ub294 \uc911";
+const PROFILE_IMAGE_ALT_SUFFIX = "\uc758 \ud504\ub85c\ud544 \uc0ac\uc9c4";
+const PROFILE_IMAGE_ARIA_LABEL = "\ud504\ub85c\ud544 \uc774\ubbf8\uc9c0 \ubcc0\uacbd";
+const NICKNAME_LABEL = "\ub2c9\ub124\uc784";
+const NICKNAME_PLACEHOLDER = "\ub2c9\ub124\uc784\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694";
+const LOADING_TEXT = "\ucc98\ub9ac \uc911...";
+const SAVE_BUTTON_TEXT = "\ubcc0\uacbd\ud558\uae30";
+
 type ProfileProps = {
   imageUrl?: string;
   nickname?: string;
@@ -15,9 +22,9 @@ type ProfileProps = {
   isLoading?: boolean;
 };
 
-export default function Profile({
+export default function ProFile({
   imageUrl = "",
-  nickname = "주말에 와인",
+  nickname = DEFAULT_PROFILE_NICKNAME,
   onImageChange,
   onNicknameChange,
   onSave,
@@ -36,41 +43,37 @@ export default function Profile({
     setProfileImage(imageUrl);
   }, [imageUrl]);
 
-  const profileSrc = profileImage?.trim() ? profileImage : defaultProfileIcon;
+  const profileSrc = profileImage.trim() ? profileImage : defaultProfileIcon;
 
   const handleImageClick = () => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
-    input.onchange = (e) => {
-      const file = (e.target as HTMLInputElement).files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const imageUrl = event.target?.result as string;
-          setProfileImage(imageUrl);
-          if (onImageChange) {
-            onImageChange(imageUrl, file);
-          }
-        };
-        reader.readAsDataURL(file);
+    input.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+
+      if (!file) {
+        return;
       }
+
+      const reader = new FileReader();
+      reader.onload = (loadEvent) => {
+        const nextImageUrl = loadEvent.target?.result as string;
+        setProfileImage(nextImageUrl);
+        onImageChange?.(nextImageUrl, file);
+      };
+      reader.readAsDataURL(file);
     };
     input.click();
   };
 
-  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newNickname = e.target.value;
-    setNicknameInput(newNickname);
-    if (onNicknameChange) {
-      onNicknameChange(newNickname);
-    }
+  const handleNicknameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const nextNickname = event.target.value;
+    setNicknameInput(nextNickname);
+    onNicknameChange?.(nextNickname);
   };
 
   const handleSave = async () => {
-    // 프로필 이름 업데이트
-    setProfileNickname(nicknameInput);
-    
     if (onSave) {
       await onSave();
     }
@@ -80,12 +83,12 @@ export default function Profile({
     <div className={styles.profileCardInner}>
       <div className={styles.profileCard}>
         <div className={styles.profileCardImg}>
-          <img src={profileSrc} alt={`${profileNickname}님의 프로필 사진`} />
+          <img src={profileSrc} alt={`${profileNickname}${PROFILE_IMAGE_ALT_SUFFIX}`} />
 
           <button
             type="button"
             className={styles.imageOverlay}
-            aria-label="프로필 이미지 변경"
+            aria-label={PROFILE_IMAGE_ARIA_LABEL}
             onClick={handleImageClick}
             disabled={isLoading}
           >
@@ -103,25 +106,19 @@ export default function Profile({
 
       <div className={styles.profileCardInfo}>
         <Input
-          label="닉네임"
-          placeholder="닉네임을 입력해주세요"
+          label={NICKNAME_LABEL}
+          placeholder={NICKNAME_PLACEHOLDER}
           value={nicknameInput}
           onChange={handleNicknameChange}
           disabled={isLoading}
           className={styles.profileCardField}
         />
         <span className={styles.profileCardBtn}>
-          <Button 
-            color="black" 
-            size="BtnS"
-            onClick={handleSave}
-            disabled={isLoading}
-          >
-            {isLoading ? "처리 중..." : "변경하기"}
+          <Button color="black" size="BtnS" onClick={handleSave} disabled={isLoading}>
+            {isLoading ? LOADING_TEXT : SAVE_BUTTON_TEXT}
           </Button>
         </span>
       </div>
     </div>
   );
 }
-

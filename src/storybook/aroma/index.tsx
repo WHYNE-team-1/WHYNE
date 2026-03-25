@@ -2,6 +2,8 @@ import { ReviewAroma, DetailAroma } from "@/components/common/Aroma";
 // import { useState } from "react";
 
 export default function AromaStoryBook() {
+  const [usersCount] = useState<number>(0);
+  const [selectedAromaIds] = useState<string[]>([]);
   // const [usersCount, setUsersCount] = useState<number>(0);
   // const [selectedAromaIds, setselectedAromaIds] = useState<string[]>([]);
 
