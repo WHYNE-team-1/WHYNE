@@ -6,6 +6,7 @@ import SignIn from "@/pages/Signin/index";
 import WinesList from "@/pages/WinesList/index";
 import WinesDetail from "@/pages/WinesDetail/index";
 import AddItem from "@/pages/AddItem/index";
+import MyProfile from "@/pages/MyProfile/index";
 
 import DropdownSample from "@/storybook/drop-down";
 import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
@@ -16,7 +17,7 @@ import LinkButton from "@/storybook/link-button";
 import Input from "@/storybook/input";
 import AromaStoryBook from "@/storybook/aroma";
 
-import ModalTestPage from "@/storybook/modal";
+import ModalTestPage from "@/storybook/Modal";
 import ConfirmModalTestPage from "@/storybook/ModalConfirm";
 
 import WineTypeTestPage from "@/storybook/wine-type";
@@ -39,6 +40,7 @@ export default function AppRoutes() {
           <Route path="/wines" element={<WinesList />} />
           <Route path="/wines/:id" element={<WinesDetail />} />
           <Route path="/additem" element={<AddItem />} />
+          <Route path="/myprofile" element={<MyProfile />} />
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
