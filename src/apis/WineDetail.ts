@@ -44,6 +44,7 @@ export async function addWineReview(data: {
     },
     body: JSON.stringify(data),
   });
+  console.log('응답:', data);
 
   if (!res.ok) {
     const errorText = await res.text();

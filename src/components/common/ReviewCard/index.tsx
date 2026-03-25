@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './index.module.css';
 import StarRatingBadge from '@/components/common/StarRatingBadge';
 import WineTasteSlider from '@/components/common/WineTasteSlider';
 import LikeButton from '@/components/common/LikeButton';
 import Dropdown from '@/components/common/Dropdown';
+import { ReviewAroma } from '@/components/common/Aroma';
+import type { ReviewListItem } from '@/pages/WineDetail/WineDetail.types';
 
 const cx = classNames.bind(styles);
 
@@ -18,40 +20,30 @@ const FLAVOR_CONFIG = [
 type FlavorId = (typeof FLAVOR_CONFIG)[number]['id'];
 
 interface ReviewCardProps {
+  data: ReviewListItem;
   type: 'detail' | 'profile';
   isMyReview?: boolean;
-  rating: number;
-  time: string;
-  aromaTags: string[];
-  content: string;
-  flavorScores: Record<FlavorId, number>;
-  likeCount: number;
-  isLiked?: boolean;
+  time?: string;
+  flavorScores?: Record<FlavorId, number>;
+  likeCount?: number;
   wineName?: string;
   wineRegion?: string;
   wineImage?: string;
-  userNickname?: string;
-  userImage?: string;
   onEdit?: () => void;
   onDelete?: () => void;
   onLike?: () => void;
 }
 
 export default function ReviewCard({
+  data,
   type,
   isMyReview = false,
-  rating,
   time,
-  aromaTags,
-  content,
   flavorScores,
   likeCount,
-  isLiked = false,
   wineName,
   wineRegion,
   wineImage,
-  userNickname,
-  userImage,
   onEdit,
   onDelete,
   onLike,
@@ -77,7 +69,7 @@ export default function ReviewCard({
         <div className={cx('headerTopRow')}>
           {/* 뱃지 + 시간 */}
           <div className={cx('badgeGroup')}>
-            <StarRatingBadge rating={rating} />
+            {/* <StarRatingBadge rating={rating} /> */}
             {type === 'profile' && (
               <span className={cx('timeProfile')}>{time}</span>
             )}
@@ -106,12 +98,12 @@ export default function ReviewCard({
           // 상세페이지용 유저정보 + 시간  (수정해야함))
           <div className={cx('profileInfo')}>
             <img
-              src={userImage || '/default-profile.png'}
+              src={data.user.image || '/default-profile.png'}
               alt="프로필"
               className={cx('userImage')}
             />
             <div className={cx('textGroup')}>
-              <span className={cx('nickname')}>{userNickname}</span>
+              <span className={cx('nickname')}>{data.user.nickname}</span>
               <span className={cx('timeDetail')}>{time}</span>
             </div>
           </div>
@@ -120,11 +112,12 @@ export default function ReviewCard({
 
       <div className={cx('body')}>
         {/* 향 태그 detail에만 */}
-        {type === 'detail' && aromaTags && aromaTags.length > 0 && (
-          <div className={cx('aromaTags')}>{aromaTags.join(' · ')}</div>
+        {data.aroma && data.aroma.length > 0 && (
+          // <div className={cx('aromaTags')}>{aromaTags.join(' · ')}</div>
+          <ReviewAroma selectedAromaIds={data.aroma} />
         )}
 
-        <p className={cx('content')}>{content}</p>
+        <p className={cx('content')}>{data.content}</p>
 
         {/* 슬라이더 표시 로직  */}
         {showTasteSliders && (
@@ -136,7 +129,7 @@ export default function ReviewCard({
 
       <div className={cx('footer', { detailFooter: type === 'detail' })}>
         <LikeButton
-          initialLiked={isLiked}
+          initialLiked={data.isLiked}
           count={likeCount}
           size="md"
           /*  onClick={onLike}  나중에수정, 지금 오류남 */
@@ -149,7 +142,6 @@ export default function ReviewCard({
             onClick={() => setIsExpanded(!isExpanded)}
           >
             {isExpanded ? '˄' : '˅'}
-            "dadada"
           </button>
         )}
       </div>

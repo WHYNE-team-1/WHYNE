@@ -1,6 +1,6 @@
 import AuthLayout from '@/components/layout/AuthLayout';
 import Input from '@/components/common/Input';
-import Button from '@/components/common/button';
+import Button from '@/components/common/Button';
 import styles from './index.module.css';
 
 export default function SignupPage() {
