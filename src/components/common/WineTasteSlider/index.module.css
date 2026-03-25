@@ -16,16 +16,13 @@
   width: 100%;
 }
 
-/* 바디감을 감싸는 박스 ( 구분선 포함) */
+/* 바디감을 감싸는 박스 */
 .labelSection {
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  padding: 0px 8px;
-  width: 75px;
-  height: 25px;
-  border-right: 1px solid var(--color-gray-200);
+  justify-content: center;
+  height: 100%;
 }
 
 /* 세로형이면 라벨 없앰 */
@@ -42,6 +39,13 @@
   letter-spacing: -0.02em;
   color: var(--color-gray-700);
 }
+/* mainLabel이 위에서 잡고있어서  따로 추가 */
+.labelSection.box .mainLabel {
+  color: #8c8c8b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
 
 /* '가벼워요' 폰트 */
 .descText {
@@ -53,7 +57,6 @@
   color: var(--color-gray-400);
   width: 75px;
   text-align: center;
-  white-space: nowrap;
 }
 
 /*  슬라이더 박스 */
@@ -95,40 +98,54 @@
 }
 
 @media (max-width: 767px) {
-  .sliderRow {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  /* 리뷰 카드 */
+  .container.grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
   }
 
-  /* 1층: 바디감 */
-  .labelSection {
-    width: 100%;
+  /* grid 안의 세로선 숨기기 */
+  .container.grid .labelWrapper {
     border-right: none;
-    display: flex;
+    padding-right: 0;
+  }
+
+  /* grid 안의 왼쪽 글씨 숨기기 */
+  .container.grid .descText.descL {
+    display: none;
+  }
+
+  /* 리뷰 등록 모달 */
+  .sliderRow.text {
+    flex-wrap: wrap; /* 자리가 없으면 밑으로 떨어지게 허용 */
+    justify-content: center; /* 가운데 정렬 */
+  }
+
+  /* 라벨 껍데기를 100%로 늘림 */
+  .sliderRow.text .labelWrapper {
+    width: 100%;
+    justify-content: center; /* '바디감' 글자 가운데 정렬 */
+    border-right: none; /* 세로선 제거 */
+    padding-right: 0;
+    height: auto;
+  }
+
+  /* 리뷰 카드 (box 모드, grid 아닐 때) 모바일*/
+  .sliderRow.box {
     justify-content: center;
-    padding: 0;
+    gap: 8px;
   }
 
-  .mainLabel {
-    font-size: 14px;
-    font-weight: 600;
+  .sliderRow.box .labelWrapper {
+    width: auto;
+    border-right: none;
+    padding-right: 0;
   }
 
-  /* 2층: 양끝 텍스트 */
-  .descText {
-    width: 60px;
-    flex-shrink: 0;
-    font-size: 14px;
-    color: var(--color-gray-400);
-  }
-
-  /* 2층: 가운데 슬라이더 점들 */
-  .sliderTrack {
-    flex: 1;
-    max-width: 206px;
-    margin: 0 10px;
-    height: 10px;
+  .sliderRow.box .sliderTrack {
+    max-width: 150px;
   }
 }
 
@@ -137,7 +154,7 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 24px;
   row-gap: 16px;
-  max-width: none; /* 그리드일 때 max-width 480px 무시 */
+  max-width: none;
 }
 
 .labelSection.hideSeparator {
@@ -147,15 +164,33 @@
 .labelSection.box {
   background-color: #f2f2f2;
   color: #8c8c8b;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
   border-radius: 4px;
-  padding: 4px 8px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 50px;
+  width: 53px;
+  padding: 0;
 }
 
 .labelSection.text {
   background-color: transparent;
-  padding: 5px;
+  padding: 10px;
+}
+
+.labelWrapper {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 80px;
+  height: 25px;
+
+  border-right: 1px solid var(--color-gray-200);
+  padding-right: 11px;
+}
+
+/* 세로선 숨기기 */
+.labelWrapper.hideSeparator {
+  border-right: none;
 }

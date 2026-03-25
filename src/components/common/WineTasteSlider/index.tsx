@@ -63,7 +63,9 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
 
   const handleScoreChange = (flavorId: FlavorId, score: number) => {
     //  만약 읽기 전용 모드라면 점수를 바꾸지 않고 함수를 끝냄
-    if (readOnly) return;
+    if (readOnly) {
+      return;
+    }
 
     const newScores = {
       ...flavorScores,
@@ -81,16 +83,17 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
     // variant, labelStyle 값이 그대로 클래스명이 됨
     <div className={cx('container', variant, { readOnly: readOnly })}>
       {FLAVOR_CONFIG.map((item) => (
-        <div key={item.id} className={styles.sliderRow}>
-          {/* 라벨 섹션 (variant가 compact일 때는 라벨의 형태가 또 다를 수 있으니 variant 클래스도 같이 붙여줍니다.) */}
-          <div
-            className={cx('labelSection', labelStyle, variant, {
-              hideSeparator,
-            })}
-          >
-            <span className={styles.mainLabel}>{item.label}</span>
+        <div key={item.id} className={cx('sliderRow', labelStyle)}>
+          <div className={cx('labelWrapper', { hideSeparator })}>
+            {/* 라벨 섹션 (variant가 compact일 때는 라벨의 형태가 또 다를 수 있으니 variant 클래스도 같이 붙여줍니다.) */}
+            <div
+              className={cx('labelSection', labelStyle, variant, {
+                hideSeparator,
+              })}
+            >
+              <span className={styles.mainLabel}>{item.label}</span>
+            </div>
           </div>
-
           {/* 왼쪽 설명 (compact형일 때는 안 보여줌) */}
           {variant !== 'compact' && !hideLeftDesc && (
             <span className={cx('descText', 'descL')}>{item.descL}</span>
