@@ -1,0 +1,26 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 */
+  column-gap: 52px; /* 좌우 간격 */
+  row-gap: 48px; /* 상하 간격 */
+  padding: 20px;
+
+  /* 370px * 2 + 24px = 764px + 여백 */
+  max-width: 800px;
+}
+
+/* 태블릿 */
+@media (max-width: 1080px) {
+  .gridContainer {
+    column-gap: 24px; /* 좌우 간격 */
+    row-gap: 48px; /* 상하 간격 */
+  }
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* 1열 */
+    row-gap: 48px; /* 상하 간격 */
+  }
+}
