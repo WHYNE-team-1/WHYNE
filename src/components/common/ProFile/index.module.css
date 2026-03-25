@@ -3,6 +3,7 @@
   width: 290px;
   text-align: center;
   padding: 25px;
+  box-sizing: border-box;
 }
 
 .profileCard {
@@ -93,17 +94,19 @@
 
   .profileCardInfo {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px 12px;
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 12px;
+    align-items: center;
   }
 
   .profileCardField {
     grid-column: 1 / 2;
+    margin-bottom: 0;
   }
 
   .profileCardBtn {
-    margin-top: 0;
+    grid-column: 2 / 3;
+    margin-top: 2px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -119,10 +122,11 @@
   .profileCardInner {
     width: 100%;
     padding: 20px;
+    box-sizing: border-box;
   }
 
   .profileCard {
-    padding: 16px 16px 0 16px;
+    padding: 16px 0 0;
   }
 
   .profileCardImg {

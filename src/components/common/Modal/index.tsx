@@ -21,6 +21,7 @@ export default function Modal({
   title,
   footer,
 }: ModalProps) {
+  // 모달이 열려 있을 때만 ESC 키로 닫기 이벤트를 연결한다.
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -51,12 +52,14 @@ export default function Modal({
   };
 
   return createPortal(
+    // 모달은 document.body에 포털로 렌더링해 레이아웃 영향 없이 띄운다.
     <div
       role="dialog"
       aria-modal="true"
       onClick={handleBackdropClick}
       className={styles.overlay}
     >
+      {/* 내부 클릭이 overlay로 전파되지 않도록 막는다. */}
       <div onClick={stopPropagation} className={styles.container}>
         <div className={styles.button}>
           <Button
