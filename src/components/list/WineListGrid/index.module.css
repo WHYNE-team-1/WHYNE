@@ -3,10 +3,7 @@
   grid-template-columns: repeat(2, 1fr); /* 2열 */
   column-gap: 52px; /* 좌우 간격 */
   row-gap: 48px; /* 상하 간격 */
-  padding: 20px;
-
-  /* 370px * 2 + 24px = 764px + 여백 */
-  max-width: 800px;
+  width: 100%;
 }
 
 /* 태블릿 */

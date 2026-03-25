@@ -1,46 +1,67 @@
-import { getWines, type GetWinesParams } from '@/apis/wine';
-import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
 import { useEffect, useState } from 'react';
+import { getWines } from '@/apis/wine';
+import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
+import SearchBar from '@/components/common/SearchBar';
+import styles from './index.module.css';
 
 function WinesList() {
-  // 서버에서 받아온 와인 목록을 저장할 상태(State)
-  const [wines, setWines] = useState<Wine[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+  const [keyword, setKeyword] = useState(''); // 사용자가 입력 창에 타이핑하는 글자 상태
 
-  // 컴포넌트가 처음 나타날 때 데이터를 불러오는 함수 실행
+  // 데이터를 가져오고 필터링하는 공통 함수
+  const fetchWinesData = async (searchName: string) => {
+    try {
+      setIsLoading(true);
+      // 1. 서버에는 검색어 없이 전체 데이터를 요청함.
+      const data = await getWines({ limit: 100 });
+      const allWines = data.list || [];
+
+      // 2. 프론트엔드 메모리 상에서 대소문자를 무시하고 필터링함.
+      const filtered = allWines.filter((wine: Wine) =>
+        // wine.name(데이터)과 searchName(검색어)을 둘 다 소문자로 바꿔서 비교함.
+        wine.name.toLowerCase().includes(searchName.toLowerCase())
+      );
+
+      // 3. 필터링된 결과만 화면에 그리도록 상태를 업데이트 함.
+      setWines(filtered);
+    } catch (error) {
+      console.error('데이터 로드 실패:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 처음 진입 시 전체 목록 로드 (검색어 없음)
   useEffect(() => {
-    const fetchWinesData = async () => {
-      try {
-        setIsLoading(true);
-
-        // API 파라미터 설정 (50개만 먼저 가져와보기)
-        const params: GetWinesParams = { limit: 50 };
-        const data = await getWines(params);
-
-        // 서버 응답 객체 안의 'list' 배열만 골라내서 저장
-        setWines(data.list || []);
-      } catch (error) {
-        console.error('와인 목록 로드 실패:', error);
-      } finally {
-        setIsLoading(false); // 성공/실패 상관없이 끝나면 로딩 false
-      }
-    };
-
-    fetchWinesData();
+    fetchWinesData('');
   }, []);
 
-  // 로딩 중일 때 보여줄 화면
-  if (isLoading) {
-    return (
-      <div style={{ padding: '40px', textAlign: 'center' }}>
-        와인 정보를 불러오고 있어요... 🍷
-      </div>
-    );
-  }
+  // 검색 버튼 클릭 또는 엔터 시 실행
+  const handleSearchSubmit = () => {
+    fetchWinesData(keyword); // 사용자가 입력창에 쳐둔 keyword 값을 가지고 필터링 함수를 호출함.
+  };
 
   return (
-    <div>
-      <WineListGrid wines={wines} />
+    <div className={styles.container}>
+      {/* 검색창 영역 */}
+      <section className={styles.searchSection}>
+        <SearchBar
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)} // 타이핑할 때마다 keyword 상태만 업데이트 (API 호출x)
+          onSearchSubmit={handleSearchSubmit}
+        />
+      </section>
+
+      {/* 와인 그리드 영역 */}
+      {/* 로딩 상태에 따른 조건부 렌더링 */}
+      <main className={styles.listSection}>
+        {isLoading ? (
+          <div className={styles.loading}>검색 중... 🍷</div>
+        ) : (
+          <WineListGrid wines={wines} />
+        )}
+      </main>
     </div>
   );
 }
