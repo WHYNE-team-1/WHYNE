@@ -1,6 +1,9 @@
-import WineType from "@/components/common/WineType";
-import { WINE_TYPE_KEYS, type WineTypeKind } from "@/constants/WineType.constants";
-import { useState } from "react";
+import WineType from '@/components/common/WineType';
+import {
+  WINE_TYPE_KEYS,
+  type WineTypeKind,
+} from '@/constants/WineType.constants';
+import { useState } from 'react';
 
 export default function WineTypeTestPage() {
   const [selectedType, setSelectedType] = useState<WineTypeKind | null>(null);
@@ -32,12 +35,9 @@ export default function WineTypeTestPage() {
         </div>
 
         <p style={{ margin: '16px', fontSize: '14px' }}>
-          데이터 전송 결과 : 
-          <span>
-            {selectedType ? `${selectedType} 선택됨` : '선택 안함'}
-          </span>
+          데이터 전송 결과 :
+          <span>{selectedType ? `${selectedType} 선택됨` : '선택 안함'}</span>
         </p>
-
       </div>
     </div>
   );

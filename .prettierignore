@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+dist
+coverage
+
+# Ignore specific files:
+*.md
+package-lock.json
+node_modules/

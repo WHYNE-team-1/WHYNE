@@ -1,37 +1,35 @@
-import Button from "@/components/common/Button";
-import StarRating from "@/components/common/StarRating";
-import styles from "./index.module.css";
-import Modal from "@/components/common/Modal";
-import { useState } from "react";
-import Textarea from "@/components/common/Textarea";
-import ReviewAromaCheckbox from "@/components/common/ReviewAromaCheckbox";
-import WineTasteSlider from "@/components/common/WineTasteSlider";
-import { addWineReview } from "@/apis/WineDetail";
-import type { WineDetail } from "@/pages/WineDetail/WineDetail.types";
-
+import Button from '@/components/common/Button';
+import StarRating from '@/components/common/StarRating';
+import styles from './index.module.css';
+import Modal from '@/components/common/Modal';
+import { useState } from 'react';
+import Textarea from '@/components/common/Textarea';
+import ReviewAromaCheckbox from '@/components/common/ReviewAromaCheckbox';
+import WineTasteSlider from '@/components/common/WineTasteSlider';
+import { addWineReview } from '@/apis/WineDetail';
+import type { WineDetail } from '@/pages/WineDetail/WineDetail.types';
 
 type Props = {
-  data: WineDetail  | null;
-  onSuccess : () => void;
+  data: WineDetail | null;
+  onSuccess: () => void;
 };
 const aromaMap: Record<string, string> = {
-  apple: "APPLE",
-  cherry: "CHERRY",
-  chocolate: "CHOCOLATE",
-  citrus: "CITRUS",
-  coconut: "TROPICAL",
-  flower: "FLOWER",
-  grass: "GRASS",
-  herb: "GRASS",
-  mineral: "MINERAL",
-  oak: "OAK",
-  peach: "PEACH",
-  grape: "BERRY",
-  toast: "BAKING",
-  tropical: "TROPICAL",
-  WetSoil: "EARTH",
+  apple: 'APPLE',
+  cherry: 'CHERRY',
+  chocolate: 'CHOCOLATE',
+  citrus: 'CITRUS',
+  coconut: 'TROPICAL',
+  flower: 'FLOWER',
+  grass: 'GRASS',
+  herb: 'GRASS',
+  mineral: 'MINERAL',
+  oak: 'OAK',
+  peach: 'PEACH',
+  grape: 'BERRY',
+  toast: 'BAKING',
+  tropical: 'TROPICAL',
+  WetSoil: 'EARTH',
 };
-
 
 export default function WineReview({ data, onSuccess }: Props) {
   if (!data) return <div>로딩중...</div>;
@@ -40,7 +38,7 @@ export default function WineReview({ data, onSuccess }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [rating, setRating] = useState(3);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   const [aroma, setAroma] = useState<string[]>([]);
   const [taste, setTaste] = useState({
     lightBold: 0,
@@ -50,7 +48,7 @@ export default function WineReview({ data, onSuccess }: Props) {
   });
 
   const sliderInitialScores: Record<
-    "lightBold" | "smoothTannic" | "drySweet" | "softAcidic",
+    'lightBold' | 'smoothTannic' | 'drySweet' | 'softAcidic',
     number
   > = {
     lightBold: taste.lightBold,
@@ -67,15 +65,15 @@ export default function WineReview({ data, onSuccess }: Props) {
     const normalizedRating = Math.max(1, Math.min(5, Math.round(rating)));
     const mappedAroma = aroma.map((a) => aromaMap[a]).filter(Boolean);
     if (!trimmedContent) {
-      alert("리뷰 내용을 입력해주세요.");
+      alert('리뷰 내용을 입력해주세요.');
       return;
     }
     if (mappedAroma.length === 0) {
-      alert("향을 최소 1개 선택해주세요.");
+      alert('향을 최소 1개 선택해주세요.');
       return;
     }
 
-    try{
+    try {
       setIsLoading(true);
 
       await addWineReview({
@@ -91,32 +89,34 @@ export default function WineReview({ data, onSuccess }: Props) {
 
       onSuccess();
       setIsOpen(false);
-    } catch(error){
+    } catch (error) {
       console.error(error);
-      alert("리뷰 등록에 실패했습니다.");
+      alert('리뷰 등록에 실패했습니다.');
     } finally {
       setIsLoading(false);
     }
-
   }
   const modalButton = (
     <Button color="black" size="stretch" type="submit" form="reviewForm">
-      {isLoading ? "등록 중..." : "리뷰 남기기"}
+      {isLoading ? '등록 중...' : '리뷰 남기기'}
     </Button>
   );
   return (
     <>
-      {" "}
+      {' '}
       <div className={styles.ratingsWrap}>
         <div className={styles.rating}>
-          <StarRating 
-            mode="displayOnly" 
-            size="graph" value={data.avgRating}
+          <StarRating
+            mode="displayOnly"
+            size="graph"
+            value={data.avgRating}
             showMaxScore={true}
           />
         </div>
         <div className={styles.tableBtn}>
-          <Button size="stretch"  onClick={() => setIsOpen(true)}>리뷰 남기기</Button>
+          <Button size="stretch" onClick={() => setIsOpen(true)}>
+            리뷰 남기기
+          </Button>
         </div>
         <div className={styles.ratingDetails}>
           {Object.entries(data.avgRatings as Record<string, number>).map(
@@ -130,12 +130,12 @@ export default function WineReview({ data, onSuccess }: Props) {
                       width:
                         data.reviewCount > 0
                           ? `${(value / data.reviewCount) * 100}%`
-                          : "0%",
+                          : '0%',
                     }}
                   ></div>
                 </div>
               </div>
-            ),
+            )
           )}
         </div>
 

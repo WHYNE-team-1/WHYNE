@@ -1,5 +1,5 @@
-import styles from "./index.module.css";
-import LinkButton from "@/components/common/LinkButton";
+import styles from './index.module.css';
+import LinkButton from '@/components/common/LinkButton';
 
 export default function linkButtonPage() {
   return (

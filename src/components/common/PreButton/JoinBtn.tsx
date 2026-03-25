@@ -1,4 +1,4 @@
-import styles from "./JoinBtn.module.css";
+import styles from './JoinBtn.module.css';
 
 export default function JoinBtn() {
   return (

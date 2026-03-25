@@ -1,7 +1,7 @@
-import { useState } from "react";
-import ReviewAromaCheckbox from "@/components/common/ReviewAromaCheckbox";
-import FilterTypeCheckbox from "@/components/common/FilterTypeCheckbox";
-import FilterRatingCheckbox from "@/components/common/FilterRatingCheckbox";
+import { useState } from 'react';
+import ReviewAromaCheckbox from '@/components/common/ReviewAromaCheckbox';
+import FilterTypeCheckbox from '@/components/common/FilterTypeCheckbox';
+import FilterRatingCheckbox from '@/components/common/FilterRatingCheckbox';
 
 export default function CheckBoxStory() {
   const [types, setTypes] = useState<string[]>([]);
@@ -12,8 +12,8 @@ export default function CheckBoxStory() {
     <div
       style={{
         margin: 24,
-        display: "flex",
-        flexDirection: "column",
+        display: 'flex',
+        flexDirection: 'column',
         gap: 32,
       }}
     >

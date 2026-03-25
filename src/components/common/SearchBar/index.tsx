@@ -2,9 +2,9 @@ import {
   useId,
   type InputHTMLAttributes,
   type SubmitEventHandler,
-} from "react";
-import styles from "./index.module.css";
-import IcSearch from "@/assets/icons/ic-search.svg";
+} from 'react';
+import styles from './index.module.css';
+import IcSearch from '@/assets/icons/ic-search.svg';
 
 export type SearchBarProps = InputHTMLAttributes<HTMLInputElement> & {
   onSearchSubmit?: SubmitEventHandler<HTMLFormElement>;
@@ -13,7 +13,7 @@ export type SearchBarProps = InputHTMLAttributes<HTMLInputElement> & {
 export default function SearchBar({
   id,
   className,
-  placeholder = "와인을 검색해 보세요",
+  placeholder = '와인을 검색해 보세요',
   onSearchSubmit,
   ...props
 }: SearchBarProps) {
@@ -22,7 +22,7 @@ export default function SearchBar({
 
   return (
     <form
-      className={`${styles.wrapper} ${className || ""}`}
+      className={`${styles.wrapper} ${className || ''}`}
       role="search"
       onSubmit={(e) => {
         e.preventDefault();

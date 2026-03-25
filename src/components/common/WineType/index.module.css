@@ -26,7 +26,7 @@
 
 /* 선택되지 않은 상태(selected 상태가 아닐 때), 라디오 버튼 모드에서만 호버 적용 */
 .wrapper:not(.selected):not(.readOnly):hover {
-  background-color: var(--color-gray-100); 
+  background-color: var(--color-gray-100);
 }
 
 /* 선택되었을 때의 스타일 */
@@ -41,5 +41,5 @@
 
 /* 라디오 버튼의 기본 스타일은 숨김. */
 .hiddenInput {
-  display: none; 
+  display: none;
 }

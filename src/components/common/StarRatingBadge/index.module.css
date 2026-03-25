@@ -7,25 +7,25 @@
   width: 89px;
   height: 40px;
   box-sizing: border-box;
-  background: #F5E9EB; 
+  background: #f5e9eb;
   border-radius: 12px;
   font-family: 'Noto Sans KR', sans-serif;
-  flex: none; 
+  flex: none;
 }
 
 .starIcon {
   width: 24px;
   height: 24px;
-  flex-shrink: 0; 
+  flex-shrink: 0;
   display: block;
 }
 
 .ratingText {
   width: 33px;
   height: 24px;
-  font-size: 22px; 
+  font-size: 22px;
   font-weight: 800;
-  color: #31302F;
+  color: #31302f;
   font-stretch: 100;
   line-height: 24px;
   text-align: center;

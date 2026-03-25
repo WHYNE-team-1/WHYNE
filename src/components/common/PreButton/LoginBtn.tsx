@@ -1,4 +1,4 @@
-import styles from "./LoginBtn.module.css";
+import styles from './LoginBtn.module.css';
 
 export default function LoginBtn() {
   return (

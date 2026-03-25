@@ -1,11 +1,11 @@
-import styles from "./index.module.css";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuthStore } from "@/store/useAuthStore";
-import logoIcon from "@/assets/icons/ic-logo-white.svg";
-import DefaultProfile from "@/assets/icons/ic-default-profile.svg";
-import LinkButton from "@/components/common/LinkButton";
-import Dropdown from "@/components/common/Dropdown";
-import type { DropdownOption } from "@/components/common/Dropdown";
+import styles from './index.module.css';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuthStore } from '@/store/useAuthStore';
+import logoIcon from '@/assets/icons/ic-logo-white.svg';
+import DefaultProfile from '@/assets/icons/ic-default-profile.svg';
+import LinkButton from '@/components/common/LinkButton';
+import Dropdown from '@/components/common/Dropdown';
+import type { DropdownOption } from '@/components/common/Dropdown';
 
 export default function Header() {
   const { isLoggedIn, user, setLogout } = useAuthStore();
@@ -13,17 +13,17 @@ export default function Header() {
 
   const handleLogout = () => {
     setLogout();
-    localStorage.removeItem("accessToken");
-    navigate("/");
+    localStorage.removeItem('accessToken');
+    navigate('/');
   };
 
   const profileOptions: DropdownOption[] = [
     {
-      label: "마이페이지",
-      onClick: () => navigate("/"), // TODO: 경로 확정 시 추후 수정 필요
+      label: '마이페이지',
+      onClick: () => navigate('/'), // TODO: 경로 확정 시 추후 수정 필요
     },
     {
-      label: "로그아웃",
+      label: '로그아웃',
       onClick: handleLogout,
     },
   ];

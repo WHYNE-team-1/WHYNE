@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import type { ReactNode } from "react";
-import styles from "./index.module.css";
+import { useState, useRef, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import styles from './index.module.css';
 
 export interface DropdownOption {
   label: string;
@@ -41,10 +41,10 @@ export default function Dropdown({
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     }
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 

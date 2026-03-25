@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './index.module.css';
 import StarRatingBadge from '@/components/common/StarRatingBadge';
-import WineTasteSlider from '@/components/common/WineTasteSlider'; 
-import LikeButton from '@/components/common/LikeButton'; 
-import Dropdown from '@/components/common/Dropdown'; 
+import WineTasteSlider from '@/components/common/WineTasteSlider';
+import LikeButton from '@/components/common/LikeButton';
+import Dropdown from '@/components/common/Dropdown';
 
 const cx = classNames.bind(styles);
 
@@ -19,22 +19,22 @@ type FlavorId = (typeof FLAVOR_CONFIG)[number]['id'];
 
 interface ReviewCardProps {
   type: 'detail' | 'profile';
-  isMyReview?: boolean; 
-  rating: number; 
-  time: string; 
-  aromaTags: string[]; 
-  content: string; 
-  flavorScores: Record<FlavorId, number>; 
-  likeCount: number; 
-  isLiked?: boolean; 
+  isMyReview?: boolean;
+  rating: number;
+  time: string;
+  aromaTags: string[];
+  content: string;
+  flavorScores: Record<FlavorId, number>;
+  likeCount: number;
+  isLiked?: boolean;
   wineName?: string;
   wineRegion?: string;
   wineImage?: string;
   userNickname?: string;
   userImage?: string;
-  onEdit?: () => void; 
-  onDelete?: () => void; 
-  onLike?: () => void; 
+  onEdit?: () => void;
+  onDelete?: () => void;
+  onLike?: () => void;
 }
 
 export default function ReviewCard({
@@ -68,31 +68,31 @@ export default function ReviewCard({
   // 드롭다운 메뉴 옵션
   const dropdownOptions = [
     { label: '수정하기', onClick: () => onEdit?.() },
-    { label: '삭제하기', onClick: () => onDelete?.() }
+    { label: '삭제하기', onClick: () => onDelete?.() },
   ];
 
   return (
     <div className={cx('card')}>
-      
       <div className={cx('header')}>
         <div className={cx('headerTopRow')}>
           {/* 뱃지 + 시간 */}
           <div className={cx('badgeGroup')}>
             <StarRatingBadge rating={rating} />
-            {type === 'profile' && <span className={cx('timeProfile')}>{time}</span>}
+            {type === 'profile' && (
+              <span className={cx('timeProfile')}>{time}</span>
+            )}
           </div>
-          
+
           {/* 드롭다운(점 3개) */}
           {showKebabMenu && (
-            <Dropdown 
-              trigger={<span className={cx('kebabIcon')}>⋮</span>} 
-              options={dropdownOptions} 
-              offset={10} 
+            <Dropdown
+              trigger={<span className={cx('kebabIcon')}>⋮</span>}
+              options={dropdownOptions}
+              offset={10}
             />
           )}
         </div>
 
-        
         {type === 'profile' ? (
           // 마이페이지용 와인 정보 (수정해야함)
           <div className={cx('profileInfo')}>
@@ -105,26 +105,27 @@ export default function ReviewCard({
         ) : (
           // 상세페이지용 유저정보 + 시간  (수정해야함))
           <div className={cx('profileInfo')}>
-            <img src={userImage || '/default-profile.png'} alt="프로필" className={cx('userImage')} />
+            <img
+              src={userImage || '/default-profile.png'}
+              alt="프로필"
+              className={cx('userImage')}
+            />
             <div className={cx('textGroup')}>
               <span className={cx('nickname')}>{userNickname}</span>
-              <span className={cx('timeDetail')}>{time}</span> 
+              <span className={cx('timeDetail')}>{time}</span>
             </div>
           </div>
         )}
       </div>
 
-      
       <div className={cx('body')}>
         {/* 향 태그 detail에만 */}
         {type === 'detail' && aromaTags && aromaTags.length > 0 && (
-          <div className={cx('aromaTags')}>
-            {aromaTags.join(' · ')}
-          </div>
+          <div className={cx('aromaTags')}>{aromaTags.join(' · ')}</div>
         )}
-        
+
         <p className={cx('content')}>{content}</p>
-        
+
         {/* 슬라이더 표시 로직  */}
         {showTasteSliders && (
           <div className={cx('tasteSliders')}>
@@ -133,26 +134,24 @@ export default function ReviewCard({
         )}
       </div>
 
-     
       <div className={cx('footer', { detailFooter: type === 'detail' })}>
-        <LikeButton 
-          initialLiked={isLiked} 
-          count={likeCount} 
-          size="md" 
+        <LikeButton
+          initialLiked={isLiked}
+          count={likeCount}
+          size="md"
           /*  onClick={onLike}  나중에수정, 지금 오류남 */
         />
-        
+
         {/* detail일 때만 더보기 화살표 */}
         {type === 'detail' && (
-          <button 
-            className={cx('expandBtn')} 
+          <button
+            className={cx('expandBtn')}
             onClick={() => setIsExpanded(!isExpanded)}
           >
             {isExpanded ? '˄' : '˅'}
           </button>
         )}
       </div>
-
     </div>
   );
 }

@@ -6,16 +6,15 @@ import styles from './index.module.css';
 const cx = classNames.bind(styles);
 
 const FLAVOR_CONFIG = [
-  { id: "lightBold", label: "바디감", descL: "가벼워요", descR: "진해요" },
-  { id: "smoothTannic", label: "탄닌", descL: "부드러워요", descR: "떫어요" },
-  { id: "drySweet", label: "당도", descL: "드라이해요", descR: "달아요" },
-  { id: "softAcidic", label: "산미", descL: "안셔요", descR: "많이셔요" },
+  { id: 'lightBold', label: '바디감', descL: '가벼워요', descR: '진해요' },
+  { id: 'smoothTannic', label: '탄닌', descL: '부드러워요', descR: '떫어요' },
+  { id: 'drySweet', label: '당도', descL: '드라이해요', descR: '달아요' },
+  { id: 'softAcidic', label: '산미', descL: '안셔요', descR: '많이셔요' },
 ] as const;
 
 type FlavorId = (typeof FLAVOR_CONFIG)[number]['id'];
 
 const MAX_LEVEL = 6;
-
 
 // 외부로부터 받을 수 있는 설정값들의 목록을 정의
 interface WineTasteSliderProps {
@@ -29,11 +28,11 @@ interface WineTasteSliderProps {
   labelStyle?: 'box' | 'text';
 
   // 상태 제어
-  readOnly?: boolean; // true면 사용자가 클릭못함 
-  
+  readOnly?: boolean; // true면 사용자가 클릭못함
+
   // 데이터
   // initialScores: 처음에 보여줄 점수들 (readOnly일 때 필수)
-  initialScores?: Record<FlavorId, number>; 
+  initialScores?: Record<FlavorId, number>;
 
   onChange?: (scores: Record<FlavorId, number>) => void; // 점수가 바뀔 때 실행
 
@@ -41,18 +40,21 @@ interface WineTasteSliderProps {
   hideSeparator?: boolean; // 세로선 숨기기
 }
 
-
 const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
   variant = 'row', // 기본값은 가로형
   labelStyle = 'box', // 기본값은 박스 스타일
   readOnly = false, // 기본은 클릭 가능
   initialScores, // 상세페이지 등에서 전달받은 초기값
   onChange,
-  hideLeftDesc = false, // 기본값 false 
+  hideLeftDesc = false, // 기본값 false
   hideSeparator = false, // 기본값 false
 }) => {
-  
-  const DEFAULT_SCORES: Record<FlavorId, number> = { lightBold: 0, smoothTannic: 0, drySweet: 0, softAcidic: 0 };
+  const DEFAULT_SCORES: Record<FlavorId, number> = {
+    lightBold: 0,
+    smoothTannic: 0,
+    drySweet: 0,
+    softAcidic: 0,
+  };
 
   // 상태 관리: 만약 initialScores가 Props로 들어왔다면 그걸 쓰고, 없으면 기본값 0
   const [flavorScores, setFlavorScores] = useState<Record<FlavorId, number>>(
@@ -76,14 +78,16 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
 
   return (
     // classNames/bind (cx)를 사용해서 Props 값에 따라 CSS 클래스를 동적으로
-    // variant, labelStyle 값이 그대로 클래스명이 됨 
+    // variant, labelStyle 값이 그대로 클래스명이 됨
     <div className={cx('container', variant, { readOnly: readOnly })}>
-      
       {FLAVOR_CONFIG.map((item) => (
         <div key={item.id} className={styles.sliderRow}>
-          
           {/* 라벨 섹션 (variant가 compact일 때는 라벨의 형태가 또 다를 수 있으니 variant 클래스도 같이 붙여줍니다.) */}
-          <div className={cx('labelSection', labelStyle, variant, { hideSeparator })}>
+          <div
+            className={cx('labelSection', labelStyle, variant, {
+              hideSeparator,
+            })}
+          >
             <span className={styles.mainLabel}>{item.label}</span>
           </div>
 
@@ -104,7 +108,9 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
                     filled: currentSegmentScore <= flavorScores[item.id],
                   })}
                   // 클릭 이벤트 핸들러는 readOnly가 false일 때만 작동하도록 위에서 처리
-                  onClick={() => handleScoreChange(item.id, currentSegmentScore)}
+                  onClick={() =>
+                    handleScoreChange(item.id, currentSegmentScore)
+                  }
                 />
               );
             })}
@@ -114,7 +120,6 @@ const WineTasteSlider: React.FC<WineTasteSliderProps> = ({
           {variant !== 'compact' && (
             <span className={cx('descText', 'descR')}>{item.descR}</span>
           )}
-          
         </div>
       ))}
     </div>

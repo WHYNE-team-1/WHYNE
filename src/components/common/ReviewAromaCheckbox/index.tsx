@@ -1,5 +1,5 @@
-import styles from "./index.module.css";
-import cn from "classnames";
+import styles from './index.module.css';
+import cn from 'classnames';
 
 export default function ReviewAromaCheckbox({
   value = [],
@@ -9,21 +9,21 @@ export default function ReviewAromaCheckbox({
   onChange: (newSelectedScents: string[]) => void;
 }) {
   const aromas = [
-    { id: "apple", label: "사과" },
-    { id: "cherry", label: "체리" },
-    { id: "chocolate", label: "초콜렛" },
-    { id: "citrus", label: "시트러스" },
-    { id: "coconut", label: "코코넛" },
-    { id: "flower", label: "꽃" },
-    { id: "grass", label: "풀" },
-    { id: "herb", label: "허브" },
-    { id: "mineral", label: "미네랄" },
-    { id: "oak", label: "오크" },
-    { id: "peach", label: "복숭아" },
-    { id: "grape", label: "포도" },
-    { id: "toast", label: "제빵" },
-    { id: "tropical", label: "트로피칼" },
-    { id: "WetSoil", label: "흙흙" },
+    { id: 'apple', label: '사과' },
+    { id: 'cherry', label: '체리' },
+    { id: 'chocolate', label: '초콜렛' },
+    { id: 'citrus', label: '시트러스' },
+    { id: 'coconut', label: '코코넛' },
+    { id: 'flower', label: '꽃' },
+    { id: 'grass', label: '풀' },
+    { id: 'herb', label: '허브' },
+    { id: 'mineral', label: '미네랄' },
+    { id: 'oak', label: '오크' },
+    { id: 'peach', label: '복숭아' },
+    { id: 'grape', label: '포도' },
+    { id: 'toast', label: '제빵' },
+    { id: 'tropical', label: '트로피칼' },
+    { id: 'WetSoil', label: '흙흙' },
   ];
 
   function handleChange(id: string) {
@@ -39,7 +39,7 @@ export default function ReviewAromaCheckbox({
           key={aroma.id}
           className={cn(
             styles.aroma,
-            value.includes(aroma.id) && styles.active, // selectedScents 대신 value 사용
+            value.includes(aroma.id) && styles.active // selectedScents 대신 value 사용
           )}
         >
           <input

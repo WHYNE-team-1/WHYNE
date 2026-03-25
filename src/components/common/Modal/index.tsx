@@ -1,8 +1,8 @@
-import { useEffect, type MouseEvent, type ReactNode } from "react";
-import { createPortal } from "react-dom";
-import styles from "./index.module.css";
-import Button from "@/components/common/Button";
-import X from "@/assets/icons/X.svg";
+import { useEffect, type MouseEvent, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import styles from './index.module.css';
+import Button from '@/components/common/Button';
+import X from '@/assets/icons/X.svg';
 
 interface ModalProps {
   isOpen: boolean;
@@ -27,13 +27,13 @@ export default function Modal({
     }
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose?.();
       }
     };
 
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   if (!isOpen) {
@@ -59,17 +59,20 @@ export default function Modal({
     >
       <div onClick={stopPropagation} className={styles.container}>
         <div className={styles.button}>
-           <Button onClick={onClose} size="X" color="pure" leftIcon={<img src={X} alt="X" />} />
+          <Button
+            onClick={onClose}
+            size="X"
+            color="pure"
+            leftIcon={<img src={X} alt="X" />}
+          />
         </div>
         <div className={styles.modalContent}>
           {title && <h2 className={styles.contentTitle}>{title}</h2>}
-          <div className={styles.contentDescription}>
-            {children}
-          </div>
+          <div className={styles.contentDescription}>{children}</div>
           {footer && <div className={styles.contentButton}>{footer}</div>}
         </div>
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }

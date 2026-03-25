@@ -2,13 +2,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 36px; 
+  gap: 36px;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 16px; 
+  gap: 16px;
 }
 
 .buttonGroup {

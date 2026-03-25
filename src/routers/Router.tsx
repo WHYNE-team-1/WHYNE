@@ -1,39 +1,36 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "@/components/layout/MainLayout/index";
-import Home from "@/pages/Home/index";
-import SignUp from "@/pages/Signup/index";
-import SignIn from "@/pages/Signin/index";
-import WinesList from "@/pages/WinesList/index";
-import WineDetail from "@/pages/WineDetail/index";
-import AddItem from "@/pages/AddItem/index";
-import MyProfile from "@/pages/MyProfile/index";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from '@/components/layout/MainLayout/index';
+import Home from '@/pages/Home/index';
+import SignUp from '@/pages/Signup/index';
+import SignIn from '@/pages/Signin/index';
+import WinesList from '@/pages/WinesList/index';
+import WineDetail from '@/pages/WineDetail/index';
+import AddItem from '@/pages/AddItem/index';
+import MyProfile from '@/pages/MyProfile/index';
 
+import DropdownSample from '@/storybook/drop-down';
+import WineTasteSliderStorybook from '@/storybook/wine-taste-silder';
+import ImageAddButton from '@/storybook/img-add-btn';
+import Button from '@/storybook/button';
+import LinkButton from '@/storybook/link-button';
 
+import Input from '@/storybook/input';
+import AromaStoryBook from '@/storybook/aroma';
 
+import ModalTestPage from '@/storybook/Modal';
+import ModalConfirmTestPage from '@/storybook/ModalConfirm';
 
-import DropdownSample from "@/storybook/drop-down";
-import WineTasteSliderStorybook from "@/storybook/wine-taste-silder";
-import ImageAddButton from "@/storybook/img-add-btn";
-import Button from "@/storybook/button";
-import LinkButton from "@/storybook/link-button";
+import WineTypeTestPage from '@/storybook/wine-type';
+import CheckBoxStory from '@/storybook/checkbox';
+import TextareaTestPage from '@/storybook/textarea';
+import SearchBarSample from '@/storybook/search-bar';
+import PriceRangeSlider from '@/storybook/price-range-slider';
+import AuthTest from '@/storybook/auth-test';
+import StarRatingTestPage from '@/storybook/rating';
 
-import Input from "@/storybook/input";
-import AromaStoryBook from "@/storybook/aroma";
-
-import ModalTestPage from "@/storybook/Modal";
-import ModalConfirmTestPage from "@/storybook/ModalConfirm";
-
-import WineTypeTestPage from "@/storybook/wine-type";
-import CheckBoxStory from "@/storybook/checkbox";
-import TextareaTestPage from "@/storybook/textarea";
-import SearchBarSample from "@/storybook/search-bar";
-import PriceRangeSlider from "@/storybook/price-range-slider";
-import AuthTest from "@/storybook/auth-test";
-import StarRatingTestPage from "@/storybook/rating";
-
-import ProFileTestPage from "@/storybook/profile";
-import ProFileSmallTestPage from "@/storybook/profilesmall";
-import ReviewCardStorybook from "@/storybook/review-card";
+import ProFileTestPage from '@/storybook/profile';
+import ProFileSmallTestPage from '@/storybook/profilesmall';
+import ReviewCardStorybook from '@/storybook/review-card';
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -52,7 +49,10 @@ export default function AppRoutes() {
 
         <Route path="/storybook/auth-test" element={<AuthTest />} />
         <Route path="/storybook/dropdown" element={<DropdownSample />} />
-        <Route path="/storybook/review-card" element={<ReviewCardStorybook/>}/>
+        <Route
+          path="/storybook/review-card"
+          element={<ReviewCardStorybook />}
+        />
         <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/button" element={<Button />} />
@@ -80,7 +80,10 @@ export default function AppRoutes() {
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />
         <Route path="/storybook/search-bar" element={<SearchBarSample />} />
         <Route path="/storybook/profile" element={<ProFileTestPage />} />
-        <Route path="/storybook/profilesmall" element={<ProFileSmallTestPage />} />
+        <Route
+          path="/storybook/profilesmall"
+          element={<ProFileSmallTestPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

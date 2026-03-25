@@ -8,11 +8,11 @@ interface WineTypeProps {
   onSelect?: (type: WineTypeKind) => void; // 클릭했을 때 실행할 함수 (어떤 것이 클릭됐는지 전달)
 }
 
-export default function WineType({ 
-  type, 
+export default function WineType({
+  type,
   isReadOnly = false, // 기본값은 라디오 버튼 모드
   isSelected = false, // 기본값은 미선택 상태
-  onSelect
+  onSelect,
 }: WineTypeProps) {
   const info = WINE_TYPES[type]; // WINE_TYPES 객체에서 현재 type(예: 'RED')에 맞는 정보(이미지, 라벨)를 꺼냄.
 
@@ -24,16 +24,16 @@ export default function WineType({
   `.trim();
 
   return (
-    <label 
+    <label
       className={containerClass}
       // 칩 모드가 아니라면 클릭 시 onSelect 함수 실행
       onClick={() => !isReadOnly && onSelect?.(type)}
     >
       {/* 라디오 버튼일 때 */}
       {!isReadOnly && (
-        <input 
-          type="radio" 
-          checked={isSelected} 
+        <input
+          type="radio"
+          checked={isSelected}
           className={styles.hiddenInput}
         />
       )}

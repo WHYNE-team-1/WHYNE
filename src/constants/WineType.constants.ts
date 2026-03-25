@@ -5,16 +5,16 @@ import sparklingWineIcon from '@/assets/icons/ic-wine-sparkling.svg';
 // 와인 타입 별 데이터 객체
 // 화면에 표시할 라벨, 아이콘 이미지
 export const WINE_TYPES = {
-  RED: { 
-    label: 'Red', 
+  RED: {
+    label: 'Red',
     image: redWineIcon,
   },
-  WHITE: { 
-    label: 'White', 
+  WHITE: {
+    label: 'White',
     image: whiteWineIcon,
   },
-  SPARKLING: { 
-    label: 'Sparkling', 
+  SPARKLING: {
+    label: 'Sparkling',
     image: sparklingWineIcon,
   },
 } as const; // 'as const'를 붙여주면 '상수'임을 확실히 하며 타입 추론이 더 잘 됨.

@@ -1,5 +1,5 @@
-import styles from "./index.module.css";
-import { Range, getTrackBackground } from "react-range";
+import styles from './index.module.css';
+import { Range, getTrackBackground } from 'react-range';
 
 type Props = {
   value: number[];
@@ -28,14 +28,14 @@ export default function PriceRangeSlider({
           <div
             {...props}
             style={{
-              height: "6px",
-              width: "100%",
+              height: '6px',
+              width: '100%',
               background: getTrackBackground({
                 values: value,
                 colors: [
-                  "var(--color-gray-100)",
-                  "var(--color-primary-red)",
-                  "var(--color-gray-100)",
+                  'var(--color-gray-100)',
+                  'var(--color-primary-red)',
+                  'var(--color-gray-100)',
                 ],
                 min: 0,
                 max: max,
@@ -51,14 +51,14 @@ export default function PriceRangeSlider({
             key={props.key}
             style={{
               ...props.style,
-              height: "20px",
-              width: "20px",
-              borderRadius: "10px",
-              border: "1px solid var(--color-gray-200)",
-              backgroundColor: "var(--color-white)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              height: '20px',
+              width: '20px',
+              borderRadius: '10px',
+              border: '1px solid var(--color-gray-200)',
+              backgroundColor: 'var(--color-white)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           ></div>
         )}

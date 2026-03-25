@@ -9,7 +9,7 @@
 }
 
 .reviewAroma + .reviewAroma::before {
-  content: "・";
+  content: '・';
 }
 
 .detailAromaContainer {

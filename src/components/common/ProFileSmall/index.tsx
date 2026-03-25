@@ -1,5 +1,5 @@
-import styles from "./index.module.css";
-import defaultProfileIcon from "@/assets/icons/ic-default-profile.svg";
+import styles from './index.module.css';
+import defaultProfileIcon from '@/assets/icons/ic-default-profile.svg';
 
 type ProfileSmallProps = {
   imageUrl?: string;
@@ -9,7 +9,7 @@ type ProfileSmallProps = {
 
 export default function ProfileSmall({
   imageUrl,
-  nickname = "와인 고르는 중",
+  nickname = '와인 고르는 중',
   timeAgo = 10,
 }: ProfileSmallProps) {
   const profileSrc = imageUrl?.trim() ? imageUrl : defaultProfileIcon;
