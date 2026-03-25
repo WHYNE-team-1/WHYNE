@@ -1,5 +1,5 @@
 import styles from './index.module.css';
-
+import React from 'react';
 /*
 variant:
 [social-login] 구글로 시작하기, 카카오로 시작하기 (sm, md,) (white)
