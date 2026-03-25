@@ -1,7 +1,7 @@
-import AuthLayout from "@/components/layout/AuthLayout";
-import Input from "@/components/common/Input";
-import Button from "@/components/common/button";
-import styles from "./index.module.css";
+import AuthLayout from '@/components/layout/AuthLayout';
+import Input from '@/components/common/Input';
+import Button from '@/components/common/button';
+import styles from './index.module.css';
 
 export default function SignupPage() {
   return (
@@ -11,7 +11,6 @@ export default function SignupPage() {
       bottomLinkTo="/signin"
     >
       <form className={styles.form}>
-        
         <div className={styles.inputsGroup}>
           <Input
             label="이메일"
@@ -40,7 +39,6 @@ export default function SignupPage() {
             가입하기
           </Button>
         </div>
-        
       </form>
     </AuthLayout>
   );

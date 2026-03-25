@@ -1,9 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getWineDetail } from "@/apis/WineDetail";
-import WineReview from "@/components/WineReview";
-import type { WineDetail } from "./WineDetail.types";
-
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getWineDetail } from '@/apis/WineDetail';
+import WineReview from '@/components/WineReview';
+import type { WineDetail } from './WineDetail.types';
 
 function WineDetail() {
   const { id } = useParams();

@@ -17,7 +17,7 @@
   max-width: 100%;
 }
 .container::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   right: 0;

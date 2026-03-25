@@ -1,9 +1,9 @@
-import ImgAddButton from "@/components/common/ImgAddButton";
+import ImgAddButton from '@/components/common/ImgAddButton';
 
 export default function ImageAddButton() {
   return (
     <div
-      style={{ margin: 24, display: "flex", gap: 24, alignItems: "flex-end" }}
+      style={{ margin: 24, display: 'flex', gap: 24, alignItems: 'flex-end' }}
     >
       <ImgAddButton />
       <ImgAddButton error />

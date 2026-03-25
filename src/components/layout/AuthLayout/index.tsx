@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
-import styles from "./index.module.css";
-import logoBlackIcon from "@/assets/icons/ic-logo-black.svg"; 
+import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './index.module.css';
+import logoBlackIcon from '@/assets/icons/ic-logo-black.svg';
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -19,14 +19,11 @@ export default function AuthLayout({
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        
         <Link to="/" className={styles.logoWrapper}>
           <img src={logoBlackIcon} alt="WHYNE 로고" className={styles.logo} />
         </Link>
 
-        <div className={styles.content}>
-          {children}
-        </div>
+        <div className={styles.content}>{children}</div>
 
         <div className={styles.bottom}>
           <span className={styles.bottomText}>{bottomText}</span>
@@ -34,7 +31,6 @@ export default function AuthLayout({
             {bottomLinkText}
           </Link>
         </div>
-
       </div>
     </div>
   );

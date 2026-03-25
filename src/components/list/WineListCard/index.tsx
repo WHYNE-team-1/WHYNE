@@ -24,7 +24,7 @@ function WineListCard({
   type,
   price,
   latestReview,
-} : WineListCardProps) {
+}: WineListCardProps) {
   return (
     <article className={styles.cardContainer}>
       <div className={styles.imageWrapper}>
@@ -33,11 +33,11 @@ function WineListCard({
 
       <div className={styles.infoContent}>
         <h3 className={styles.wineName}>{name}</h3>
-        
+
         <div className={styles.ratingRow}>
-          <StarRating 
-            mode={'displayOnly'} 
-            value={rating} 
+          <StarRating
+            mode={'displayOnly'}
+            value={rating}
             count={reviewCount}
             size={'list'}
           />

@@ -1,4 +1,4 @@
-import styles from "./AddReviewBtn.module.css";
+import styles from './AddReviewBtn.module.css';
 
 type Props = {
   onClick?: () => void;

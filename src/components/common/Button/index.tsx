@@ -1,4 +1,4 @@
-import styles from "./index.module.css";
+import styles from './index.module.css';
 
 /*
 variant:
@@ -19,34 +19,34 @@ type Props = {
   children?: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  type?: "button" | "submit" | "reset";
-  variant?: "danger" | "cancel" | "primary";
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'danger' | 'cancel' | 'primary';
   color?:
-    | "black"
-    | "red"
-    | "white"
-    | "charcoal"
-    | "gray"
-    | "gray2"
-    | "pure"
-    | "pureLine";
+    | 'black'
+    | 'red'
+    | 'white'
+    | 'charcoal'
+    | 'gray'
+    | 'gray2'
+    | 'pure'
+    | 'pureLine';
   size?:
-    | "stretch"
-    | "sm"
-    | "md"
-    | "Btn"
-    | "BtnS"
-    | "Review"
-    | "joinM"
-    | "joinS"
-    | "iconBtn"
-    | "x-icon"
-    | "X"
-    | "hamburger"
-    | "upDown"
-    | "image"
-    | "profile"
-    | "noProfile";
+    | 'stretch'
+    | 'sm'
+    | 'md'
+    | 'Btn'
+    | 'BtnS'
+    | 'Review'
+    | 'joinM'
+    | 'joinS'
+    | 'iconBtn'
+    | 'x-icon'
+    | 'X'
+    | 'hamburger'
+    | 'upDown'
+    | 'image'
+    | 'profile'
+    | 'noProfile';
   leftIcon?: React.ReactNode;
   className?: string;
   form?: string;
@@ -56,12 +56,12 @@ export default function Button({
   children,
   onClick,
   disabled = false,
-  type = "button",
-  color = "black",
-  size = "md",
+  type = 'button',
+  color = 'black',
+  size = 'md',
   leftIcon,
-  className = "",
-  form = "",
+  className = '',
+  form = '',
 }: Props) {
   const mergedClassName = `
     ${styles.button}

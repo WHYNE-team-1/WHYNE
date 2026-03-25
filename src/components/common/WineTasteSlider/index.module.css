@@ -35,7 +35,7 @@
 
 /* '바디감' 폰트 */
 .mainLabel {
-  font-family: "SF Pro", sans-serif;
+  font-family: 'SF Pro', sans-serif;
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
@@ -45,7 +45,7 @@
 
 /* '가벼워요' 폰트 */
 .descText {
-  font-family: "SF Pro", sans-serif;
+  font-family: 'SF Pro', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -132,7 +132,6 @@
   }
 }
 
-
 .container.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -141,21 +140,19 @@
   max-width: none; /* 그리드일 때 max-width 480px 무시 */
 }
 
-
 .labelSection.hideSeparator {
   border-right: none;
 }
 
-
 .labelSection.box {
-  background-color: #F2F2F2; 
-  color: #8C8C8B;
-  border-radius: 4px;        
-  padding: 4px 8px;          
+  background-color: #f2f2f2;
+  color: #8c8c8b;
+  border-radius: 4px;
+  padding: 4px 8px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 50px;          
+  min-width: 50px;
 }
 
 .labelSection.text {

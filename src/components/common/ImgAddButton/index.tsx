@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import styles from "./index.module.css";
-import cn from "classnames";
-import cameraIcon from "@/assets/icons/ic-camera.svg";
-import deleteIcon from "@/assets/icons/ic-delete.svg";
+import { useEffect, useRef, useState } from 'react';
+import styles from './index.module.css';
+import cn from 'classnames';
+import cameraIcon from '@/assets/icons/ic-camera.svg';
+import deleteIcon from '@/assets/icons/ic-delete.svg';
 
 type ImgAddButtonProps = {
   error?: boolean;
@@ -39,7 +39,7 @@ export default function ImgAddButton({
   function handleDelete() {
     setImgSrc(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      fileInputRef.current.value = '';
     }
   }
 
@@ -49,7 +49,7 @@ export default function ImgAddButton({
       <input
         type="file"
         accept="image/*"
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
         ref={fileInputRef}
         onChange={handleImageUpload}
       />

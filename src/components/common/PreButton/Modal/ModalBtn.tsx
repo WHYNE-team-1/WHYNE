@@ -1,13 +1,13 @@
-import styles from "./ModalBtn.module.css";
+import styles from './ModalBtn.module.css';
 
 type Props = {
-  variant?: "cancel" | "primary" | "danger";
+  variant?: 'cancel' | 'primary' | 'danger';
   children: React.ReactNode; //컴포넌트 태그 사이에 들어가는 내용을 받음
   onClick?: () => void;
 };
 
 export default function ModalBtn({
-  variant = "primary",
+  variant = 'primary',
   children,
   onClick,
 }: Props) {

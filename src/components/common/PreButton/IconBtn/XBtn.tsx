@@ -1,5 +1,5 @@
-import icon from "@/assets/icons/ic_X.svg";
-import styles from "./XBtn.module.css";
+import icon from '@/assets/icons/ic_X.svg';
+import styles from './XBtn.module.css';
 
 type Props = {
   onClick?: () => void;

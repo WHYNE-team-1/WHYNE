@@ -1,7 +1,7 @@
-import { useEffect, type MouseEvent, type ReactNode } from "react";
-import { createPortal } from "react-dom";
-import styles from "./index.module.css";
-import Button from "@/components/common/Button";
+import { useEffect, type MouseEvent, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import styles from './index.module.css';
+import Button from '@/components/common/Button';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -14,7 +14,7 @@ interface ConfirmModalProps {
   confirmButton?: ReactNode;
   cancelButton?: ReactNode;
   // 확인 버튼 스타일 제어 (기본: danger)
-  confirmVariant?: "danger" | "primary" | "cancel";
+  confirmVariant?: 'danger' | 'primary' | 'cancel';
 }
 
 export default function ConfirmModal({
@@ -23,11 +23,11 @@ export default function ConfirmModal({
   onConfirm,
   title,
   description,
-  confirmText = "확인",
-  cancelText = "취소",
+  confirmText = '확인',
+  cancelText = '취소',
   confirmButton,
   cancelButton,
-  confirmVariant = "danger",
+  confirmVariant = 'danger',
 }: ConfirmModalProps) {
   useEffect(() => {
     if (!isOpen) {
@@ -35,13 +35,13 @@ export default function ConfirmModal({
     }
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose();
       }
     };
 
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   if (!isOpen) {
@@ -83,6 +83,6 @@ export default function ConfirmModal({
         </div>
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }

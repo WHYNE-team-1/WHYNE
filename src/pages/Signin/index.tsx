@@ -1,8 +1,8 @@
-import AuthLayout from "@/components/layout/AuthLayout";
-import Input from "@/components/common/Input";
-import Button from "@/components/common/button";
-import styles from "./index.module.css";
-import KakaoIcon from "@/assets/icons/ic-kakao.svg";
+import AuthLayout from '@/components/layout/AuthLayout';
+import Input from '@/components/common/Input';
+import Button from '@/components/common/button';
+import styles from './index.module.css';
+import KakaoIcon from '@/assets/icons/ic-kakao.svg';
 
 export default function Signin() {
   return (
@@ -12,7 +12,6 @@ export default function Signin() {
       bottomLinkTo="/signup"
     >
       <form className={styles.form}>
-        
         <div className={styles.inputGroup}>
           <Input
             label="이메일"
@@ -30,7 +29,7 @@ export default function Signin() {
           <Button type="submit" color="black" size="stretch">
             로그인
           </Button>
-          
+
           <Button
             type="button"
             color="white"
@@ -40,7 +39,6 @@ export default function Signin() {
             kakao로 시작하기
           </Button>
         </div>
-        
       </form>
     </AuthLayout>
   );

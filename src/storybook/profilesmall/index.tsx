@@ -1,8 +1,8 @@
-import ProFileSmall from "@/components/common/ProFileSmall";
+import ProFileSmall from '@/components/common/ProFileSmall';
 
 export default function ProFileSmallTestPage() {
   return (
-    <div style={{ display: "grid", gap: 24, padding: 40 }}>
+    <div style={{ display: 'grid', gap: 24, padding: 40 }}>
       <section>
         <h2>프로필 이미지 있음</h2>
         <ProFileSmall

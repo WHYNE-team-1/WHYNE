@@ -118,8 +118,8 @@
   gap: 24px;
 }
 
-@media (max-width: 1079px){
-  .ratingsWrap{
+@media (max-width: 1079px) {
+  .ratingsWrap {
     padding: 24px;
     flex-wrap: wrap;
     max-width: 100%;
@@ -135,7 +135,7 @@
 
   .rating,
   .tableBtn,
-  .ratingDetails{
+  .ratingDetails {
     width: calc(50% - 20px);
   }
 }
@@ -144,16 +144,16 @@
   .reviewBottom {
     gap: 32px;
   }
-  .ratingsWrap{
+  .ratingsWrap {
     padding: 24px;
     max-width: none;
     height: auto;
     gap: 32px;
   }
-  
+
   .rating,
   .tableBtn,
-  .ratingDetails{
+  .ratingDetails {
     width: 100%;
   }
-  }
+}

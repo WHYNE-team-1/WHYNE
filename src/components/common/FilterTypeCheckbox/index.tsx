@@ -1,8 +1,8 @@
-import styles from "./index.module.css";
-import cn from "classnames";
-import IconRed from "@/assets/icons/ic-wine-red.svg";
-import IconWhite from "@/assets/icons/ic-wine-white.svg";
-import IconSparkling from "@/assets/icons/ic-wine-sparkling.svg";
+import styles from './index.module.css';
+import cn from 'classnames';
+import IconRed from '@/assets/icons/ic-wine-red.svg';
+import IconWhite from '@/assets/icons/ic-wine-white.svg';
+import IconSparkling from '@/assets/icons/ic-wine-sparkling.svg';
 
 export default function FilterTypeCheckbox({
   value = [],
@@ -11,7 +11,7 @@ export default function FilterTypeCheckbox({
   value: string[];
   onChange: (newSelectedScents: string[]) => void;
 }) {
-  const types = ["Red", "White", "Sparkling"];
+  const types = ['Red', 'White', 'Sparkling'];
 
   function handleChange(type: string) {
     const newSelectedType = value.includes(type) // 해당 칩의 타입이 이미 선택 되었나?
@@ -34,9 +34,9 @@ export default function FilterTypeCheckbox({
           />
           <img
             src={
-              type === "Red"
+              type === 'Red'
                 ? IconRed
-                : type === "White"
+                : type === 'White'
                   ? IconWhite
                   : IconSparkling
             }
