@@ -49,6 +49,7 @@ type Props = {
     | "noProfile";
   leftIcon?: React.ReactNode;
   className?: string;
+  form?: string;
 };
 
 export default function Button({
@@ -60,6 +61,7 @@ export default function Button({
   size = "md",
   leftIcon,
   className = "",
+  form = "",
 }: Props) {
   const mergedClassName = `
     ${styles.button}
@@ -74,6 +76,7 @@ export default function Button({
       className={mergedClassName}
       onClick={onClick}
       disabled={disabled}
+      form={form}
     >
       {leftIcon && <span className={styles.icon}>{leftIcon}</span>}
       {children && <span className={styles.text}>{children}</span>}

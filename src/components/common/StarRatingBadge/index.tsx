@@ -1,3 +1,4 @@
+// import React from 'react';
 import styles from './index.module.css';
 import StarRed from '@/assets/icons/ic-star-red.svg'; // ⭐️ 경로가 맞는지 확인해 주세요!
 

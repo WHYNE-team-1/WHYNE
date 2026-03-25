@@ -6,7 +6,7 @@ import FilterRatingCheckbox from "@/components/common/FilterRatingCheckbox";
 export default function CheckBoxStory() {
   const [types, setTypes] = useState<string[]>([]);
   const [ratings, setRatings] = useState<string[]>([]);
-  const [aromas, setAromas] = useState<string[]>([]);
+  const [aroma, setAroma] = useState<string[]>([]);
 
   return (
     <div
@@ -19,7 +19,7 @@ export default function CheckBoxStory() {
     >
       <h2>리뷰 - 향</h2>
 
-      <ReviewAromaCheckbox value={aromas} onChange={setAromas} />
+      <ReviewAromaCheckbox value={aroma} onChange={setAroma} />
       <h2>필터 - 타입</h2>
 
       <FilterTypeCheckbox value={types} onChange={setTypes} />

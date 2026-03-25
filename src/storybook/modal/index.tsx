@@ -13,13 +13,22 @@ export default function ModalTestPage() {
 
   return (
     <div style={{ padding: "40px" }}>
-      <h1 style={{ margin: 0, fontSize: "32px", fontWeight: 700 }}>Modal 컴포넌트 테스트</h1>
+      <h1 style={{ margin: 0, fontSize: "32px", fontWeight: 700 }}>
+        Modal 컴포넌트 테스트
+      </h1>
 
       <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          style={{ border: "none", borderRadius: "12px", padding: "12px 16px", backgroundColor: "#2d3034", color: "#ffffff", cursor: "pointer" }}
+          style={{
+            border: "none",
+            borderRadius: "12px",
+            padding: "12px 16px",
+            backgroundColor: "#2d3034",
+            color: "#ffffff",
+            cursor: "pointer",
+          }}
         >
           모달 열기
         </button>
