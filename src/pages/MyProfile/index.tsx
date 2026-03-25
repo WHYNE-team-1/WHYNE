@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
-import Profile from "@/components/common/Profile";
 import { ENV } from "@/apis/env";
+import ConfirmModal from "@/components/common/ModalConfirm";
+import ProFile from "@/components/common/ProFile";
 
 const PROFILE_STORAGE_KEY = "myProfileDraft";
 const ACCESS_TOKEN_KEY = "accessToken";
 const DEFAULT_NICKNAME = "light797";
+const MISSING_TOKEN_MESSAGE = "accessToken\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.";
+const SAVE_ERROR_PREFIX = "\ud504\ub85c\ud544 \uc800\uc7a5 \uc2e4\ud328";
+const SAVE_ERROR_MESSAGE = "\ud504\ub85c\ud544 \uc800\uc7a5\uc5d0 \uc2e4\ud328\ud588\uc2b5\ub2c8\ub2e4.";
+const CONFIRM_TEXT = "\ubcc0\uacbd\ud558\uae30";
+const CANCEL_TEXT = "\ucde8\uc18c";
+const CONFIRM_SUFFIX = "\"(\uc73c)\ub85c";
+const CONFIRM_QUESTION = "\ub2c9\ub124\uc784\uc744 \ubcc0\uacbd\ud560\uae4c\uc694?";
 
 type StoredProfile = {
   image: string;
@@ -42,15 +50,12 @@ function getStoredProfile(): StoredProfile {
 export default function MyProfile() {
   const storedProfile = getStoredProfile();
   const [image, setImage] = useState(storedProfile.image);
-  // 화면에 실제로 반영된 닉네임
   const [nickname, setNickname] = useState(storedProfile.nickname);
-  // 입력창에서만 잠시 들고 있는 닉네임
   const [draftNickname, setDraftNickname] = useState(storedProfile.nickname);
-  // 서버에 보낼 이미지 파일
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  // 새로고침 후에도 현재 프로필 값이 유지되도록 저장
   useEffect(() => {
     localStorage.setItem(
       PROFILE_STORAGE_KEY,
@@ -61,22 +66,32 @@ export default function MyProfile() {
     );
   }, [image, nickname]);
 
-  // imageUrl은 미리보기용, file은 서버 전송용으로 따로 보관
   const handleImageChange = (imageUrl: string, file?: File) => {
     setImage(imageUrl);
     setSelectedFile(file ?? null);
   };
 
-  // 입력 중에는 임시 닉네임만 변경
   const handleNicknameChange = (nextNickname: string) => {
     setDraftNickname(nextNickname);
+  };
+
+  const handleOpenConfirm = () => {
+    if (!isLoading) {
+      setIsConfirmOpen(true);
+    }
+  };
+
+  const handleCloseConfirm = () => {
+    if (!isLoading) {
+      setIsConfirmOpen(false);
+    }
   };
 
   const handleSave = async () => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)?.trim();
 
     if (!accessToken) {
-      alert("accessToken이 없습니다.");
+      alert(MISSING_TOKEN_MESSAGE);
       return;
     }
 
@@ -99,20 +114,20 @@ export default function MyProfile() {
       });
 
       if (!response.ok) {
-        throw new Error(`프로필 저장 실패: ${response.status}`);
+        throw new Error(`${SAVE_ERROR_PREFIX}: ${response.status}`);
       }
 
       const data = (await response.json()) as ProfileResponse;
 
-      // 저장 성공 후 서버 응답값으로 화면 상태를 갱신
       setNickname(data.nickname);
       setDraftNickname(data.nickname);
       setImage(data.image ?? "");
       setSelectedFile(null);
+      setIsConfirmOpen(false);
       console.log("profile save success", data);
     } catch (error) {
       console.error("profile save failed", error);
-      alert("프로필 저장에 실패했습니다.");
+      alert(SAVE_ERROR_MESSAGE);
     } finally {
       setIsLoading(false);
     }
@@ -126,13 +141,30 @@ export default function MyProfile() {
         padding: "48px 24px",
       }}
     >
-      <Profile
+      <ProFile
         imageUrl={image}
         nickname={nickname}
         onImageChange={handleImageChange}
         onNicknameChange={handleNicknameChange}
-        onSave={handleSave}
+        onSave={handleOpenConfirm}
         isLoading={isLoading}
+      />
+
+      <ConfirmModal
+        isOpen={isConfirmOpen}
+        onClose={handleCloseConfirm}
+        onConfirm={handleSave}
+        title={
+          <>
+            "{draftNickname}
+            {CONFIRM_SUFFIX}
+            <br />
+            {CONFIRM_QUESTION}
+          </>
+        }
+        confirmText={CONFIRM_TEXT}
+        cancelText={CANCEL_TEXT}
+        confirmVariant="primary"
       />
     </main>
   );

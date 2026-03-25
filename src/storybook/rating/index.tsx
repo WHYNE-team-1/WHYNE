@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import StarRating from '@/components/common/StarRating';
 import StarRatingBadge from '@/components/common/StarRatingBadge';
 
