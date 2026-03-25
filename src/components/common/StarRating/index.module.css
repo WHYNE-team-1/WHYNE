@@ -46,7 +46,7 @@
 
 /*  와인 목록 페이지 / 리뷰 목록   */
 .list .starWrapper { width: 24px; height: 24px;  }
-.list.displayOnly { gap: 6px; }
+.list.displayOnly { gap: 14px; }
 .list .scoreText { font-size: 16px; } 
 .list .countText { font-size: 14px; } /* 와인목록 페이지 텍스트 크기 */
 
@@ -123,7 +123,7 @@
 .ratingInfo {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 14px;
 }
 
 .scoreText {

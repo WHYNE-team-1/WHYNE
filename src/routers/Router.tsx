@@ -4,8 +4,9 @@ import Home from "@/pages/Home/index";
 import SignUp from "@/pages/Signup/index";
 import SignIn from "@/pages/Signin/index";
 import WinesList from "@/pages/WinesList/index";
-import WinesDetail from "@/pages/WinesDetail/index";
+import WineDetail from "@/pages/WineDetail/index";
 import AddItem from "@/pages/AddItem/index";
+import MyProfile from "@/pages/MyProfile/index";
 
 
 
@@ -19,8 +20,8 @@ import LinkButton from "@/storybook/link-button";
 import Input from "@/storybook/input";
 import AromaStoryBook from "@/storybook/aroma";
 
-import ModalTestPage from "@/storybook/modal";
-import ConfirmModalTestPage from "@/storybook/ModalConfirm";
+import ModalTestPage from "@/storybook/Modal";
+import ModalConfirmTestPage from "@/storybook/ModalConfirm";
 
 import WineTypeTestPage from "@/storybook/wine-type";
 import CheckBoxStory from "@/storybook/checkbox";
@@ -40,8 +41,9 @@ export default function AppRoutes() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/wines" element={<WinesList />} />
-          <Route path="/wines/:id" element={<WinesDetail />} />
+          <Route path="/wines/:id" element={<WineDetail />} />
           <Route path="/additem" element={<AddItem />} />
+          <Route path="/myprofile" element={<MyProfile />} />
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
@@ -70,8 +72,8 @@ export default function AppRoutes() {
 
         <Route path="/storybook/modal" element={<ModalTestPage />} />
         <Route
-          path="/storybook/modalconfrim"
-          element={<ConfirmModalTestPage />}
+          path="/storybook/modalconfirm"
+          element={<ModalConfirmTestPage />}
         />
 
         <Route path="/storybook/checkbox" element={<CheckBoxStory />} />
