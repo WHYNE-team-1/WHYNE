@@ -1,18 +1,17 @@
+import type { WineTypeKind } from '@/constants/WineType.constants';
 import { apiFetch } from './fetchClient';
 
 export interface GetWinesParams {
-  limit: number;
-  cursor?: number;
-  type?: 'RED' | 'WHITE' | 'SPARKLING';
-  name?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  rating?: number;
+  limit: number; // 한 번에 가져올 데이터 개수
+  cursor?: number; // 다음 페이지 데이터를 가져오기 위한 시작점
+  type?: WineTypeKind; // 와인 종류
+  name?: string; // 검색창에 입력한 와인 이름
+  minPrice?: number; // 최소 가격 필터
+  maxPrice?: number; // 최대 가격 필터
+  rating?: number; // 평점 필터
 }
 
-/**
- * 와인 목록 조회 (fetchClient 활용 버전)
- */
+/* 서버에 와인 목록 데이터를 요청하는 함수 */
 export async function getWines(params: GetWinesParams) {
   const { limit, cursor, type, name, minPrice, maxPrice, rating } = params;
 
@@ -20,7 +19,7 @@ export async function getWines(params: GetWinesParams) {
     limit: limit.toString(),
   });
 
-  // 파라미터가 있을 때만 추가
+  // 선택적 파라미터 처리 : 값이 존재할 때만 URL에 추가함.
   if (cursor) {
     searchParams.append('cursor', cursor.toString());
   }
@@ -40,7 +39,7 @@ export async function getWines(params: GetWinesParams) {
     searchParams.append('rating', rating.toString());
   }
 
-  // apiFetch가 내부적으로 토큰을 꺼내서 헤더에 넣어줍니다!
-  // /22-1/wines?limit=10...
+  // 최종 완성된 주소
+  // apiFetch 내부에서 로그인 토큰(JWT)을 자동으로 헤더에 담아서 보냄.
   return apiFetch(`/wines?${searchParams.toString()}`);
 }
