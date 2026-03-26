@@ -17,8 +17,9 @@ import LinkButton from '@/storybook/link-button';
 import Input from '@/storybook/input';
 import AromaStoryBook from '@/storybook/aroma';
 
-import ModalTestPage from '@/storybook/Modal';
+import ModalTestPage from '@/storybook/modal';
 import ModalConfirmTestPage from '@/storybook/ModalConfirm';
+import WineAddModalTestPage from '@/pages/WineAddModal';
 
 import WineTypeTestPage from '@/storybook/wine-type';
 import CheckBoxStory from '@/storybook/checkbox';
@@ -31,6 +32,7 @@ import StarRatingTestPage from '@/storybook/rating';
 import ProFileTestPage from '@/storybook/profile';
 import ProFileSmallTestPage from '@/storybook/profilesmall';
 import ReviewCardStorybook from '@/storybook/review-card';
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -75,6 +77,8 @@ export default function AppRoutes() {
           path="/storybook/modalconfirm"
           element={<ModalConfirmTestPage />}
         />
+
+        <Route path="/storybook/wine-add" element={<WineAddModalTestPage />} />
 
         <Route path="/storybook/checkbox" element={<CheckBoxStory />} />
         <Route path="/storybook/textarea" element={<TextareaTestPage />} />

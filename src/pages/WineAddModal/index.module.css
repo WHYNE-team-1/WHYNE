@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field input {
+  height: 48px;
+  width: 100%;
+  padding: 12px 20px 12px 16px;
+}
+
+.typeList {
+  display: flex;
+  gap: 12px;
+}
+
+.modalContent {
+  min-height: 500px;
+  margin-bottom: 28px;
+}
+
+label {
+  color: var(--color-gray-700);
+  line-height: 20px;
+}
