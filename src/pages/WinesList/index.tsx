@@ -3,6 +3,7 @@ import { getWines } from '@/apis/wine';
 import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
 import SearchBar from '@/components/common/SearchBar';
 import styles from './index.module.css';
+import WineAddModal from '@/components/list/WineAddModal';
 
 function WinesList() {
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
@@ -55,6 +56,7 @@ function WinesList() {
         <aside className={styles.filterAside}>
           <div className={styles.filterPlaceholder}>
             필터 & 와인 등록하기 버튼 예정지
+            <WineAddModal />
           </div>
         </aside>
 
