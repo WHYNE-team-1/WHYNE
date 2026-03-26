@@ -80,6 +80,9 @@ export default defineConfig([
       // 🚨 변수 중복 선언 무시 (off)
       'no-redeclare': 'off',
 
+      //
+
+      'react-hooks/set-state-in-effect': 'off',
       // 아래는 아까 설정했던 경고(warn)들
       'no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
       'react/jsx-key': 'warn',

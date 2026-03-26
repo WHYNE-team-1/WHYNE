@@ -26,9 +26,6 @@ const ReviewCardStorybook = () => {
         wineImage="https://randomuser.me/api/portraits/women/44.jpg"
         wineName="Sentinel Cabernet Sauvignon 2016"
         wineRegion="Western Cape, South Africa"
-        onEdit={() => alert('수정 클릭!')}
-        onDelete={() => alert('삭제 클릭!')}
-        onLike={() => alert('좋아요 클릭!')}
       />
 
       <ReviewCard

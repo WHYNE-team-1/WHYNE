@@ -1,5 +1,5 @@
 import { ReviewAroma, DetailAroma } from '@/components/common/Aroma';
-// import { useState } from "react";
+import { useState } from 'react';
 
 export default function AromaStoryBook() {
   const [usersCount] = useState<number>(0);
@@ -27,7 +27,10 @@ export default function AromaStoryBook() {
       <div>
         <h2>상세 페이지 - 맛</h2>
         -
-        <DetailAroma usersCount={32} selectedAromaIds={['cherry', 'herb']} />
+        <DetailAroma
+          usersCount={32}
+          selectedAromaIds={['APPLE', 'LEATHER', 'TOBACCO']}
+        />
         <h2>상세 페이지 - 맛 없을 때</h2>
         <DetailAroma
           usersCount={usersCount}

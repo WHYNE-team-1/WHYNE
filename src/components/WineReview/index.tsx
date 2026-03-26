@@ -2,37 +2,23 @@ import Button from '@/components/common/Button';
 import StarRating from '@/components/common/StarRating';
 import styles from './index.module.css';
 import Modal from '@/components/common/Modal';
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import Textarea from '@/components/common/Textarea';
 import ReviewAromaCheckbox from '@/components/common/ReviewAromaCheckbox';
 import WineTasteSlider from '@/components/common/WineTasteSlider';
 import { addWineReview } from '@/apis/WineDetail';
 import type { WineDetail } from '@/pages/WineDetail/WineDetail.types';
+import ReviewCard from '@/components/common/ReviewCard';
 
 type Props = {
   data: WineDetail | null;
   onSuccess: () => void;
 };
-const aromaMap: Record<string, string> = {
-  apple: 'APPLE',
-  cherry: 'CHERRY',
-  chocolate: 'CHOCOLATE',
-  citrus: 'CITRUS',
-  coconut: 'TROPICAL',
-  flower: 'FLOWER',
-  grass: 'GRASS',
-  herb: 'GRASS',
-  mineral: 'MINERAL',
-  oak: 'OAK',
-  peach: 'PEACH',
-  grape: 'BERRY',
-  toast: 'BAKING',
-  tropical: 'TROPICAL',
-  WetSoil: 'EARTH',
-};
 
 export default function WineReview({ data, onSuccess }: Props) {
-  if (!data) return <div>로딩중...</div>;
+  if (!data) {
+    return <div>로딩중...</div>;
+  }
 
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -57,18 +43,20 @@ export default function WineReview({ data, onSuccess }: Props) {
     softAcidic: taste.softAcidic,
   };
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (!data?.id || isLoading) return;
+    if (!data?.id || isLoading) {
+      return;
+    }
     const trimmedContent = content.trim();
     const normalizedRating = Math.max(1, Math.min(5, Math.round(rating)));
-    const mappedAroma = aroma.map((a) => aromaMap[a]).filter(Boolean);
     if (!trimmedContent) {
       alert('리뷰 내용을 입력해주세요.');
       return;
     }
-    if (mappedAroma.length === 0) {
+    const normalizedAroma = Array.from(new Set(aroma)).filter(Boolean);
+    if (normalizedAroma.length === 0) {
       alert('향을 최소 1개 선택해주세요.');
       return;
     }
@@ -82,15 +70,14 @@ export default function WineReview({ data, onSuccess }: Props) {
         smoothTannic: taste.smoothTannic,
         drySweet: taste.drySweet,
         softAcidic: taste.softAcidic,
-        aroma: mappedAroma,
+        aroma: normalizedAroma,
         content: trimmedContent,
         wineId: data.id,
       });
 
       onSuccess();
       setIsOpen(false);
-    } catch (error) {
-      console.error(error);
+    } catch {
       alert('리뷰 등록에 실패했습니다.');
     } finally {
       setIsLoading(false);
@@ -101,9 +88,15 @@ export default function WineReview({ data, onSuccess }: Props) {
       {isLoading ? '등록 중...' : '리뷰 남기기'}
     </Button>
   );
+  const allReviews = data.reviews;
+
   return (
     <>
-      {' '}
+      <div className={styles.reviewWrap}>
+        {allReviews.map((review) => {
+          return <ReviewCard key={review.id} data={review} type={'detail'} />;
+        })}
+      </div>
       <div className={styles.ratingsWrap}>
         <div className={styles.rating}>
           <StarRating
@@ -132,7 +125,7 @@ export default function WineReview({ data, onSuccess }: Props) {
                           ? `${(value / data.reviewCount) * 100}%`
                           : '0%',
                     }}
-                  ></div>
+                  />
                 </div>
               </div>
             )

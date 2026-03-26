@@ -30,7 +30,7 @@
 
 /* 정보 영역 */
 .infoContent {
-  padding: 16px 20px 24px;
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -75,7 +75,7 @@
 
   /* 줄 수 제한 */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* 딱 2줄만 보여줌 */
+  -webkit-line-clamp: 2; /* 2줄만 보여줌 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis; /* 끝에 ... 자동 생성 */
