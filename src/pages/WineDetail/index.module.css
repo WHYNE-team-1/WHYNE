@@ -1,3 +1,95 @@
+.topBackground {
+  width: 100%;
+  background-color: var(--color-gray-100);
+  border-bottom-left-radius: 60px; /* 둥근 모서리 */
+  border-bottom-right-radius: 60px;
+  padding: 60px 0;
+  margin-bottom: 64px; /* 중단 영역과 간격 */
+}
+
+/* 이미지와 텍스트를 담는 컨테이너 (가운데 정렬) */
+.topSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 48px;
+  max-width: 1061px;
+  margin: 0 auto; /* 화면 정중앙 배치*/
+  padding: 0 20px;
+}
+
+/* 왼쪽 이미지 영역 */
+.imageWrapper {
+  width: 517px;
+  height: 409px;
+  flex-shrink: 0;
+}
+
+.wineImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 오른쪽 정보 영역 */
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 496px;
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/*  와인 타입 칩 */
+.wineTypeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px 0 8px;
+  width: fit-content;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+/* 와인 이름 */
+.wineName {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-gray-800);
+}
+
+/* 와인 원산지 */
+.wineRegion {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-gray-400);
+}
+
+.ratingGroup {
+  /* 별점 컴포넌트 껍데기 */
+  margin-top: 8px;
+}
+
+/* 가격 */
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: right;
+  color: var(--color-gray-800);
+}
+
 .reviewWrap {
   display: flex;
   flex-direction: row;
@@ -8,13 +100,226 @@
   gap: 64px;
 }
 
+.middleSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 79px;
+  width: 100%;
+  max-width: 1111px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 32px; /* Title과 내용 사이 간격 */
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-gray-800);
+  white-space: nowrap;
+}
+
+.participantCount {
+  font-size: 14px;
+  color: var(--color-gray-400);
+}
+
+/* 맛 */
+.tasteArea {
+  display: flex;
+  flex-direction: column;
+  width: 502px;
+}
+
+.tasteSliders {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 향 */
+.flavorArea {
+  display: flex;
+  flex-direction: column;
+  width: 478px;
+}
+
+.flavorIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.flavorItem {
+  /* 임시 스타일  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+}
+
+.divider {
+  width: 100%;
+  max-width: 1140px;
+  border: 0;
+  border-top: 2px solid #d1d1d1;
+  margin: 80px auto; /* 위아래 여백 크게 */
+}
+
 @media (max-width: 1079px) {
+  .topSection {
+    gap: 24px;
+  }
+  .imageWrapper {
+    width: 50%;
+    height: auto;
+    aspect-ratio: 517 / 409;
+  }
+  .infoWrapper {
+    width: 50%;
+  }
+
+  .middleSection {
+    flex-direction: column;
+    align-items: center;
+    gap: 96px;
+    width: 100%;
+    padding: 0 24px;
+  }
+
+  .tasteArea,
+  .flavorArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 696px;
+    margin: 0 auto;
+  }
+
+  .flavorArea {
+    gap: 48px;
+  }
+
+  .sectionHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    flex: 0 0 140px;
+    margin-bottom: 0;
+  }
+
+  .tasteSliders {
+    flex: 1;
+    max-width: 444px;
+  }
+
   .reviewWrap {
     flex-direction: column-reverse;
     gap: 48px;
   }
 }
 @media (max-width: 767px) {
+  .topSection,
+  .infoWrapper,
+  .middleSection,
+  .tasteArea,
+  .flavorArea {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    position: relative;
+  }
+
+  .topBackground {
+    height: auto;
+    border-radius: 0;
+    padding: 0 0;
+    margin-bottom: 24px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .topSection {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent !important;
+    padding: 0;
+    gap: 0;
+  }
+  .imageWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 330px;
+  }
+
+  .infoWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #ffffff;
+    padding-top: 24px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: #f2f2f2;
+    margin: 24px 0;
+  }
+
+  .middleSection {
+    flex-direction: column;
+    gap: 48px;
+    padding: 0;
+  }
+
+  .tasteArea,
+  .flavorArea {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: none;
+    width: 100%;
+  }
+
+  .tasteSliders {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .flavorIcons {
+    gap: 12px;
+    justify-content: space-between;
+  }
+
   .reviewWrap {
     gap: 32px;
   }
