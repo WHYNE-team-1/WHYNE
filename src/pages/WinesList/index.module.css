@@ -1,19 +1,41 @@
-/* 검색창, 그리드를 감싸는 컨테이너 */
-.container {
-  max-width: 800px; /* 그리드와 똑같은 너비 설정 */
-  margin: 0 auto;
-  padding-top: 64px;
+/* 메인 레이아웃 (좌우 배치) */
+.mainContent {
+  display: flex;
+  gap: 48px; /* 필터, 우측 콘텐츠 간격 */
+  margin-top: 540px;
+  margin-left: 360px;
+  margin-right: 360px;
 }
 
-/* 검색바 하단 여백 */
+/* 좌측 필터 고정폭 */
+.filterAside {
+  width: 360px;
+  flex-shrink: 0;
+}
+
+/* 우측 영역 (검색창 + 그리드) */
+.contentRight {
+  flex-grow: 1; /* 남은 공간 모두 차지 */
+  display: flex;
+  flex-direction: column;
+  gap: 64px; /* 검색창과 그리드 사이의 세로 간격 */
+}
+
+/* 검색창 */
 .searchSection {
-  margin-bottom: 64px;
-  width: 100%; /* 부모 꽉 채우기 */
+  width: 100%;
 }
 
-/* 그리드 영역 */
+/* 그리드 리스트 */
 .listSection {
   width: 100%;
+}
+
+.filterPlaceholder {
+  background: #f9f9f9;
+  height: 600px;
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .loading {

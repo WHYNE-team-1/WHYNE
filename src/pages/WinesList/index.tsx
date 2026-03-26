@@ -44,24 +44,42 @@ function WinesList() {
 
   return (
     <div className={styles.container}>
-      {/* 검색창 영역 */}
-      <section className={styles.searchSection}>
-        <SearchBar
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)} // 타이핑할 때마다 keyword 상태만 업데이트 (API 호출x)
-          onSearchSubmit={handleSearchSubmit}
-        />
+      {/* 수정님이 만드실 슬라이더 영역 */}
+      <section className={styles.sliderPlaceholder}>
+        {/* 여기에 와인 슬라이더가 들어올 예정 */}
       </section>
 
-      {/* 와인 그리드 영역 */}
-      {/* 로딩 상태에 따른 조건부 렌더링 */}
-      <main className={styles.listSection}>
-        {isLoading ? (
-          <div className={styles.loading}>검색 중... 🍷</div>
-        ) : (
-          <WineListGrid wines={wines} />
-        )}
-      </main>
+      {/* 메인 콘텐츠 영역 */}
+      <div className={styles.mainContent}>
+        {/* 좌측 필터 영역 */}
+        <aside className={styles.filterAside}>
+          <div className={styles.filterPlaceholder}>
+            필터 & 와인 등록하기 버튼 예정지
+          </div>
+        </aside>
+
+        {/* 우측 리스트 영역 */}
+        {/* 검색창 영역 */}
+        <div className={styles.contentRight}>
+          <section className={styles.searchSection}>
+            <SearchBar
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)} // 타이핑할 때마다 keyword 상태만 업데이트 (API 호출x)
+              onSearchSubmit={handleSearchSubmit}
+            />
+          </section>
+
+          {/* 리스트 영역 */}
+          <main className={styles.listSection}>
+            {/* 로딩 상태에 따른 조건부 렌더링 */}
+            {isLoading ? (
+              <div className={styles.loading}>검색 중... 🍷</div>
+            ) : (
+              <WineListGrid wines={wines} />
+            )}
+          </main>
+        </div>
+      </div>
     </div>
   );
 }
