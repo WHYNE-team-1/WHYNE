@@ -27,25 +27,26 @@ function WinesList() {
         maxPrice: priceRange[1],
       };
 
-      // 타입 필터 (배열 중 첫 번째 값을 대문자로 변환해서 전송)
-      if (selectedTypes.length > 0) {
-        params.type = selectedTypes[0].toUpperCase() as GetWinesParams['type'];
-      }
-
-      // 2. 서버에서 1차 필터링된 와인 목록을 가져옴.
+      // 2. 서버에서 가격 범위에 맞는 와인 목록을 먼저 가져옴.
       const data = await getWines(params);
       const allWines = data.list || [];
 
-      // 3. 이름 검색어와 평점 구간을 동시에 골라냄.
+      // 3. 이름 검색어, 평점 구간, 와인 타입을 동시에 골라냄.
       const filtered = allWines.filter((wine: Wine) => {
-        // 이름 검색 확인: 서버 API는 대소문자를 엄격하게 구별해서, 프론트에서는 대소문자를 무시하게 함.
+        // 이름 검색 확인: 서버 API는 대소문자를 엄격하게 구별해서, 프론트에서 대소문자를 무시하게 함.
         const isMatchName = wine.name
           .toLowerCase()
           .includes(keyword.toLowerCase());
 
-        // 평점 확인 : 서버 API는 단일 평점만 지원해서, 프론트에서는 다중 선택 가능하게 함.
+        // 와인 타입 확인: 서버 API는 단일 타입 선택만 지원해서, 프론트에서 다중 선택 기능을 구현함.
+        // 아무것도 선택하지 않았으면 모든 타입을 보여줌.
+        const isMatchType =
+          selectedTypes.length === 0 ||
+          selectedTypes.some((type) => type.toUpperCase() === wine.type);
+
+        // 평점 확인 : 서버 API는 단일 평점 선택만 지원해서, 프론트에서 다중 선택 기능을 구현함.
         if (selectedRatings.includes('전체') || selectedRatings.length === 0) {
-          return isMatchName; // 전체면 이름만 맞으면 통과
+          return isMatchName && isMatchType; // 평점이 전체면 이름과 타입만 맞으면 통과
         }
 
         // 선택된 평점 범위들 중 하나라도 해당되는지 확인
@@ -57,7 +58,7 @@ function WinesList() {
         });
 
         // 이름과 평점 조건이 모두 맞아야 최종 리스트에 포함됨.
-        return isMatchName && isMatchRating;
+        return isMatchName && isMatchType && isMatchRating;
       });
 
       // 4. 최종 결과물을 화면에 그림.
