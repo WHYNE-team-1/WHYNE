@@ -1,7 +1,7 @@
 import { useEffect, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './index.module.css';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/index';
 import X from '@/assets/icons/X.svg';
 
 interface ModalProps {

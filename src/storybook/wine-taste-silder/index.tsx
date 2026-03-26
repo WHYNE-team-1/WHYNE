@@ -51,8 +51,6 @@ const WineTasteSliderStorybook = () => {
         hideLeftDesc={true}
         hideSeparator={true}
       />
-
-      <div style={{ height: '50px' }} />
     </div>
   );
 };
