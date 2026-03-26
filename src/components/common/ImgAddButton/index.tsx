@@ -7,11 +7,13 @@ import deleteIcon from '@/assets/icons/ic-delete.svg';
 type ImgAddButtonProps = {
   error?: boolean;
   src?: string | null;
+  onChangeFile?: (file: File | null) => void;
 };
 
 export default function ImgAddButton({
   error = false,
   src = null,
+  onChangeFile,
 }: ImgAddButtonProps) {
   // 파일 인 풋의 DOM 제어를 위한 ref
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -30,6 +32,8 @@ export default function ImgAddButton({
     const imgFileURL = URL.createObjectURL(imgFile);
 
     setImgSrc(imgFileURL);
+    onChangeFile?.(imgFile);
+
     return () => {
       URL.revokeObjectURL(imgFileURL);
     };
@@ -38,6 +42,7 @@ export default function ImgAddButton({
   // 삭제
   function handleDelete() {
     setImgSrc(null);
+    onChangeFile?.(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -55,6 +60,7 @@ export default function ImgAddButton({
       />
       {!imgSrc && (
         <button
+          type="button"
           className={cn(styles.imgAddBtn, error && styles.error)}
           onClick={() => fileInputRef.current?.click()}
         >
