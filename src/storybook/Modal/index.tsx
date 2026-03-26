@@ -5,31 +5,42 @@ import Button from '@/components/common/Button';
 export default function ModalTestPage() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const footer = (
+    <Button color="black" size="stretch" type="submit">
+      리뷰 남기기
+    </Button>
+  );
+
   return (
-    <div style={{ padding: 40 }}>
-      <h1 style={{ margin: 0, fontSize: 32, fontWeight: 700 }}>
+    <div style={{ padding: '40px' }}>
+      <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 700 }}>
         Modal 컴포넌트 테스트
       </h1>
 
-      <div style={{ marginTop: 20 }}>
-        <Button color="black" size="Btn" onClick={() => setIsOpen(true)}>
+      <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          style={{
+            border: 'none',
+            borderRadius: '12px',
+            padding: '12px 16px',
+            backgroundColor: '#2d3034',
+            color: '#ffffff',
+            cursor: 'pointer',
+          }}
+        >
           모달 열기
-        </Button>
+        </button>
       </div>
 
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        title="기본 모달"
-        footer={
-          <Button color="black" size="Btn" onClick={() => setIsOpen(false)}>
-            닫기
-          </Button>
-        }
+        title="리뷰 등록"
+        footer={footer}
       >
-        <p style={{ margin: 0 }}>
-          공통 Modal 컴포넌트 동작을 확인하는 테스트 페이지입니다.
-        </p>
+        <p>children 영역입니다.</p>
       </Modal>
     </div>
   );

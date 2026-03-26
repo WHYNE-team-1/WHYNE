@@ -1,0 +1,55 @@
+.wineCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.wineInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.reviewInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.productImage {
+  width: 48px;
+  height: 72px;
+}
+
+.productImage {
+  width: 48px;
+  height: 72px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+.cardTitle {
+  margin: 0 0 6px;
+  color: #2c1810;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cardMeta {
+  margin: 0;
+  color: #8f7d72;
+  font-size: 14px;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #f2e4d4;
+  color: #6b3b1d;
+  font-size: 13px;
+  font-weight: 700;
+}
