@@ -17,7 +17,7 @@ import LinkButton from '@/storybook/link-button';
 import Input from '@/storybook/input';
 import AromaStoryBook from '@/storybook/aroma';
 
-import ModalTestPage from '@/storybook/Modal';
+import ModalTestPage from '@/storybook/modal';
 import ModalConfirmTestPage from '@/storybook/ModalConfirm';
 
 import WineTypeTestPage from '@/storybook/wine-type';
@@ -31,6 +31,7 @@ import StarRatingTestPage from '@/storybook/rating';
 import ProFileTestPage from '@/storybook/profile';
 import ProFileSmallTestPage from '@/storybook/profilesmall';
 import ReviewCardStorybook from '@/storybook/review-card';
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>

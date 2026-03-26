@@ -46,7 +46,9 @@ type Props = {
     | 'upDown'
     | 'image'
     | 'profile'
-    | 'noProfile';
+    | 'noProfile'
+    | 'wineTypeSelect'
+    | 'wineAddRed';
   leftIcon?: React.ReactNode;
   className?: string;
   form?: string;
