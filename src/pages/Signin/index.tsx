@@ -29,8 +29,6 @@ export default function SigninPage() {
   const setLogin = useAuthStore((state) => state.setLogin);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  console.log(isLoggedIn);
-
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/');

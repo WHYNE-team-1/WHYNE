@@ -13,13 +13,16 @@ export interface User {
 interface AuthState {
   isLoggedIn: boolean;
   user: User | null;
+  redirectPath: string | null;
   setLogin: (_user: User) => void;
   setLogout: () => void;
+  setRedirectPath: (_path: string | null) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
   isLoggedIn: !!localStorage.getItem('accessToken'),
   user: null,
+  redirectPath: null,
 
   setLogin: (userData) => set({ isLoggedIn: true, user: userData }),
   setLogout: () => {
@@ -27,4 +30,5 @@ export const useAuthStore = create<AuthState>((set) => ({
     localStorage.removeItem('refreshToken');
     set({ isLoggedIn: false, user: null });
   },
+  setRedirectPath: (path) => set({ redirectPath: path }),
 }));

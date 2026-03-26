@@ -1,8 +1,14 @@
 import { ENV } from './env';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const BASE_URL = ENV.API_TEAM_BASE_URL;
 
-export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
+let refreshPromise: Promise<string> | null = null;
+
+export const apiFetch = async (
+  endpoint: string,
+  options: globalThis.RequestInit = {}
+) => {
   const token = localStorage.getItem('accessToken');
 
   const headers: Record<string, string> = {
@@ -19,37 +25,56 @@ export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
   if (response.status === 401) {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    if (refreshToken) {
+    if (!refreshToken) {
+      useAuthStore.getState().setLogout();
+      throw new Error('인증 토큰 없음');
+    }
+
+    // 이미 누가 토큰을 갱신하러 간 경우
+    if (refreshPromise) {
       try {
-        const refreshResponse = await fetch(`${BASE_URL}/auth/refresh-token`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ refreshToken }),
+        // 기다렸다가 새 토큰을 받아오기
+        const newAccessToken = await refreshPromise;
+        headers.Authorization = `Bearer ${newAccessToken}`;
+        response = await fetch(`${BASE_URL}${endpoint}`, {
+          ...options,
+          headers,
         });
+        if (!response.ok) {
+          throw new Error('대기 후 재요청 실패');
+        }
+        return response.json();
+      } catch {
+        throw new Error('동시 갱신 대기 중 에러');
+      }
+    }
 
-        if (refreshResponse.ok) {
-          const newToken = await refreshResponse.json();
-
-          localStorage.setItem('accessToken', newToken.accessToken);
-
-          headers.Authorization = `Bearer ${newToken.accessToken}`;
-          response = await fetch(`${BASE_URL}${endpoint}`, {
-            ...options,
-            headers,
-          });
-        } else {
+    // 아무도 갱신하러 안 간 경우
+    refreshPromise = fetch(`${BASE_URL}/auth/refresh-token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken }),
+    })
+      .then(async (res) => {
+        if (!res.ok) {
           throw new Error('리프레시 토큰 만료');
         }
-      } catch {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.href = '/signin';
-        throw new Error('세션 만료');
-      }
-    } else {
-      localStorage.removeItem('accessToken');
-      window.location.href = '/signin';
-      throw new Error('인증 토큰 없음');
+        const data = await res.json();
+        localStorage.setItem('accessToken', data.accessToken);
+        return data.accessToken;
+      })
+      .finally(() => {
+        // 대기 기록 초기화
+        refreshPromise = null;
+      });
+
+    try {
+      const newAccessToken = await refreshPromise;
+      headers.Authorization = `Bearer ${newAccessToken}`;
+      response = await fetch(`${BASE_URL}${endpoint}`, { ...options, headers });
+    } catch {
+      useAuthStore.getState().setLogout();
+      throw new Error('세션 만료');
     }
   }
 

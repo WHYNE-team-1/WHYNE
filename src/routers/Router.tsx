@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from '@/components/layout/MainLayout/index';
 import Home from '@/pages/Home/index';
 import SignUp from '@/pages/Signup/index';
@@ -33,58 +33,53 @@ import ProFileSmallTestPage from '@/storybook/profilesmall';
 import ReviewCardStorybook from '@/storybook/review-card';
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/wines" element={<WinesList />} />
-          <Route path="/wines/:id" element={<WineDetail />} />
-          <Route path="/additem" element={<AddItem />} />
-          <Route path="/myprofile" element={<MyProfile />} />
-        </Route>
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/wines" element={<WinesList />} />
+        <Route path="/wines/:id" element={<WineDetail />} />
+        <Route path="/additem" element={<AddItem />} />
+        <Route path="/myprofile" element={<MyProfile />} />
+      </Route>
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
 
-        <Route path="/storybook/rating" element={<StarRatingTestPage />} />
+      <Route path="/storybook/rating" element={<StarRatingTestPage />} />
 
-        <Route path="/storybook/auth-test" element={<AuthTest />} />
-        <Route path="/storybook/dropdown" element={<DropdownSample />} />
-        <Route
-          path="/storybook/review-card"
-          element={<ReviewCardStorybook />}
-        />
-        <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
-        <Route path="/storybook/textarea" element={<TextareaTestPage />} />
-        <Route path="/storybook/button" element={<Button />} />
-        <Route path="/storybook/link-button" element={<LinkButton />} />
-        <Route path="/storybook/input" element={<Input />} />
-        <Route path="/storybook/aroma" element={<AromaStoryBook />} />
-        <Route path="/storybook/wineType" element={<WineTypeTestPage />} />
-        <Route
-          path="/storybook/wine-taste-slider"
-          element={<WineTasteSliderStorybook />}
-        />
+      <Route path="/storybook/auth-test" element={<AuthTest />} />
+      <Route path="/storybook/dropdown" element={<DropdownSample />} />
+      <Route path="/storybook/review-card" element={<ReviewCardStorybook />} />
+      <Route path="/storybook/wineImgAdd" element={<ImageAddButton />} />
+      <Route path="/storybook/textarea" element={<TextareaTestPage />} />
+      <Route path="/storybook/button" element={<Button />} />
+      <Route path="/storybook/link-button" element={<LinkButton />} />
+      <Route path="/storybook/input" element={<Input />} />
+      <Route path="/storybook/aroma" element={<AromaStoryBook />} />
+      <Route path="/storybook/wineType" element={<WineTypeTestPage />} />
+      <Route
+        path="/storybook/wine-taste-slider"
+        element={<WineTasteSliderStorybook />}
+      />
 
-        <Route
-          path="/storybook/price-range-slider"
-          element={<PriceRangeSlider />}
-        />
+      <Route
+        path="/storybook/price-range-slider"
+        element={<PriceRangeSlider />}
+      />
 
-        <Route path="/storybook/modal" element={<ModalTestPage />} />
-        <Route
-          path="/storybook/modalconfirm"
-          element={<ModalConfirmTestPage />}
-        />
+      <Route path="/storybook/modal" element={<ModalTestPage />} />
+      <Route
+        path="/storybook/modalconfirm"
+        element={<ModalConfirmTestPage />}
+      />
 
-        <Route path="/storybook/checkbox" element={<CheckBoxStory />} />
-        <Route path="/storybook/textarea" element={<TextareaTestPage />} />
-        <Route path="/storybook/search-bar" element={<SearchBarSample />} />
-        <Route path="/storybook/profile" element={<ProFileTestPage />} />
-        <Route
-          path="/storybook/profilesmall"
-          element={<ProFileSmallTestPage />}
-        />
-      </Routes>
-    </BrowserRouter>
+      <Route path="/storybook/checkbox" element={<CheckBoxStory />} />
+      <Route path="/storybook/textarea" element={<TextareaTestPage />} />
+      <Route path="/storybook/search-bar" element={<SearchBarSample />} />
+      <Route path="/storybook/profile" element={<ProFileTestPage />} />
+      <Route
+        path="/storybook/profilesmall"
+        element={<ProFileSmallTestPage />}
+      />
+    </Routes>
   );
 }
