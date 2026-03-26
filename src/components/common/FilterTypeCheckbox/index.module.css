@@ -18,15 +18,26 @@
 .typeWrap {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  gap: 8px;
+  flex-direction: column;
+  gap: 12px;
   max-width: 768px;
 }
+
 .type {
   padding: 8px 16px 8px 8px;
+  width: fit-content; /* 버튼이 너무 길어지지 않게 설정 */
 }
 
 .type.active {
   background-color: var(--color-primary-red);
   color: var(--color-primary-red-100);
+}
+
+/* 태블릿 및 모바일 */
+@media (max-width: 1024px) {
+  .typeWrap {
+    flex-direction: row; /* 가로 정렬로 변경 */
+    flex-wrap: wrap; /* 화면이 아주 좁아지면 다음 줄로 넘어가게 */
+    gap: 8px;
+  }
 }
