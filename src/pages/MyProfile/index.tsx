@@ -44,7 +44,8 @@ function getStoredProfile(): StoredProfile {
 
   try {
     return JSON.parse(rawProfile) as StoredProfile;
-  } catch {
+  } catch (error) {
+    console.error('저장된 프로필 초안(Draft)을 분석하지 못했습니다', error);
     return fallbackProfile;
   }
 }
@@ -129,7 +130,8 @@ export default function MyProfile() {
       setImage(data.image ?? '');
       setSelectedFile(null);
       setIsConfirmOpen(false);
-    } catch {
+    } catch (error) {
+      console.error('Failed to save profile changes.', error);
       alert(SAVE_ERROR_MESSAGE);
     } finally {
       setIsLoading(false);
