@@ -32,7 +32,7 @@ export default function WineAddModal() {
   };
 
   const modalFooter = (
-    <Button color="black" size="stretch" type="submit" form="reviewForm">
+    <Button color="black" size="stretch" type="submit" form="wineAddForm">
       와인 등록하기
     </Button>
   );
