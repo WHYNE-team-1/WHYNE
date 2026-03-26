@@ -21,3 +21,39 @@
     row-gap: 48px; /* 상하 간격 */
   }
 }
+
+/* 결과 없음 컨테이너 */
+.emptyContainer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  width: 100%;
+}
+
+/* 결과 없음 내용 */
+.emptyContent {
+  text-align: center;
+}
+
+/* 결과 없음 아이콘 */
+.emptyIcon {
+  display: block;
+  margin: 0 auto 24px;
+}
+
+/* 결과 없음 제목 */
+.emptyText {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin-bottom: 12px;
+}
+
+/* 결과 없음 부제목 */
+.emptySubText {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-gray-400);
+}
