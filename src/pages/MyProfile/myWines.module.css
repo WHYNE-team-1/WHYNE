@@ -1,45 +1,76 @@
+﻿.panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 67px 76px;
+  padding-top: 12px;
+  margin-left: 32px;
+}
+
 .wineCard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+  width: 100%;
+  min-width: 0;
 }
 
 .wineInfo {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
+
 .reviewInfo {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
   width: 100%;
+  min-width: 0;
+}
+
+.cardImgWrapper {
+  width: 100%;
+  aspect-ratio: 37 / 36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2;
+  overflow: hidden;
 }
 
 .productImage {
-  width: 48px;
-  height: 72px;
-}
-
-.productImage {
-  width: 48px;
-  height: 72px;
+  width: 75px;
+  height: 288px;
   object-fit: contain;
   flex: 0 0 auto;
 }
+
+.cardTextWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
 .cardTitle {
-  margin: 0 0 6px;
+  margin: 0;
   color: #2c1810;
   font-size: 20px;
   font-weight: 700;
+  line-height: 1.4;
+  word-break: keep-all;
 }
 
 .cardMeta {
   margin: 0;
   color: #8f7d72;
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.dropdownWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .statusBadge {
@@ -52,4 +83,26 @@
   color: #6b3b1d;
   font-size: 13px;
   font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .panel {
+    gap: 24px 16px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .productImage {
+    width: 64px;
+    height: 240px;
+  }
 }
