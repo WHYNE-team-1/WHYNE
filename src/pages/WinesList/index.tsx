@@ -32,28 +32,38 @@ function WinesList() {
         params.type = selectedTypes[0].toUpperCase();
       }
 
-      // 평점 필터 (선택된 범위 중 최소값 추출)
-      if (!selectedRatings.includes('전체') && selectedRatings.length > 0) {
-        const minRating = Math.min(
-          ...selectedRatings.map((r) => parseFloat(r.split(' - ')[0]))
-        );
-        params.rating = Math.floor(minRating);
-      }
-
       // 2. 서버에서 1차 필터링된 와인 목록을 가져옴.
       const data = await getWines(params);
       const allWines = data.list || [];
 
-      // 3. 가져온 목록 중 이름에 검색어가 포함된 것만 골라냄.
-      // 프론트엔드 메모리 상에서 대소문자를 무시하고 필터링함.
-      const filtered = allWines.filter((wine: Wine) =>
-        wine.name.toLowerCase().includes(keyword.toLowerCase())
-      );
+      // 3. 이름 검색어와 평점 구간을 동시에 골라냄.
+      const filtered = allWines.filter((wine: Wine) => {
+        // 이름 검색 확인: 서버 API는 대소문자를 엄격하게 구별해서, 프론트에서는 대소문자를 무시하게 함.
+        const isMatchName = wine.name
+          .toLowerCase()
+          .includes(keyword.toLowerCase());
+
+        // 평점 확인 : 서버 API는 단일 평점만 지원해서, 프론트에서는 다중 선택 가능하게 함.
+        if (selectedRatings.includes('전체') || selectedRatings.length === 0) {
+          return isMatchName; // 전체면 이름만 맞으면 통과
+        }
+
+        // 선택된 평점 범위들 중 하나라도 해당되는지 확인
+        const isMatchRating = selectedRatings.some((rangeText) => {
+          // '3.1 - 4.0' 문자열을 숫자 3.1과 4.0으로 분리
+          const [min, max] = rangeText.split(' - ').map(parseFloat);
+          // 와인의 평균 평점이 해당 범위 안에 있는지 확인
+          return wine.avgRating >= min && wine.avgRating <= max;
+        });
+
+        // 이름과 평점 조건이 모두 맞아야 최종 리스트에 포함됨.
+        return isMatchName && isMatchRating;
+      });
 
       // 4. 최종 결과물을 화면에 그림.
       setWines(filtered);
     } catch (error) {
-      // 콘솔 경고 지움.
+      // eslint 무시 주석 추가
       // eslint-disable-next-line no-console
       console.error('데이터 로드 실패:', error);
     } finally {
@@ -64,6 +74,7 @@ function WinesList() {
   // 페이지가 처음 렌더링될 때 전체 목록 불러옴.
   useEffect(() => {
     fetchWinesData();
+    // 의존성 배열을 비워둠으로써 실시간이 아닌 직접 호출 시에만 실행되도록 함.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
