@@ -1,6 +1,6 @@
 .section {
   margin-top: 0;
-  padding: 30px 0 0;
+  padding: 32px;
 }
 
 .tabList {
@@ -8,6 +8,7 @@
   gap: 32px;
   margin-bottom: 28px;
   border-bottom: 1px solid #e7ded6;
+  padding: 0 40px;
 }
 
 .tabButton {
@@ -19,8 +20,8 @@
   border: 0;
   background: transparent;
   color: #8f7d72;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
   transition: color 0.2s ease;
 }
@@ -32,16 +33,6 @@
 
 .tabButtonActive {
   color: #2c1810;
-}
-
-.tabButtonActive::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  height: 2px;
-  background: #2c1810;
 }
 
 .panel {
@@ -105,7 +96,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 24px;
 }
 
 .cardTitle {
@@ -202,11 +193,17 @@
   font-weight: 700;
 }
 @media (max-width: 1080px) {
+  .tabList {
+    padding: 0;
+  }
+  .profileCardInner {
+    padding: 0;
+  }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding-top: 24px;
+    padding: 24px;
   }
 
   .tabList {

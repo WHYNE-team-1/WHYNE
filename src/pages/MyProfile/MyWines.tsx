@@ -7,13 +7,19 @@ import type { DropdownOption } from '@/components/common/Dropdown';
 import styles from './myWines.module.css';
 import ImgAddButton from '@/components/common/ImgAddButton';
 import Input from '@/components/common/Input';
+import WineType from '@/components/common/WineType';
+import {
+  WINE_TYPE_KEYS,
+  type WineTypeKind,
+} from '@/constants/WineType.constants';
 
 export type MyWineItem = {
   id: number;
   name: string;
   region: string;
   price: string;
-  status: string;
+  type: WineTypeKind;
+  imageUrl?: string;
 };
 
 const DEFAULT_WINE_IMAGE = '/assets/images/img-productImage-01.png';
@@ -41,27 +47,40 @@ export default function MyWines({
     'default' | 'modalError'
   >('default');
   const [modalPriceError, setModalPriceError] = useState('');
+  const [modalRegion, setModalRegion] = useState('');
+  const [modalRegionStatus, setModalRegionStatus] = useState<
+    'default' | 'modalError'
+  >('default');
+  const [modalRegionError, setModalRegionError] = useState('');
+  const [selectedType, setSelectedType] = useState<WineTypeKind | null>(null);
+
+  const resetValidationState = () => {
+    setModalNameStatus('default');
+    setModalNameError('');
+    setModalPriceStatus('default');
+    setModalPriceError('');
+    setModalRegionStatus('default');
+    setModalRegionError('');
+  };
 
   // 모달을 닫을 때 입력값과 에러 상태도 함께 초기화한다.
   const handleCloseModal = () => {
     setEditingWine(null);
     setModalName('');
-    setModalNameStatus('default');
-    setModalNameError('');
     setModalPrice('');
-    setModalPriceStatus('default');
-    setModalPriceError('');
+    setModalRegion('');
+    setSelectedType(null);
+    resetValidationState();
   };
 
   // 드롭다운에서 수정하기를 누르면 선택한 와인 값으로 모달을 채운다.
   const handleOpenEditModal = (wine: MyWineItem) => {
     setEditingWine(wine);
     setModalName(wine.name);
-    setModalNameStatus('default');
-    setModalNameError('');
     setModalPrice(wine.price);
-    setModalPriceStatus('default');
-    setModalPriceError('');
+    setModalRegion(wine.region);
+    setSelectedType(wine.type);
+    resetValidationState();
   };
 
   const handleModalNameBlur = () => {
@@ -81,6 +100,16 @@ export default function MyWines({
     } else {
       setModalPriceStatus('default');
       setModalPriceError('');
+    }
+  };
+
+  const handleModalRegionBlur = () => {
+    if (modalRegion.trim() === '') {
+      setModalRegionStatus('modalError');
+      setModalRegionError('원산지를 입력해주세요');
+    } else {
+      setModalRegionStatus('default');
+      setModalRegionError('');
     }
   };
 
@@ -123,7 +152,7 @@ export default function MyWines({
     <>
       <div className={styles.panel} role="tabpanel">
         {items.map((wine) => {
-          const { id, name, region, price } = wine;
+          const { id, name, region, price, imageUrl } = wine;
           // 카드마다 개별 액션을 연결한다.
           const editOptions: DropdownOption[] = [
             {
@@ -142,7 +171,7 @@ export default function MyWines({
                 <div className={styles.reviewInfo}>
                   <div className={styles.cardImgWrapper}>
                     <img
-                      src={DEFAULT_WINE_IMAGE}
+                      src={imageUrl ?? DEFAULT_WINE_IMAGE}
                       alt={`${name} 이미지`}
                       className={styles.productImage}
                     />
@@ -184,8 +213,10 @@ export default function MyWines({
       >
         {/* 선택한 와인이 있을 때만 수정 폼을 노출한다. */}
         {editingWine && (
-          <div>
-            <ImgAddButton />
+          <>
+            <div className={styles.WineEditorImg}>
+              <ImgAddButton src={editingWine.imageUrl ?? DEFAULT_WINE_IMAGE} />
+            </div>
             <Input
               label="와인 이름"
               placeholder="와인 이름을 입력"
@@ -202,22 +233,50 @@ export default function MyWines({
               errorMessage={modalNameError}
             />
 
-            <Input
-              label="가격"
-              placeholder="가격 입력"
-              value={modalPrice}
-              onChange={(e) => {
-                setModalPrice(e.target.value);
-                if (modalPriceStatus === 'modalError') {
-                  setModalPriceStatus('default');
-                  setModalPriceError('');
-                }
-              }}
-              onBlur={handleModalPriceBlur}
-              status={modalPriceStatus}
-              errorMessage={modalPriceError}
-            />
-          </div>
+            <div className={styles.WineEditorInfo}>
+              <Input
+                label="가격"
+                placeholder="가격 입력"
+                value={modalPrice}
+                onChange={(e) => {
+                  setModalPrice(e.target.value);
+                  if (modalPriceStatus === 'modalError') {
+                    setModalPriceStatus('default');
+                    setModalPriceError('');
+                  }
+                }}
+                onBlur={handleModalPriceBlur}
+                status={modalPriceStatus}
+                errorMessage={modalPriceError}
+              />
+              <div className={styles.wineTypeLabel}>타입</div>
+              <div className={styles.wineTypeGroup}>
+                {WINE_TYPE_KEYS.map((type) => (
+                  <WineType
+                    key={type}
+                    type={type}
+                    isSelected={selectedType === type}
+                    onSelect={setSelectedType}
+                  />
+                ))}
+              </div>
+              <Input
+                label="원산지"
+                placeholder="원산지 입력"
+                value={modalRegion}
+                onChange={(e) => {
+                  setModalRegion(e.target.value);
+                  if (modalRegionStatus === 'modalError') {
+                    setModalRegionStatus('default');
+                    setModalRegionError('');
+                  }
+                }}
+                onBlur={handleModalRegionBlur}
+                status={modalRegionStatus}
+                errorMessage={modalRegionError}
+              />
+            </div>
+          </>
         )}
       </Modal>
     </>

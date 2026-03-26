@@ -53,16 +53,16 @@
 
 .cardTitle {
   margin: 0;
-  color: #2c1810;
-  font-size: 20px;
-  font-weight: 700;
+  color: #31302f;
+  font-size: 24px;
+  font-weight: bold;
   line-height: 1.4;
   word-break: keep-all;
 }
 
 .cardMeta {
   margin: 0;
-  color: #8f7d72;
+  color: #a3a3a3;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -73,25 +73,44 @@
   right: 0;
 }
 
-.statusBadge {
-  display: inline-flex;
-  align-items: center;
+.wineTypeGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.WineEditorImg {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
   justify-content: center;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: #f2e4d4;
-  color: #6b3b1d;
-  font-size: 13px;
+}
+
+.WineEditorInfo {
+  display: grid;
+  gap: 16px;
+}
+
+.wineTypeLabel {
+  color: #31302f;
+  font-size: 16px;
   font-weight: 700;
 }
 
 @media (max-width: 1024px) {
-  .panel {
-    gap: 24px 16px;
+  .section {
+    margin-top: 0;
+    padding: 30px;
   }
 
-  .cardTitle {
-    font-size: 18px;
+  .panel {
+    gap: 32px 16px;
+    margin-left: 0;
+    padding-top: 0;
+  }
+  .wineInfo {
+    padding-bottom: 20px;
   }
 }
 
