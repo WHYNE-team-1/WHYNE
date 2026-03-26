@@ -2,15 +2,26 @@ import Modal from '@/components/common/Modal';
 import styles from './index.module.css';
 import { useState } from 'react';
 import Button from '@/components/common/Button';
-import cameraIcon from '@/assets/icons/ic-camera.svg';
-import icRed from '@/assets/icons/ic-wine-red.svg';
-import icWhite from '@/assets/icons/ic-wine-white.svg';
-import icSparkling from '@/assets/icons/ic-wine-sparkling.svg';
+import ImgAddButton from '@/components/common/ImgAddButton';
+import Input from '@/components/common/Input';
+import WineType from '@/components/common/WineType';
+
+import {
+  WINE_TYPE_KEYS,
+  type WineTypeKind,
+} from '@/constants/WineType.constants';
+
+interface WineTypeProps {
+  type: WineTypeKind; // 와인 종류 (상수로 정의해둠.)
+  isReadOnly?: boolean; // 읽기 전용(칩 모드)인지 여부 / 칩 모드, 라디오 버튼 모드가 있음.
+  isSelected?: boolean; // 현재 선택된 상태인지 여부
+  onSelect?: (type: WineTypeKind) => void; // 클릭했을 때 실행할 함수 (어떤 것이 클릭됐는지 전달)
+}
 
 /*와인 등록 모달*/
 export default function WineAddModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [type, setType] = useState<'red' | 'white' | 'sparkling'>('red');
+  const [selectedType, setSelectedType] = useState<WineTypeKind | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,74 +56,37 @@ export default function WineAddModal() {
             onSubmit={handleSubmit}
           >
             <div className={styles.imageWrapper}>
-              <Button size="image" color="pureLine">
-                <img src={cameraIcon} />
-              </Button>
+              <ImgAddButton />
             </div>
 
             <div className={styles.field}>
               <label htmlFor="name">와인 이름</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="와인 이름 입력"
-              />
+              <Input />
             </div>
             <div className={styles.field}>
               <label htmlFor="price">가격</label>
-              <input
-                id="price"
-                name="price"
-                type="number"
-                placeholder="가격 입력"
-              />
+              <Input />
             </div>
 
             <div className={styles.field}>
               <span>타입</span>
-              <div className={styles.typeList}>
-                <Button
-                  color="white"
-                  size="wineTypeSelect"
-                  leftIcon={<img src={icRed} alt="Red-Wine" />}
-                  onClick={() => setType('red')}
-                  className="typeButton"
-                >
-                  Red
-                </Button>
-                <Button
-                  color="white"
-                  size="wineTypeSelect"
-                  leftIcon={<img src={icWhite} alt="White-Wine" />}
-                  onClick={() => setType('white')}
-                  className="typeButton"
-                >
-                  white
-                </Button>
-                <Button
-                  color="white"
-                  size="wineTypeSelect"
-                  leftIcon={<img src={icSparkling} alt="Sparkling-Wine" />}
-                  onClick={() => setType('sparkling')}
-                  className="typeButton"
-                >
-                  sparkling
-                </Button>
+
+              <div style={{ display: 'flex', gap: '12px' }}>
+                {WINE_TYPE_KEYS.map((type) => (
+                  <WineType
+                    key={type}
+                    type={type}
+                    isSelected={selectedType === type}
+                    onSelect={setSelectedType}
+                  />
+                ))}
               </div>
             </div>
 
             <div className={styles.field}>
               <label htmlFor="origin">원산지</label>
-              <input
-                id="origin"
-                name="origin"
-                type="text"
-                placeholder="원산지 입력"
-              />
+              <Input />
             </div>
-
-            <input type="hidden" name="type" value={type} />
           </form>
         </div>
       </Modal>
