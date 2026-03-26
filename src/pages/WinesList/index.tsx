@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getWines } from '@/apis/wine';
+import { getWines, type GetWinesParams } from '@/apis/wine';
 import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
 import SearchBar from '@/components/common/SearchBar';
 import WineFilter from '@/components/list/WineFilter';
@@ -21,7 +21,7 @@ function WinesList() {
       setIsLoading(true);
 
       // 1. 서버에 전달할 필터 데이터 조립함.
-      const params: any = {
+      const params: GetWinesParams = {
         limit: 100,
         minPrice: priceRange[0],
         maxPrice: priceRange[1],
@@ -29,7 +29,7 @@ function WinesList() {
 
       // 타입 필터 (배열 중 첫 번째 값을 대문자로 변환해서 전송)
       if (selectedTypes.length > 0) {
-        params.type = selectedTypes[0].toUpperCase();
+        params.type = selectedTypes[0].toUpperCase() as GetWinesParams['type'];
       }
 
       // 2. 서버에서 1차 필터링된 와인 목록을 가져옴.
