@@ -7,6 +7,10 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import styles from './index.module.css';
 import KakaoIcon from '@/assets/icons/ic-kakao.svg';
+import { apiFetch } from '@/apis/fetchClient';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/store/useAuthStore';
+import { useEffect } from 'react';
 
 // 검사 규칙 생성
 const signinSchema = z.object({
@@ -20,19 +24,56 @@ const signinSchema = z.object({
 // 생성한 스키마로 타입스크립트 타입 생성
 type SigninFormValues = z.infer<typeof signinSchema>;
 
-export default function Signin() {
+export default function SigninPage() {
+  const navigate = useNavigate();
+  const setLogin = useAuthStore((state) => state.setLogin);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
+  console.log(isLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
+
   // React Hook Form 세팅
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<SigninFormValues>({
     resolver: zodResolver(signinSchema),
     mode: 'onBlur',
   });
 
-  const onSubmit = (_data: SigninFormValues) => {
-    // TODO: API 호출
+  const onSubmit = async (data: SigninFormValues) => {
+    try {
+      const result = await apiFetch('/auth/signIn', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
+      localStorage.setItem('accessToken', result.accessToken);
+      localStorage.setItem('refreshToken', result.refreshToken);
+
+      setLogin(result.user);
+
+      navigate('/');
+    } catch (error: any) {
+      setError('email', {
+        type: 'server',
+        message: '이메일 혹은 비밀번호를 확인해주세요.',
+      });
+      setError('password', {
+        type: 'server',
+        message: '이메일 혹은 비밀번호를 확인해주세요.',
+      });
+    }
   };
 
   const handleKakaoLogin = () => {

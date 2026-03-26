@@ -13,14 +13,13 @@ export default function Header() {
 
   const handleLogout = () => {
     setLogout();
-    localStorage.removeItem('accessToken');
     navigate('/');
   };
 
   const profileOptions: DropdownOption[] = [
     {
       label: '마이페이지',
-      onClick: () => navigate('/'), // TODO: 경로 확정 시 추후 수정 필요
+      onClick: () => navigate('/myprofile'),
     },
     {
       label: '로그아웃',
