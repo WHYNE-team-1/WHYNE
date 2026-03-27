@@ -5,7 +5,7 @@ import { DetailAroma } from '@/components/common/Aroma';
 import WineReview from '@/components/WineReview';
 import StarRating from '@/components/common/StarRating';
 import WineTasteSlider from '@/components/common/WineTasteSlider';
-import type { WineDetail } from './WineDetail.types';
+import type { WineDetail as WineDetailType } from './WineDetail.types';
 import styles from './index.module.css';
 import iconRed from '@/assets/icons/ic-wine-red.svg';
 import iconWhite from '@/assets/icons/ic-wine-white.svg';
@@ -35,7 +35,7 @@ const WINE_TYPE_MAP: Record<
 
 function WineDetailPage() {
   const { id } = useParams();
-  const [wine, setWine] = useState<WineDetail | null>(null);
+  const [wine, setWine] = useState<WineDetailType | null>(null);
 
   const fetchData = useCallback(async () => {
     if (!id) return;
