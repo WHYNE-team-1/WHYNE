@@ -1,0 +1,21 @@
+/* 필터 영역과 필터 제목을 감싸는 컨테이너 */
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* 각 필터 그룹 사이의 간격 */
+}
+
+/* 필터 영역 */
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 제목과 필터 본문 사이의 간격 */
+}
+
+/* 필터 제목 */
+.filterTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-gray-800);
+  margin: 0;
+}
