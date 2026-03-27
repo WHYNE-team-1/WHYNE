@@ -41,3 +41,10 @@ export async function editWineReview(
   });
   return result;
 }
+
+export async function deleteWineReview(id: number) {
+  const result = await apiFetch(`/reviews/${id}`, {
+    method: 'DELETE',
+  });
+  return result;
+}

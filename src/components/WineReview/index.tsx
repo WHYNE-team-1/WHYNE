@@ -6,6 +6,7 @@ import type { WineDetail } from '@/pages/WineDetail/WineDetail.types';
 import ReviewCard from '@/components/common/ReviewCard';
 import ReviewModal from '@/components/ReviewModal';
 import { useAuthStore } from '@/store/useAuthStore';
+import { deleteWineReview } from '@/apis/WineDetail';
 
 type Props = {
   data: WineDetail | null;
@@ -39,6 +40,10 @@ export default function WineReview({ data, onSuccess }: Props) {
                 region: data.region ?? '',
               }}
               onEdit={onSuccess}
+              onDelete={async () => {
+                await deleteWineReview(review.id);
+                onSuccess(); // 삭제 후 목록 새로고침
+              }}
             />
           );
         })}

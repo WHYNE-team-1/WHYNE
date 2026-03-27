@@ -76,7 +76,9 @@ export default function ReviewModal({
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (!wineData?.id || isLoading) return; // data?.id → wineData.id
+    if (!wineData?.id || isLoading) {
+      return;
+    } // data?.id → wineData.id
 
     const trimmedContent = content.trim();
     const normalizedRating = Math.max(1, Math.min(5, Math.round(rating)));
@@ -116,7 +118,7 @@ export default function ReviewModal({
       setIsOpen(false);
       setIsOpen(false);
     } catch (error) {
-      console.error('리뷰 제출 실패:', error);
+      //   console.error('리뷰 제출 실패:', error);
       alert(
         type === 'edit'
           ? '리뷰 수정에 실패했습니다.'

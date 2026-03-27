@@ -7,7 +7,7 @@ import Dropdown from '@/components/common/Dropdown';
 import { ReviewAroma } from '@/components/common/Aroma';
 import type { ReviewListItem } from '@/pages/WineDetail/WineDetail.types';
 import ReviewModal from '@/components/ReviewModal';
-
+import ConfirmModal from '../ModalConfirm';
 const cx = classNames.bind(styles);
 
 interface User {
@@ -51,6 +51,8 @@ export default function ReviewCard({
 }: ReviewCardProps) {
   // 맛 슬라이더 펼치고 접는 스위치 (누가 구현했는지는 모르겠음)
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
   const isMyReview = loginUser?.id === data.user?.id;
 
   // profile은 항상 슬라이더가 보이고, detail는 화살표를 눌렀을 때만 보임
@@ -59,7 +61,7 @@ export default function ReviewCard({
   // 드롭다운 메뉴 옵션
   const dropdownOptions = [
     { label: '수정하기', onClick: () => setIsOpen(true) },
-    { label: '삭제하기', onClick: () => onDelete?.() },
+    { label: '삭제하기', onClick: () => setIsConfirmOpen(true) },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -161,6 +163,17 @@ export default function ReviewCard({
         wineData={wineData} // 그대로 내려줌
         reviewData={data}
         onSuccess={() => onEdit?.()} // 수정 후 목록 갱신용, 부모에서 onEdit 콜백 받아서 쓰는 게 더 좋음
+      />
+      <ConfirmModal
+        isOpen={isConfirmOpen}
+        onClose={() => setIsConfirmOpen(false)}
+        onConfirm={async () => {
+          await onDelete?.();
+          setIsConfirmOpen(false);
+        }}
+        title="정말 리뷰를 삭제하시겠습니까?"
+        confirmText="삭제"
+        cancelText="취소"
       />
     </>
   );
