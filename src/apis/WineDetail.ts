@@ -44,7 +44,6 @@ export async function addWineReview(data: {
     },
     body: JSON.stringify(data),
   });
-  console.log('응답:', data);
 
   if (!res.ok) {
     const errorText = await res.text();
@@ -54,4 +53,25 @@ export async function addWineReview(data: {
   }
 
   return res.json();
+}
+
+export async function editWineReview(
+  id: string,
+  data: {
+    rating: number;
+    lightBold: number;
+    smoothTannic: number;
+    drySweet: number;
+    softAcidic: number;
+    aroma: string[];
+    content: 'string';
+  }
+) {
+  await fetch(`${ENV.API_TEAM_BASE_URL}/wines/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
 }

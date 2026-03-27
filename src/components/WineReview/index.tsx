@@ -10,6 +10,8 @@ import { addWineReview } from '@/apis/WineDetail';
 import type { WineDetail } from '@/pages/WineDetail/WineDetail.types';
 import ReviewCard from '@/components/common/ReviewCard';
 
+import { useAuthStore } from '@/store/useAuthStore';
+
 type Props = {
   data: WineDetail | null;
   onSuccess: () => void;
@@ -19,6 +21,8 @@ export default function WineReview({ data, onSuccess }: Props) {
   if (!data) {
     return <div>로딩중...</div>;
   }
+
+  const user = useAuthStore((state) => state.user);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +81,7 @@ export default function WineReview({ data, onSuccess }: Props) {
 
       onSuccess();
       setIsOpen(false);
+      console.log(data);
     } catch {
       alert('리뷰 등록에 실패했습니다.');
     } finally {
@@ -94,7 +99,14 @@ export default function WineReview({ data, onSuccess }: Props) {
     <>
       <div className={styles.reviewWrap}>
         {allReviews.map((review) => {
-          return <ReviewCard key={review.id} data={review} type={'detail'} />;
+          return (
+            <ReviewCard
+              key={review.id}
+              data={review}
+              type={'detail'}
+              loginUser={user}
+            />
+          );
         })}
       </div>
       <div className={styles.ratingsWrap}>

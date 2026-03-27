@@ -23,7 +23,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   // 목업 데이터
   user: {
-    id: 2930,
+    id: 2933,
     email: 'test000@email.com',
     nickname: 'test000',
     teamId: '22-1',

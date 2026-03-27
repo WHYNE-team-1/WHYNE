@@ -17,7 +17,7 @@ import LinkButton from '@/storybook/link-button';
 import Input from '@/storybook/input';
 import AromaStoryBook from '@/storybook/aroma';
 
-import ModalTestPage from '@/storybook/modal';
+import ModalTestPage from '@/storybook/Modal';
 import ModalConfirmTestPage from '@/storybook/ModalConfirm';
 
 import WineTypeTestPage from '@/storybook/wine-type';

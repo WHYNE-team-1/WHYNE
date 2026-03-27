@@ -5,7 +5,7 @@ import WineReview from '@/components/WineReview';
 import type { WineDetail } from './WineDetail.types';
 import styles from './index.module.css';
 
-function WineDetail() {
+export default function WineDetail() {
   const { id } = useParams();
   const [wine, setWine] = useState<WineDetail | null>(null);
 
@@ -34,5 +34,3 @@ function WineDetail() {
     </div>
   );
 }
-
-export default WineDetail;

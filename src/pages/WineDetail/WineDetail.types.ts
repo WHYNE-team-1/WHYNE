@@ -1,3 +1,5 @@
+import { object } from 'zod';
+
 // 1. 가장 작은 것부터
 export interface ReviewUser {
   id: number;
@@ -31,6 +33,7 @@ export interface RecentReview extends Review {
 
 // 4. 메인
 export interface WineDetail {
+  user: object;
   id: number;
   name: string;
   region: string;

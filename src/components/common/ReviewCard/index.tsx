@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './index.module.css';
 import StarRatingBadge from '@/components/common/StarRatingBadge';
@@ -10,6 +10,10 @@ import type { ReviewListItem } from '@/pages/WineDetail/WineDetail.types';
 
 const cx = classNames.bind(styles);
 
+interface User {
+  id: number;
+}
+
 const FLAVOR_CONFIG = [
   { id: 'lightBold' },
   { id: 'smoothTannic' },
@@ -20,6 +24,7 @@ const FLAVOR_CONFIG = [
 type FlavorId = (typeof FLAVOR_CONFIG)[number]['id'];
 
 interface ReviewCardProps {
+  loginUser: User;
   data: ReviewListItem;
   type: 'detail' | 'profile';
   isMyReview?: boolean;
@@ -35,9 +40,9 @@ interface ReviewCardProps {
 }
 
 export default function ReviewCard({
+  loginUser,
   data,
   type,
-  isMyReview = false,
   time,
   flavorScores,
   likeCount,
@@ -50,9 +55,7 @@ export default function ReviewCard({
 }: ReviewCardProps) {
   // 맛 슬라이더 펼치고 접는 스위치 (누가 구현했는지는 모르겠음)
   const [isExpanded, setIsExpanded] = useState(false);
-
-  // 내 리뷰일 때만 점 3개 메뉴 표시
-  const showKebabMenu = isMyReview;
+  const isMyReview = loginUser?.id === data.user?.id;
 
   // profile은 항상 슬라이더가 보이고, detail는 화살표를 눌렀을 때만 보임
   const showTasteSliders = type === 'profile' || isExpanded;
@@ -62,7 +65,6 @@ export default function ReviewCard({
     { label: '수정하기', onClick: () => onEdit?.() },
     { label: '삭제하기', onClick: () => onDelete?.() },
   ];
-
   return (
     <div className={cx('card')}>
       <div className={cx('header')}>
@@ -76,7 +78,7 @@ export default function ReviewCard({
           </div>
 
           {/* 드롭다운(점 3개) */}
-          {showKebabMenu && (
+          {isMyReview && (
             <Dropdown
               trigger={<span className={cx('kebabIcon')}>⋮</span>}
               options={dropdownOptions}
