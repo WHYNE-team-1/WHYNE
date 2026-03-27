@@ -1,32 +1,31 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import { getWineDetail } from '@/apis/WineDetail';
-
+import { DetailAroma } from '@/components/common/Aroma';
 import WineReview from '@/components/WineReview';
 import StarRating from '@/components/common/StarRating';
 import WineTasteSlider from '@/components/common/WineTasteSlider';
 import type { WineDetail } from './WineDetail.types';
 import styles from './index.module.css';
+import iconRed from '@/assets/icons/ic-wine-red.svg';
+import iconWhite from '@/assets/icons/ic-wine-white.svg';
+import iconSparkling from '@/assets/icons/ic-wine-sparkling.svg';
 
-/* 임시 더미
-const DUMMY_WINE: WineDetail = {
-  id: 1,
-  name: 'Sentinel Carbernet Sauvignon 2016',
-  region: 'Western Cape, South Africa',
-  image:
-    'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=400&auto=format&fit=crop',
-  price: 64990,
-  type: 'Red',
-  avgRating: 4.1, // 평균 별점
-  reviewCount: 5446, // 리뷰 개수
-  userId: 2930,
-  recentReview: {
-    
-  } as any,
-  avgRatings: { 1: 0, 2: 0, 3: 0, 4: 1, 5: 0 },
-  reviews: [],
+// 와인타입 이미지.텍스트 매핑 객체
+const WINE_TYPE_MAP: Record<string, { label: string; image: string }> = {
+  RED: {
+    label: 'Red',
+    image: iconRed,
+  },
+  WHITE: {
+    label: 'White',
+    image: iconWhite,
+  },
+  SPARKLING: {
+    label: 'Sparkling',
+    image: iconSparkling,
+  },
 };
-*/
 
 function WineDetailPage() {
   const { id } = useParams();
@@ -57,6 +56,9 @@ function WineDetailPage() {
     return <div>로딩중...</div>;
   }
 
+  const currentWineType = wine.type ? wine.type.toUpperCase() : 'RED';
+  const typeInfo = WINE_TYPE_MAP[currentWineType];
+
   return (
     <div className={styles.container}>
       {/* 상단 와인 이미지 , 기본 정보 */}
@@ -72,7 +74,18 @@ function WineDetailPage() {
 
           <div className={styles.infoWrapper}>
             <div className={styles.infoGroup}>
-              <div className={styles.wineTypeChip}>{wine.type}</div>
+              {typeInfo ? (
+                <div className={styles.wineTypeChip}>
+                  <img
+                    src={typeInfo.image}
+                    alt={typeInfo.label}
+                    className={styles.typeIcon}
+                  />
+                  <span className={styles.typeLabel}>{typeInfo.label}</span>
+                </div>
+              ) : (
+                <div className={styles.wineTypeChip}>{wine.type}</div>
+              )}
               <h1 className={styles.wineName}>{wine.name}</h1>
               <p className={styles.wineRegion}>{wine.region}</p>
 
@@ -114,23 +127,18 @@ function WineDetailPage() {
             />
           </div>
         </div>
-
-        {/* 향 */}
         <div className={styles.flavorArea}>
-          <div className={styles.sectionHeader}>
-            <h3 className={styles.sectionTitle}>어떤 향이 있나요?</h3>
-            <span className={styles.participantCount}>
-              ({wine.reviewCount}명 참여)
-            </span>
-          </div>
-
-          <div className={styles.flavorIcons}>
-            {/* 나중에 실제로 교체 */}
-            <div className={styles.flavorItem}>🍒 체리</div>
-            <div className={styles.flavorItem}>🍊 시트러스</div>
-            <div className={styles.flavorItem}>🍫 초콜릿</div>
-            <div className={styles.flavorItem}>🪵 오크</div>
-          </div>
+          <DetailAroma
+            usersCount={wine.reviewCount}
+            // 💡 리뷰 목록에서 향(aroma) 데이터만 쏙쏙 뽑아서 중복을 제거한 배열로 만들어 넘겨줍니다!
+            selectedAromaIds={
+              wine.reviews
+                ? Array.from(
+                    new Set(wine.reviews.flatMap((review) => review.aroma))
+                  )
+                : []
+            }
+          />
         </div>
       </section>
 
