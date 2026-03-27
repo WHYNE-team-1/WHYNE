@@ -1,6 +1,6 @@
 import Modal from '@/components/common/Modal';
 import styles from './index.module.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@/components/common/Button';
 import ImgAddButton from '@/components/common/ImgAddButton';
 import Input from '@/components/common/Input';
@@ -11,13 +11,6 @@ import {
   type WineTypeKind,
 } from '@/constants/WineType.constants';
 
-interface WineTypeProps {
-  type: WineTypeKind; // 와인 종류 (상수로 정의해둠.)
-  isReadOnly?: boolean; // 읽기 전용(칩 모드)인지 여부 / 칩 모드, 라디오 버튼 모드가 있음.
-  isSelected?: boolean; // 현재 선택된 상태인지 여부
-  onSelect?: (type: WineTypeKind) => void; // 클릭했을 때 실행할 함수 (어떤 것이 클릭됐는지 전달)
-}
-
 /*와인 등록 모달*/
 export default function WineAddModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +20,6 @@ export default function WineAddModal() {
     e.preventDefault();
 
     //나중에 form 데이터 처리
-    console.log('와인 등록');
     setIsOpen(false);
   };
 
