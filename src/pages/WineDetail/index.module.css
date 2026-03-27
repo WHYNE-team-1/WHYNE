@@ -3,8 +3,9 @@
   background-color: var(--color-gray-100);
   border-bottom-left-radius: 60px; /* 둥근 모서리 */
   border-bottom-right-radius: 60px;
-  padding: 60px 0;
+  padding: 60px 0 0 0;
   margin-bottom: 64px; /* 중단 영역과 간격 */
+  background-size: cover;
 }
 
 /* 이미지와 텍스트를 담는 컨테이너 (가운데 정렬) */
@@ -20,8 +21,7 @@
 
 /* 왼쪽 이미지 영역 */
 .imageWrapper {
-  width: 517px;
-  height: 409px;
+  max-width: 517px;
   flex-shrink: 0;
 }
 
@@ -194,7 +194,7 @@
     align-items: center;
     gap: 96px;
     width: 100%;
-    padding: 0 24px;
+    padding-left: 20px;
   }
 
   .tasteArea,

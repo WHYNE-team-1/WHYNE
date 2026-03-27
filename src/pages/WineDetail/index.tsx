@@ -12,18 +12,24 @@ import iconWhite from '@/assets/icons/ic-wine-white.svg';
 import iconSparkling from '@/assets/icons/ic-wine-sparkling.svg';
 
 // 와인타입 이미지.텍스트 매핑 객체
-const WINE_TYPE_MAP: Record<string, { label: string; image: string }> = {
+const WINE_TYPE_MAP: Record<
+  string,
+  { label: string; image: string; bgImage: string }
+> = {
   RED: {
     label: 'Red',
     image: iconRed,
+    bgImage: '/assets/images/img-wine-bg-red.svg',
   },
   WHITE: {
     label: 'White',
     image: iconWhite,
+    bgImage: '/assets/images/img-wine-bg-white.svg',
   },
   SPARKLING: {
     label: 'Sparkling',
     image: iconSparkling,
+    bgImage: '/assets/images/img-wine-bg-sparkling.svg',
   },
 };
 
@@ -62,7 +68,10 @@ function WineDetailPage() {
   return (
     <div className={styles.container}>
       {/* 상단 와인 이미지 , 기본 정보 */}
-      <div className={styles.topBackground}>
+      <div
+        className={styles.topBackground}
+        style={{ backgroundImage: `url(${typeInfo.bgImage})` }}
+      >
         <section className={styles.topSection}>
           <div className={styles.imageWrapper}>
             <img
