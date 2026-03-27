@@ -70,3 +70,22 @@
   background: rgba(0, 0, 0, 0);
   color: var(--color-gray-100);
 }
+
+/*[모바일]브라우저가 768미만일 때 적용할 스타일*/
+@media (max-width: 768px) {
+  .Wine {
+    display: flex;
+    width: 240px;
+    height: 48px;
+    font-size: 16px;
+  }
+}
+
+/*[태블릿]브라우저가 1080미만일 때 적용할 스타일*/
+@media (max-width: 1080px) {
+  .Wine {
+    display: flex;
+    height: 64px;
+    font-size: 22px;
+  }
+}

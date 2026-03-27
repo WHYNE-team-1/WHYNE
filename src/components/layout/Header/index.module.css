@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
 }
 
 .container {
@@ -37,7 +39,6 @@
 @media (max-width: 1080px) {
   .container {
     padding: 12px 32px;
-    max-width: 704px;
   }
 }
 
