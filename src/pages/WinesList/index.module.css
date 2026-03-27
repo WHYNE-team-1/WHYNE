@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-.filterPlaceholder {
+.filterWrapper {
   height: 600px;
   padding: 20px;
 }
@@ -39,4 +39,8 @@
 .loading {
   text-align: center;
   padding: 100px 0;
+}
+
+.addModalWrapper {
+  margin-top: 20px;
 }
