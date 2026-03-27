@@ -40,10 +40,13 @@ export default function KakaoCallback() {
 
         // 홈으로 보냄 (뒤로가기 방지 포함)
         navigate('/', { replace: true });
-      } catch (error: any) {
-        console.error('로그인 실패:', error.message);
-        alert('로그인에 실패했습니다.');
-        navigate('/signin', { replace: true });
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error('로그인 실패:', error.message);
+        } else {
+          alert('로그인에 실패했습니다.');
+          navigate('/signin', { replace: true });
+        }
       }
     };
 
