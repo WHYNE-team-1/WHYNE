@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 8px;
 }
+
 .rating {
   display: flex;
   flex-direction: row;
@@ -12,6 +13,12 @@
   cursor: pointer;
   width: fit-content;
 }
+
+.rating input {
+  /* 브라우저 기본 체크박스 숨김. */
+  display: none;
+}
+
 .rating .checkboxBorder {
   display: flex;
   justify-content: center;
