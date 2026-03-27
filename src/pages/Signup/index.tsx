@@ -2,10 +2,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
+import { apiFetch } from '@/apis/fetchClient';
 import AuthLayout from '@/components/layout/AuthLayout';
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import styles from './index.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/store/useAuthStore';
+import { useEffect } from 'react';
 
 // 검사 규칙 생성
 const signupSchema = z
@@ -38,17 +42,59 @@ const signupSchema = z
 type SignupFormValues = z.infer<typeof signupSchema>;
 
 export default function SignupPage() {
+  const navigate = useNavigate();
+  const setLogin = useAuthStore((state) => state.setLogin);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     mode: 'onBlur',
   });
 
-  const onSubmit = (_data: SignupFormValues) => {
-    // TODO: 닉네임 중복 검사 및 API 호출
+  const onSubmit = async (data: SignupFormValues) => {
+    try {
+      const result = await apiFetch('/auth/signUp', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: data.email,
+          nickname: data.nickname,
+          password: data.password,
+          passwordConfirmation: data.passwordConfirm,
+        }),
+      });
+
+      localStorage.setItem('accessToken', result.accessToken);
+      localStorage.setItem('refreshToken', result.refreshToken);
+
+      setLogin(result.user);
+
+      navigate('/');
+    } catch (error: any) {
+      const errorMessage = error.message;
+
+      if (errorMessage.includes('이메일')) {
+        setError('email', {
+          type: 'server',
+          message: errorMessage,
+        });
+      } else if (errorMessage.includes('닉네임')) {
+        setError('nickname', {
+          type: 'server',
+          message: errorMessage,
+        });
+      }
+    }
   };
 
   return (

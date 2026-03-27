@@ -63,7 +63,7 @@ export default function Button({
   size = 'md',
   leftIcon,
   className = '',
-  form = '',
+  form,
 }: Props) {
   const mergedClassName = `
     ${styles.button}
