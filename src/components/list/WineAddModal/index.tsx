@@ -5,32 +5,19 @@ import Button from '@/components/common/Button';
 import ImgAddButton from '@/components/common/ImgAddButton';
 import Input from '@/components/common/Input';
 import WineType from '@/components/common/WineType';
-import { ENV } from '@/apis/env'; /*'@/src/apis/env';*/
+import { addWine } from '@/apis/WineAdd';
+import { uploadWineImage } from '@/apis/WineAdd';
+import { useNavigate } from 'react-router-dom';
 
 import {
   WINE_TYPE_KEYS,
   type WineTypeKind,
 } from '@/constants/WineType.constants';
 
-async function uploadImage(file: File): Promise<string> {
-  const formData = new FormData();
-  formData.append('image', file);
-
-  const response = await fetch(`${ENV.API_TEAM_BASE_URL}/images/upload`, {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error('이미지 업로드에 실패했습니다.');
-  }
-
-  const data = await response.json();
-  return data.url;
-}
-
 /*와인 등록 모달*/
 export default function WineAddModal() {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
 
   /*폼 입력 데이터 저장 */
@@ -125,44 +112,36 @@ export default function WineAddModal() {
       return;
     }
 
-    if (!imageFile) return;
+    if (!imageFile) {
+      alert('이미지를 업로드해주세요.');
+      return;
+    }
 
     try {
-      const uploadedImageUrl = await uploadImage(imageFile);
-      const requestBody = {
-        name: name.trim(),
-        region: region.trim(),
-        image: uploadedImageUrl,
+      //1.이미지 업로드
+      const imageUrl = await uploadWineImage(imageFile);
+
+      //2. 와인 등록
+      const result = await addWine({
+        name,
         price: Number(price),
+        region,
         type: selectedType,
-      };
-
-      console.log('등록 요청 데이터:', requestBody);
-
-      const response = await fetch(`${ENV.API_TEAM_BASE_URL}/wines`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
+        image: imageUrl,
       });
 
-      if (!response.ok) {
-        throw new Error('와인 등록에 실패했습니다.');
-      }
+      console.log(result);
+      alert('와인이 등록되었습니다.');
 
-      const newWine = await response.json();
-      console.log('등록 성공:', newWine);
-      setName('');
-      setPrice('');
-      setRegion('');
-      setSelectedType(null);
-      setImageFile(null);
-      setImageError(false);
-      setIsOpen(false);
+      //해당 와인 상세 페이지로 이동
+      navigate(`/wines/${result.id}`);
     } catch (error) {
-      console.error(error);
-      alert('와인 등록 중 오류가 발생했습니다.');
+      console.error('와인 등록 실패: ', error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('와인 등록에 실패했습니다.');
+      }
     }
   };
 
