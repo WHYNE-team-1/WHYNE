@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
-// import { getWineDetail } from '@/apis/WineDetail';
+import { getWineDetail } from '@/apis/WineDetail';
 
 import WineReview from '@/components/WineReview';
 import StarRating from '@/components/common/StarRating';
@@ -8,7 +8,7 @@ import WineTasteSlider from '@/components/common/WineTasteSlider';
 import type { WineDetail } from './WineDetail.types';
 import styles from './index.module.css';
 
-// 더미데이터
+/* 임시 더미
 const DUMMY_WINE: WineDetail = {
   id: 1,
   name: 'Sentinel Carbernet Sauvignon 2016',
@@ -21,34 +21,40 @@ const DUMMY_WINE: WineDetail = {
   reviewCount: 5446, // 리뷰 개수
   userId: 2930,
   recentReview: {
-    /* 임시 빈 객체 */
+    
   } as any,
   avgRatings: { 1: 0, 2: 0, 3: 0, 4: 1, 5: 0 },
   reviews: [],
 };
+*/
 
 function WineDetailPage() {
   const { id } = useParams();
   const [wine, setWine] = useState<WineDetail | null>(null);
 
   const fetchData = useCallback(async () => {
-    // 서버요청 잠시주석
-    /*
     if (!id) return;
-    const data = await getWineDetail(id);
-    setWine(data);
-    */
 
-    // 가짜 와인(DUMMY_WINE) 세팅
-    setWine(DUMMY_WINE);
+    try {
+      const data = await getWineDetail(id);
+      if (data) {
+        setWine(data);
+      } else {
+        console.error(
+          '와인 정보를 가져오지 못했습니다.' // (로그인 토큰 확인 필요)
+        );
+        // 나중에 필요하면 여기서 로그인 필요 모달이나 로그인 페이지로 이동
+      }
+    } catch (error) {
+      console.error('데이터 불러오기 실패', error);
+    }
   }, [id]);
-
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   if (!wine) {
-    return <div>로딩중... 빙글빙글 🌀</div>;
+    return <div>로딩중...</div>;
   }
 
   return (
@@ -86,8 +92,10 @@ function WineDetailPage() {
         <div className={styles.tasteArea}>
           <div className={styles.sectionHeader}>
             <h3 className={styles.sectionTitle}>어떤 맛이 나나요?</h3>
-            <span className={styles.participantCount}>(47명 참여)</span>{' '}
-            {/* 임시 데이터 */}
+            {/* 리뷰개수로 카운팅? */}
+            <span className={styles.participantCount}>
+              ({wine.reviewCount}명 참여)
+            </span>
           </div>
 
           <div className={styles.tasteSliders}>
@@ -111,7 +119,9 @@ function WineDetailPage() {
         <div className={styles.flavorArea}>
           <div className={styles.sectionHeader}>
             <h3 className={styles.sectionTitle}>어떤 향이 있나요?</h3>
-            <span className={styles.participantCount}>(47명 참여)</span>
+            <span className={styles.participantCount}>
+              ({wine.reviewCount}명 참여)
+            </span>
           </div>
 
           <div className={styles.flavorIcons}>
