@@ -46,7 +46,9 @@ type Props = {
     | 'upDown'
     | 'image'
     | 'profile'
-    | 'noProfile';
+    | 'noProfile'
+    | 'wineTypeSelect'
+    | 'wineAddRed';
   leftIcon?: React.ReactNode;
   className?: string;
   form?: string;
@@ -61,7 +63,7 @@ export default function Button({
   size = 'md',
   leftIcon,
   className = '',
-  form = '',
+  form,
 }: Props) {
   const mergedClassName = `
     ${styles.button}

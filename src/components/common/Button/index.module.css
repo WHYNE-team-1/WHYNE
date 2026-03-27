@@ -115,6 +115,11 @@
   height: 170px;
 }
 
+.wineTypeSelect {
+  height: 48px;
+  padding: 0 16px 0 8px;
+}
+
 /*color*/
 
 .black {
@@ -162,4 +167,23 @@
 
 .text {
   line-height: 1;
+}
+
+.wineAddRed {
+  width: 360px; /*임시(원래: align-self: stretch)*/
+  height: 50px;
+}
+
+@media (max-width: 767px) {
+  .wineAddRed {
+    width: 160px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 1079px) {
+  .wineAddRed {
+    width: 220px;
+    height: 50px;
+  }
 }

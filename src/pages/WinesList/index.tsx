@@ -4,6 +4,7 @@ import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
 import SearchBar from '@/components/common/SearchBar';
 import WineFilter from '@/components/list/WineFilter';
 import styles from './index.module.css';
+import WineAddModal from '@/components/list/WineAddModal';
 
 function WinesList() {
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
@@ -96,6 +97,7 @@ function WinesList() {
         {/* 좌측 필터 영역 */}
         <aside className={styles.filterAside}>
           <div className={styles.filterPlaceholder}>
+
             {/* 조립한 필터 컴포넌트에 상태 전달 */}
             <WineFilter
               selectedTypes={selectedTypes}
@@ -106,6 +108,7 @@ function WinesList() {
               setSelectedRatings={setSelectedRatings}
               onApply={handleApplyFilters}
             />
+            <WineAddModal />
           </div>
         </aside>
 
