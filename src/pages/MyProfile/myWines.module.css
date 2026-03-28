@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f2f2f2;
+  background: var(--color-gray-100);
   overflow: hidden;
 }
 
@@ -48,12 +48,11 @@
   width: 100%;
   min-width: 0;
   padding-right: 40px;
-  box-sizing: border-box;
 }
 
 .cardTitle {
   margin: 0;
-  color: #31302f;
+  color: var(--color-gray-800);
   font-size: 24px;
   font-weight: bold;
   line-height: 1.4;
@@ -62,7 +61,7 @@
 
 .cardMeta {
   margin: 0;
-  color: #a3a3a3;
+  color: var(--color-gray-500);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -93,7 +92,7 @@
 }
 
 .wineTypeLabel {
-  color: #31302f;
+  color: var(--color-gray-800);
   font-size: 16px;
   font-weight: 700;
 }

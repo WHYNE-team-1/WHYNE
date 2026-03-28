@@ -45,14 +45,13 @@ function getStoredProfile(): StoredProfile {
   try {
     return JSON.parse(rawProfile) as StoredProfile;
   } catch (error) {
-    console.error('저장된 프로필 초안(Draft)을 분석하지 못했습니다', error);
+    console.error('저장된 프로필 초안(Draft)을 분석하지 못했습니다.', error);
     return fallbackProfile;
   }
 }
 
 export default function MyProfile() {
   const storedProfile = getStoredProfile();
-  // 로컬에 저장된 임시 프로필 값을 초기 렌더 상태로 사용한다.
   const [image, setImage] = useState(storedProfile.image);
   const [nickname, setNickname] = useState(storedProfile.nickname);
   const [draftNickname, setDraftNickname] = useState(storedProfile.nickname);
@@ -60,7 +59,7 @@ export default function MyProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  // 저장 성공 전까지는 현재 편집 중인 값을 로컬에 보존한다.
+  // 저장 전까지는 현재 편집 중인 값을 로컬 스토리지에 보관한다.
   useEffect(() => {
     localStorage.setItem(
       PROFILE_STORAGE_KEY,
@@ -92,7 +91,7 @@ export default function MyProfile() {
     }
   };
 
-  // 닉네임과 이미지 파일을 FormData로 묶어 내 프로필 API에 전송한다.
+  // 닉네임과 이미지 파일을 FormData에 담아 프로필 API로 전송한다.
   const handleSave = async () => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)?.trim();
 
@@ -141,7 +140,6 @@ export default function MyProfile() {
   return (
     <>
       <div className={styles.wrapper}>
-        {/* 좌측은 프로필 편집, 우측은 내 리뷰/등록 와인 영역이다. */}
         <section className={styles.layout}>
           <ProFile
             imageUrl={image}
@@ -153,13 +151,11 @@ export default function MyProfile() {
           />
 
           <div className={styles.reviewsColumn}>
-            {/* 내가 쓴 후기와 등록한 와인 목록을 보여주는 섹션 */}
             <MyReviews />
           </div>
         </section>
       </div>
 
-      {/* 실제 저장 전 한 번 더 확인받는 변경 확인 모달 */}
       <ConfirmModal
         isOpen={isConfirmOpen}
         onClose={handleCloseConfirm}
