@@ -4,22 +4,21 @@
   flex-direction: column;
   overflow: hidden;
   cursor: pointer;
-  width: 370px;
 }
 
 /* 이미지 영역 */
 .imageWrapper {
   position: relative;
-  width: 370px;
-  height: 360px;
   overflow: hidden;
+  aspect-ratio: 36 / 35;
+  background: var(--color-gray-100);
 }
 
 /* 와인 이미지 */
 .wineImage {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 넘치는 부분 자르고 꽉 채움. */
+  object-fit: contain; /* 넘치는 부분 자르고 꽉 채움. */
   object-position: center; /* 이미지가 중앙에 오도록 맞춤. */
 }
 
