@@ -97,7 +97,7 @@ function WinesList() {
       {/* 수정님이 만드실 슬라이더 영역 */}
       <section className={styles.sliderPlaceholder}>
         {/* 여기에 와인 슬라이더가 들어올 예정 */}
-        <RecommendedWineSlider wines={allWines2} />
+        <RecommendedWineSlider wines={winesForSlider} />
       </section>
 
       {/* 메인 콘텐츠 영역 */}
