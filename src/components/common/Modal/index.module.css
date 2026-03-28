@@ -15,6 +15,7 @@
   flex-direction: column;
   gap: 12px;
   max-width: 100%;
+  min-height: 0;
 }
 .container::after {
   content: '';
@@ -24,11 +25,6 @@
   bottom: 101px;
   height: 60px;
   pointer-events: none;
-  background: linear-gradient(
-    to top,
-    rgb(255, 255, 255) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
 }
 
 .button {
@@ -39,11 +35,11 @@
 .modalContent {
   width: 528px;
   max-width: 100%;
-  max-height: 1006px;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   padding: 32px 24px 40px;
-  border-radius: 16px;
+  border-radius: 32px;
   background-color: #ffffff;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
@@ -65,7 +61,8 @@
 }
 
 .contentButton {
-  height: 50px;
+  min-height: 50px;
+  max-height: 110px;
   display: flex;
   align-items: center;
 }
