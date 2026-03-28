@@ -38,7 +38,6 @@ interface ReviewCardProps {
   wineData: { id: number; name: string; image: string; region: string };
   onEdit?: () => void;
   onDelete?: () => void;
-  onLike?: () => void;
 }
 
 export default function ReviewCard({
@@ -51,7 +50,6 @@ export default function ReviewCard({
   wineData,
   onDelete,
   onEdit,
-  onLike,
 }: ReviewCardProps) {
   // 맛 슬라이더 펼치고 접는 스위치 (누가 구현했는지는 모르겠음)
   const [isExpanded, setIsExpanded] = useState(false);
