@@ -60,7 +60,15 @@ export function useScrollAnimate<T extends HTMLElement>({
 
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [
+    inAnimation,
+    outAnimation,
+    threshold,
+    inDuration,
+    outDuration,
+    inDelay,
+    outDelay,
+  ]);
 
   return ref;
 }
