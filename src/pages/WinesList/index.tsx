@@ -37,7 +37,7 @@ function WinesList() {
       const data = await getWines(params);
       const allWines = data.list || [];
 
-      setAllWines2(allWines); /**전체 wine리스트 try구문 밖으로 빼는 용 */
+      setWinesForSlider(allWines); /**전체 wine리스트 try구문 밖으로 빼는 용 */
 
       // 3. 이름 검색어, 평점 구간, 와인 타입을 동시에 골라냄.
       const filtered = allWines.filter((wine: Wine) => {
