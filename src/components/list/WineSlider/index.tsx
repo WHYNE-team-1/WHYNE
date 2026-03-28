@@ -70,7 +70,7 @@ const highRatedWines = wines.filter((wine) => wine.avgRating > HIGH_RATING_THRES
 
               <p className={styles.name}>{wine.name}</p>
               <p className={styles.sub}>
-                {wine.region}, {wine.country}
+                {[wine.region, wine.country].filter(Boolean).join(', ')}
               </p>
               <p className={styles.rating}>⭐ {wine.avgRating.toFixed(1)}</p>
             </Link>
