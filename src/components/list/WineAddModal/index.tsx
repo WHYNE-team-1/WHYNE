@@ -1,6 +1,6 @@
 import Modal from '@/components/common/Modal';
 import styles from './index.module.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@/components/common/Button';
 import ImgAddButton from '@/components/common/ImgAddButton';
 import Input from '@/components/common/Input';
@@ -164,6 +164,9 @@ export default function WineAddModal() {
         alert('와인 등록에 실패했습니다.');
       }
     }
+
+    //나중에 form 데이터 처리
+    setIsOpen(false);
   };
 
   const modalFooter = (
@@ -174,7 +177,7 @@ export default function WineAddModal() {
 
   return (
     <div>
-      <Button color="red" size="wineAddRed" onClick={() => setIsOpen(true)}>
+      <Button color="red" size="stretch" onClick={() => setIsOpen(true)}>
         와인 등록하기
       </Button>
 

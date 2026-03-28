@@ -31,6 +31,7 @@ export interface RecentReview extends Review {
 
 // 4. 메인
 export interface WineDetail {
+  user: Record<string, unknown>;
   id: number;
   name: string;
   region: string;

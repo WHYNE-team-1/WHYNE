@@ -1,0 +1,126 @@
+﻿.panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 67px 76px;
+  padding-top: 12px;
+  margin-left: 32px;
+}
+
+.wineCard {
+  width: 100%;
+  min-width: 0;
+}
+
+.wineInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.reviewInfo {
+  width: 100%;
+  min-width: 0;
+}
+
+.cardImgWrapper {
+  width: 100%;
+  aspect-ratio: 37 / 36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  overflow: hidden;
+}
+
+.productImage {
+  width: 75px;
+  height: 288px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.cardTextWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  padding-right: 40px;
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--color-gray-800);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.cardMeta {
+  margin: 0;
+  color: var(--color-gray-500);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dropdownWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.wineTypeGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.WineEditorImg {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.WineEditorInfo {
+  display: grid;
+  gap: 16px;
+}
+
+.wineTypeLabel {
+  color: var(--color-gray-800);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    margin-top: 0;
+    padding: 30px;
+  }
+
+  .panel {
+    gap: 32px 16px;
+    margin-left: 0;
+    padding-top: 0;
+  }
+  .wineInfo {
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .productImage {
+    width: 64px;
+    height: 240px;
+  }
+}

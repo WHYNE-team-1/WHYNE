@@ -2,11 +2,11 @@
   /* Primary Colors */
   --color-primary-red: #9b1b30;
   --color-primary-red-100: #f5e9eb;
-  --color-primary-black: #1a1918;
+  --color-primary-black: #171a21;
 
   /* Basic Colors */
   --color-white: #ffffff;
-  --color-black: #1a1918;
+  --color-black: #171a21;
   --color-black-50: rgba(0, 0, 0, 0.5); /* 000000, 50% */
 
   /* Gray Scale */

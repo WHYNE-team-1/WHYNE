@@ -1,6 +1,9 @@
 import styles from './index.module.css';
 import noAromaImg from '@/assets/icons/ic-no-image.svg';
 import cn from 'classnames';
+import icArrowDown from '@/assets/icons/ic-arrow-down.svg';
+import icArrowUp from '@/assets/icons/ic-arrow-up.svg';
+import { useState } from 'react';
 
 const Aromas = [
   {
@@ -91,7 +94,7 @@ const Aromas = [
     id: 'pepper',
     value: 'PEPPER',
     label: '후추',
-    image: '/public/assets/images/img-variant-papper.png', // ❗ 이미지 없음
+    image: '/public/assets/images/img-variant-paper.png', // ❗ 이미지 없음
   },
   {
     id: 'spice',
@@ -150,35 +153,59 @@ export function DetailAroma({
   usersCount,
   selectedAromaIds,
 }: DetailAromaProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const selectedSet = new Set(selectedAromaIds.map((id) => id.toLowerCase()));
   const displayAromas = Aromas.filter((aroma) =>
     selectedSet.has(aroma.id.toLowerCase())
   );
+
+  const totalAromasCount = displayAromas.length;
+  const hasMore = totalAromasCount > 4;
+
+  const visibleAromas = isExpanded ? displayAromas : displayAromas.slice(0, 4);
+
   return (
     <div className={styles.detailAromaContainer}>
       <div className={styles.detailAromaTop}>
         <p className={styles.title}>어떤 향이 있나요?</p>
         <p className={styles.users}>({usersCount}명 참여)</p>
       </div>
-      <div className={cn(styles.detailAromaWrap, styles.emptyWrap)}>
-        {displayAromas.length === 0 ? (
-          Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className={cn(styles.detailAroma, styles.empty)}>
-              <img src={noAromaImg} alt="no Aroma Img" />
-              <span className={styles.label}>-</span>
-            </div>
-          ))
-        ) : (
-          <div className={styles.detailAromaWrap}>
-            {displayAromas.map((aroma) => (
+
+      <div
+        className={cn(styles.detailAromaWrap, {
+          [styles.emptyWrap]: totalAromasCount === 0,
+        })}
+      >
+        {totalAromasCount === 0
+          ? Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className={cn(styles.detailAroma, styles.empty)}>
+                <img src={noAromaImg} alt="no Aroma Img" />
+                <span className={styles.label}>-</span>
+              </div>
+            ))
+          : visibleAromas.map((aroma) => (
               <div key={aroma.id} className={styles.detailAroma}>
                 <img src={aroma.image} alt={aroma.label} />
                 <span className={styles.label}>{aroma.label}</span>
               </div>
             ))}
-          </div>
-        )}
       </div>
+
+      {hasMore && (
+        <button
+          type="button"
+          className={styles.expandBtn}
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? '접기' : '더보기'}
+        >
+          <img
+            src={isExpanded ? icArrowUp : icArrowDown}
+            alt="펼치기/접기 아이콘"
+            className={styles.arrowIcon}
+          />
+        </button>
+      )}
     </div>
   );
 }

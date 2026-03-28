@@ -2,25 +2,69 @@ import LinkButton from '@/components/common/LinkButton';
 import styles from './index.module.css';
 import logo from '@/assets/icons/ic-logo-white.svg';
 import cn from 'classnames';
+import { useScrollAnimate } from '@/hooks/useScrollAnimate.ts';
 function Home() {
+  const bigTxtRef = useScrollAnimate<HTMLParagraphElement>({
+    inAnimation: { opacity: [0, 1] },
+    outAnimation: { opacity: 0 },
+    inDuration: 1500,
+  });
+  const smTxtRef = useScrollAnimate<HTMLParagraphElement>({
+    inAnimation: { opacity: [0, 1] },
+    outAnimation: { opacity: 0 },
+    inDelay: 400,
+    inDuration: 1500,
+  });
+  const topBtnRef = useScrollAnimate<HTMLDivElement>({
+    inAnimation: { opacity: [0, 1] },
+    outAnimation: { opacity: 0 },
+    inDelay: 800,
+    inDuration: 1500,
+  });
+
+  // ---- feat 섹션 ref (오른쪽/왼쪽/오른쪽에서 등장) ----
+  const feat01Ref = useScrollAnimate<HTMLDivElement>({
+    inAnimation: { opacity: [0, 1], translateX: [80, 0] }, // 오른쪽에서 들어옴
+    outAnimation: { opacity: 0, translateX: 80 }, // 오른쪽으로 나감
+  });
+
+  const feat02Ref = useScrollAnimate<HTMLDivElement>({
+    inAnimation: { opacity: [0, 1], translateX: [-80, 0] }, // 왼쪽에서 들어옴
+    outAnimation: { opacity: 0, translateX: -80 }, // 왼쪽으로 나감
+  });
+
+  const feat03Ref = useScrollAnimate<HTMLDivElement>({
+    inAnimation: { opacity: [0, 1], translateX: [80, 0] }, // 오른쪽에서 들어옴
+    outAnimation: { opacity: 0, translateX: 80 }, // 오른쪽으로 나감
+  });
+
+  // ---- 하단 버튼 ref (fade only) ----
+  const bottomBtnRef = useScrollAnimate<HTMLDivElement>({
+    inAnimation: { opacity: [0, 1], translateY: [30, 0] }, // 아래에서 올라옴
+    outAnimation: { opacity: 0, translateY: 30 }, // 아래로 내려감
+  });
+
   return (
     <div className={styles.homeAllWrap}>
       <div className={styles.homeTop}>
         <div className={styles.txtWrap}>
-          <p className={styles.bigTxt}>
+          {/* opacity 0으로 시작, useEffect에서 애니메이션 */}
+          <p ref={bigTxtRef} className={styles.bigTxt} style={{ opacity: 0 }}>
             당신의 잔에 담긴 이야기,
             <br />
             <img src={logo} alt="WHYNE" />
             에서 완성하세요.
           </p>
-          <p className={styles.smTxt}>
+          <p ref={smTxtRef} className={styles.smTxt} style={{ opacity: 0 }}>
             수만 개의 진솔한 리뷰와 평점으로 실패 없는 와인 선택을 도와드립니다.
             <br />
             <b>나만의 인생 와인</b>을 찾고 기록해 보세요.
           </p>
-          <LinkButton to="/wines" color="red" size="Wine">
-            와인 보러가기
-          </LinkButton>
+          <div ref={topBtnRef} style={{ opacity: 0 }}>
+            <LinkButton to="/wines" color="red" size="Wine">
+              와인 보러가기
+            </LinkButton>
+          </div>
         </div>
         <div className={styles.keyVisualImgWrap}>
           <img
@@ -30,8 +74,14 @@ function Home() {
           />
         </div>
       </div>
+
       <div className={styles.homeBottom}>
-        <div className={cn(styles.feat, styles.feat01)}>
+        {/* feat01 - 오른쪽에서 등장 */}
+        <div
+          ref={feat01Ref}
+          className={cn(styles.feat, styles.feat01)}
+          style={{ opacity: 0 }}
+        >
           <div className={styles.txtwrap}>
             <p className={styles.mainTxt}>
               직관적인
@@ -51,7 +101,13 @@ function Home() {
             />
           </div>
         </div>
-        <div className={cn(styles.feat, styles.feat02)}>
+
+        {/* feat02 - 왼쪽에서 등장 */}
+        <div
+          ref={feat02Ref}
+          className={cn(styles.feat, styles.feat02)}
+          style={{ opacity: 0 }}
+        >
           <div className={styles.imgWrap}>
             <img
               src="/public/assets/images/img-landing02.png"
@@ -70,7 +126,13 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className={cn(styles.feat, styles.feat03)}>
+
+        {/* feat03 - 오른쪽에서 등장 */}
+        <div
+          ref={feat03Ref}
+          className={cn(styles.feat, styles.feat03)}
+          style={{ opacity: 0 }}
+        >
           <div className={styles.txtwrap}>
             <p className={styles.mainTxt}>
               매달 새롭게 만나는
@@ -86,9 +148,13 @@ function Home() {
             />
           </div>
         </div>
-        <LinkButton to="/wines" color="red" size="Wine">
-          와인 보러가기
-        </LinkButton>
+
+        {/* 하단 버튼 - 아래에서 올라옴 */}
+        <div ref={bottomBtnRef} style={{ opacity: 0 }}>
+          <LinkButton to="/wines" color="red" size="Wine">
+            와인 보러가기
+          </LinkButton>
+        </div>
       </div>
     </div>
   );

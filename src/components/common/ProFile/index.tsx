@@ -5,15 +5,13 @@ import Input from '@/components/common/Input';
 import cameraIcon from '@/assets/icons/ic-camera.svg';
 import defaultProfileIcon from '@/assets/icons/ic-default-profile.svg';
 
-const DEFAULT_PROFILE_NICKNAME = '\uc640\uc778\uace0\ub974\ub294 \uc911';
-const PROFILE_IMAGE_ALT_SUFFIX = '\uc758 \ud504\ub85c\ud544 \uc0ac\uc9c4';
-const PROFILE_IMAGE_ARIA_LABEL =
-  '\ud504\ub85c\ud544 \uc774\ubbf8\uc9c0 \ubcc0\uacbd';
-const NICKNAME_LABEL = '\ub2c9\ub124\uc784';
-const NICKNAME_PLACEHOLDER =
-  '\ub2c9\ub124\uc784\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694';
-const LOADING_TEXT = '\ucc98\ub9ac \uc911...';
-const SAVE_BUTTON_TEXT = '\ubcc0\uacbd\ud558\uae30';
+const DEFAULT_PROFILE_NICKNAME = '주말에 와인';
+const PROFILE_IMAGE_ALT_SUFFIX = '님의 프로필 사진';
+const PROFILE_IMAGE_ARIA_LABEL = '프로필 이미지 변경';
+const NICKNAME_LABEL = '닉네임';
+const NICKNAME_PLACEHOLDER = '닉네임을 입력해주세요';
+const LOADING_TEXT = '처리 중...';
+const SAVE_BUTTON_TEXT = '변경하기';
 
 type ProfileProps = {
   imageUrl?: string;
@@ -36,6 +34,7 @@ export default function ProFile({
   const [profileNickname, setProfileNickname] = useState(nickname);
   const [profileImage, setProfileImage] = useState(imageUrl);
 
+  // 부모에서 내려온 최신 프로필 값으로 내부 입력 상태를 동기화한다.
   useEffect(() => {
     setNicknameInput(nickname);
     setProfileNickname(nickname);
@@ -47,6 +46,7 @@ export default function ProFile({
 
   const profileSrc = profileImage.trim() ? profileImage : defaultProfileIcon;
 
+  // 파일 선택 즉시 미리보기 URL을 만들고 부모에도 원본 파일을 전달한다.
   const handleImageClick = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -105,7 +105,6 @@ export default function ProFile({
             />
           </button>
         </div>
-
         <div className={styles.profileCardName}>{profileNickname}</div>
       </div>
 

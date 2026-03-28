@@ -1,0 +1,15 @@
+.wrapper {
+  max-width: 1172px;
+  margin: 0 auto;
+}
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.reviewsColumn {
+  flex: 1 1 640px;
+  min-width: 320px;
+}

@@ -24,7 +24,10 @@ type Props = {
 
 export default function WineSlider({ wines }: Props) {
   // 평점 4.3 초과인 와인만
-  const highRatedWines = wines.filter((wine) => wine.avgRating > 4.3);
+const HIGH_RATING_THRESHOLD = 4.3;
+
+// ... 컴포넌트 내부
+const highRatedWines = wines.filter((wine) => wine.avgRating > HIGH_RATING_THRESHOLD);
 
   if (highRatedWines.length === 0) {
     return null;
