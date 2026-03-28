@@ -22,6 +22,8 @@
 /* 왼쪽 이미지 영역 */
 .imageWrapper {
   max-width: 517px;
+  aspect-ratio: 36/35;
+  overflow: hidden;
   flex-shrink: 0;
 }
 
@@ -322,5 +324,6 @@
 
   .reviewWrap {
     gap: 32px;
+    padding: 0;
   }
 }

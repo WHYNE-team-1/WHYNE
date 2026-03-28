@@ -155,7 +155,7 @@ export default function WineAddModal() {
   );
 
   return (
-    <div>
+    <>
       <Button color="red" size="stretch" onClick={() => setIsOpen(true)}>
         와인 등록하기
       </Button>
@@ -259,6 +259,6 @@ export default function WineAddModal() {
           </form>
         </div>
       </Modal>
-    </div>
+    </>
   );
 }

@@ -14,7 +14,9 @@ function WinesList() {
   const { keyword, setKeyword, selectedTypes, priceRange, selectedRatings } =
     useWineStore();
 
-  const [winesForSlider, setWinesForSlider] = useState<Wine[]>([]); /* 와인 추천 슬라이더용 전체 와인 목록 */
+  const [winesForSlider, setWinesForSlider] = useState<Wine[]>(
+    []
+  ); /* 와인 추천 슬라이더용 전체 와인 목록 */
   // 리스트 데이터와 로딩 상태는 이 페이지에서만 쓰이므로 useState로 남겨둠.
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
@@ -133,14 +135,12 @@ function WinesList() {
           </div>
 
           {/* 리스트 영역 */}
-          <main className={styles.listSection}>
-            {/* 로딩 상태에 따른 조건부 렌더링 */}
-            {isLoading ? (
-              <div className={styles.loading}>검색 중... 🍷</div>
-            ) : (
-              <WineListGrid wines={wines} />
-            )}
-          </main>
+          {/* 로딩 상태에 따른 조건부 렌더링 */}
+          {isLoading ? (
+            <div className={styles.loading}>검색 중... 🍷</div>
+          ) : (
+            <WineListGrid wines={wines} />
+          )}
         </div>
       </div>
     </div>
