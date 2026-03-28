@@ -94,7 +94,7 @@ const Aromas = [
     id: 'pepper',
     value: 'PEPPER',
     label: '후추',
-    image: '/public/assets/images/img-variant-papper.png', // ❗ 이미지 없음
+    image: '/public/assets/images/img-variant-paper.png', // ❗ 이미지 없음
   },
   {
     id: 'spice',

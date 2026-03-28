@@ -11,17 +11,9 @@ import styles from './index.module.css';
 
 function WinesList() {
   // 기존 useState들을 지우고 Zustand 스토어에서 상태와 함수를 가져옴.
-  const {
-    keyword,
-    setKeyword,
-    selectedTypes,
-    setSelectedTypes,
-    priceRange,
-    setPriceRange,
-    selectedRatings,
-    setSelectedRatings,
-  } = useWineStore();
-  
+  const { keyword, setKeyword, selectedTypes, priceRange, selectedRatings } =
+    useWineStore();
+
   const [winesForSlider, setWinesForSlider] = useState<Wine[]>([]); /* 와인 추천 슬라이더용 전체 와인 목록 */
   // 리스트 데이터와 로딩 상태는 이 페이지에서만 쓰이므로 useState로 남겨둠.
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태

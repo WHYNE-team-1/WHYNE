@@ -31,12 +31,16 @@ export function useScrollAnimate<T extends HTMLElement>({
   const ref = useRef<T>(null);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!ref.current) return;
+          if (!ref.current) {
+            return;
+          }
 
           if (entry.isIntersecting) {
             animate(ref.current, {
