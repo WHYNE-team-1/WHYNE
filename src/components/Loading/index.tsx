@@ -1,7 +1,7 @@
 import styles from './index.module.css';
 export default function Loading() {
   return (
-    <main role="loading" className={styles.loadingWrap}>
+    <main className={styles.loadingWrap}>
       <div
         className={styles.loading}
         aria-busy="true"
