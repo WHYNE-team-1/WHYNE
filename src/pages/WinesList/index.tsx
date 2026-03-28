@@ -8,9 +8,7 @@ import WineAddModal from '@/components/list/WineAddModal';
 import RecommendedWineSlider from '@/components/list/WineSlider';
 
 function WinesList() {
-  const [allWines2, setAllWines2] = useState<Wine[]>(
-    []
-  ); /*와인 추천 슬라이더 전용 지역변수*/
+  const [winesForSlider, setWinesForSlider] = useState<Wine[]>([]); /* 와인 추천 슬라이더용 전체 와인 목록 */
 
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
