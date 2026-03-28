@@ -10,115 +10,115 @@ const Aromas = [
     id: 'apple',
     value: 'APPLE',
     label: '사과',
-    image: '/public/assets/images/img-variant-apple.png',
+    image: '/assets/images/img-variant-apple.png',
   },
   {
     id: 'baking',
     value: 'BAKING',
     label: '제빵',
-    image: '/public/assets/images/img-variant-toast.png',
+    image: '/assets/images/img-variant-toast.png',
   },
   {
     id: 'berry',
     value: 'BERRY',
     label: '베리',
-    image: '/public/assets/images/img-variant-grape.png', // 기존 포도 이미지 사용
+    image: '/assets/images/img-variant-grape.png', // 기존 포도 이미지 사용
   },
   {
     id: 'caramel',
     value: 'CARAMEL',
     label: '카라멜',
-    image: '/public/assets/images/img-variant-caramel.png', // ❗ 이미지 없음
+    image: '/assets/images/img-variant-caramel.png', // ❗ 이미지 없음
   },
   {
     id: 'cherry',
     value: 'CHERRY',
     label: '체리',
-    image: '/public/assets/images/img-variant-cherry.png',
+    image: '/assets/images/img-variant-cherry.png',
   },
   {
     id: 'chocolate',
     value: 'CHOCOLATE',
     label: '초콜릿',
-    image: '/public/assets/images/img-variant-chocolate.png',
+    image: '/assets/images/img-variant-chocolate.png',
   },
   {
     id: 'citrus',
     value: 'CITRUS',
     label: '시트러스',
-    image: '/public/assets/images/img-variant-citrus.png',
+    image: '/assets/images/img-variant-citrus.png',
   },
   {
     id: 'earth',
     value: 'EARTH',
     label: '흙',
-    image: '/public/assets/images/img-variant-wet soil.png',
+    image: '/assets/images/img-variant-wet soil.png',
   },
   {
     id: 'flower',
     value: 'FLOWER',
     label: '꽃',
-    image: '/public/assets/images/img-variant-flower.png',
+    image: '/assets/images/img-variant-flower.png',
   },
   {
     id: 'grass',
     value: 'GRASS',
     label: '풀',
-    image: '/public/assets/images/img-variant-grass.png',
+    image: '/assets/images/img-variant-grass.png',
   },
   {
     id: 'leather',
     value: 'LEATHER',
     label: '가죽',
-    image: '/public/assets/images/img-variant-leather.png', // ❗ 이미지 없음
+    image: '/assets/images/img-variant-leather.png', // ❗ 이미지 없음
   },
   {
     id: 'mineral',
     value: 'MINERAL',
     label: '미네랄',
-    image: '/public/assets/images/img-variant-mineral.png',
+    image: '/assets/images/img-variant-mineral.png',
   },
   {
     id: 'oak',
     value: 'OAK',
     label: '오크',
-    image: '/public/assets/images/img-variant-Oak-Cask.png',
+    image: '/assets/images/img-variant-Oak-Cask.png',
   },
   {
     id: 'peach',
     value: 'PEACH',
     label: '복숭아',
-    image: '/public/assets/images/img-variant-peach.png',
+    image: '/assets/images/img-variant-peach.png',
   },
   {
     id: 'pepper',
     value: 'PEPPER',
     label: '후추',
-    image: '/public/assets/images/img-variant-paper.png', // ❗ 이미지 없음
+    image: '/assets/images/img-variant-paper.png', // ❗ 이미지 없음
   },
   {
     id: 'spice',
     value: 'SPICE',
     label: '향신료',
-    image: '/public/assets/images/img-variant-spice.png', // ❗ 이미지 없음
+    image: '/assets/images/img-variant-spice.png', // ❗ 이미지 없음
   },
   {
     id: 'tobacco',
     value: 'TOBACCO',
     label: '담배',
-    image: '/public/assets/images/img-variant-tabacco.png', // ❗ 이미지 없음
+    image: '/assets/images/img-variant-tabacco.png', // ❗ 이미지 없음
   },
   {
     id: 'tropical',
     value: 'TROPICAL',
     label: '트로피컬',
-    image: '/public/assets/images/img-variant-tropical.png',
+    image: '/assets/images/img-variant-tropical.png',
   },
   {
     id: 'vanilla',
     value: 'VANILLA',
     label: '바닐라',
-    image: '/public/assets/images/img-variant-vanilla.png', // ❗ 이미지 없음
+    image: '/assets/images/img-variant-vanilla.png', // ❗ 이미지 없음
   },
 ];
 
