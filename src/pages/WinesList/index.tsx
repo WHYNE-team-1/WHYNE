@@ -5,14 +5,16 @@ import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
 import SearchBar from '@/components/common/SearchBar';
 import WineFilter from '@/components/list/WineFilter';
 import WineAddModal from '@/components/list/WineAddModal';
-import styles from './index.module.css';
+import RecommendedWineSlider from '@/components/list/WineSlider';
 import WineFilterModal from '@/components/list/WineFilterModal';
+import styles from './index.module.css';
 
 function WinesList() {
   // 기존 useState들을 지우고 Zustand 스토어에서 상태와 함수를 가져옴.
   const { keyword, setKeyword, selectedTypes, priceRange, selectedRatings } =
     useWineStore();
 
+  const [winesForSlider, setWinesForSlider] = useState<Wine[]>([]); /* 와인 추천 슬라이더용 전체 와인 목록 */
   // 리스트 데이터와 로딩 상태는 이 페이지에서만 쓰이므로 useState로 남겨둠.
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
@@ -32,6 +34,8 @@ function WinesList() {
       // 2. 서버에서 가격 범위에 맞는 와인 목록을 먼저 가져옴.
       const data = await getWines(params);
       const allWines = data.list || [];
+
+      setWinesForSlider(allWines); /**전체 wine리스트 try구문 밖으로 빼는 용 */
 
       // 3. 이름 검색어, 평점 구간, 와인 타입을 동시에 골라냄.
       const filtered = allWines.filter((wine: Wine) => {
@@ -91,6 +95,7 @@ function WinesList() {
       {/* 수정님이 만드실 슬라이더 영역 */}
       <section className={styles.sliderContent}>
         {/* 여기에 와인 슬라이더가 들어올 예정 */}
+        <RecommendedWineSlider wines={winesForSlider} />
       </section>
 
       {/* 메인 콘텐츠 영역 */}

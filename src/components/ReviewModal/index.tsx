@@ -11,7 +11,7 @@ import { addWineReview, editWineReview } from '@/apis/WineDetail';
 type ReviewModalProps = {
   type: 'edit' | 'create';
   isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
+  setIsOpen: (isOpen: boolean) => void;
   onClose: () => void;
   title: string;
   wineData: { id: number; name: string; image: string; region: string };
@@ -116,9 +116,7 @@ export default function ReviewModal({
       onSuccess();
       resetForm(); // 추가
       setIsOpen(false);
-      setIsOpen(false);
-    } catch (error) {
-      //   console.error('리뷰 제출 실패:', error);
+    } catch {
       alert(
         type === 'edit'
           ? '리뷰 수정에 실패했습니다.'
@@ -135,6 +133,7 @@ export default function ReviewModal({
       onClose={() => {
         resetForm();
         setIsOpen(false);
+        onClose();
       }}
       title={title}
       footer={modalButton}
