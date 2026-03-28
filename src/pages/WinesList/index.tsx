@@ -6,6 +6,7 @@ import SearchBar from '@/components/common/SearchBar';
 import WineFilter from '@/components/list/WineFilter';
 import WineAddModal from '@/components/list/WineAddModal';
 import styles from './index.module.css';
+import WineFilterModal from '@/components/list/WineFilterModal';
 
 function WinesList() {
   // 기존 useState들을 지우고 Zustand 스토어에서 상태와 함수를 가져옴.
@@ -96,7 +97,7 @@ function WinesList() {
   return (
     <div className={styles.container}>
       {/* 수정님이 만드실 슬라이더 영역 */}
-      <section className={styles.sliderPlaceholder}>
+      <section className={styles.sliderContent}>
         {/* 여기에 와인 슬라이더가 들어올 예정 */}
       </section>
 
@@ -106,15 +107,7 @@ function WinesList() {
         <aside className={styles.filterAside}>
           <div className={styles.filterWrapper}>
             {/* 조립한 필터 컴포넌트에 상태 전달 */}
-            <WineFilter
-              selectedTypes={selectedTypes}
-              setSelectedTypes={setSelectedTypes}
-              priceRange={priceRange}
-              setPriceRange={setPriceRange}
-              selectedRatings={selectedRatings}
-              setSelectedRatings={setSelectedRatings}
-              onApply={handleApplyFilters}
-            />
+            <WineFilter onApply={handleApplyFilters} />
             <div className={styles.addModalWrapper}>
               <WineAddModal />
             </div>
@@ -131,6 +124,16 @@ function WinesList() {
               onSearchSubmit={handleApplyFilters}
             />
           </section>
+
+          {/* 태블릿/모바일 전용 버튼 영역 추가 */}
+          <div className={styles.mobileActionButtons}>
+            <WineFilterModal onApply={handleApplyFilters} />
+
+            {/* 와인 등록 버튼 (모바일용 위치) */}
+            <div className={styles.mobileAddModal}>
+              <WineAddModal />
+            </div>
+          </div>
 
           {/* 리스트 영역 */}
           <main className={styles.listSection}>

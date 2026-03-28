@@ -34,7 +34,7 @@
 }
 
 /* 태블릿 및 모바일 */
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
   .typeWrap {
     flex-direction: row; /* 가로 정렬로 변경 */
     flex-wrap: wrap; /* 화면이 아주 좁아지면 다음 줄로 넘어가게 */

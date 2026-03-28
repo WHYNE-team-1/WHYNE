@@ -1,0 +1,16 @@
+/* 모달 버튼 영역 */
+.modalFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+/* 필터 내용이 담기는 영역 */
+.modalMain {
+  position: relative;
+  height: auto;
+  width: 100%;
+  overflow: hidden; /* 스크롤 없앰 */
+}
