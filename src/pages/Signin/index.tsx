@@ -62,7 +62,7 @@ export default function SigninPage() {
       setLogin(result.user);
 
       navigate('/');
-    } catch (error: any) {
+    } catch {
       setError('email', {
         type: 'server',
         message: '이메일 혹은 비밀번호를 확인해주세요.',
@@ -75,7 +75,11 @@ export default function SigninPage() {
   };
 
   const handleKakaoLogin = () => {
-    // TODO: 카카오 소셜 로그인 연동
+    const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+    const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+    window.location.href = kakaoURL;
   };
 
   return (
