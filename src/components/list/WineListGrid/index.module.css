@@ -1,26 +1,25 @@
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2열 */
+  grid-template-columns: repeat(2, 370px); /* 2열 */
   column-gap: 52px; /* 좌우 간격 */
   row-gap: 48px; /* 상하 간격 */
   width: 100%;
+  justify-content: center;
 }
 
 /* 태블릿 */
 @media (max-width: 1080px) {
   .gridContainer {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 370px);
     column-gap: 24px; /* 좌우 간격 */
     row-gap: 48px; /* 상하 간격 */
-    justify-content: center;
-    margin: 0 auto;
   }
 }
 
 /* 모바일 */
 @media (max-width: 767px) {
   .gridContainer {
-    grid-template-columns: 1fr; /* 1열 */
+    grid-template-columns: 370px; /* 1열 */
     row-gap: 48px; /* 상하 간격 */
   }
 }
