@@ -14,7 +14,7 @@
 .loadingSubTxt {
   display: block;
   margin: 0;
-  height: 60px;
+  height: fit-content;
   font-family: Sacramento, cursive;
   font-size: 3em;
   text-align: center;
@@ -23,7 +23,7 @@
 .loading::before,
 .loading::after {
   display: block;
-  height: 120px;
+  height: fit-content;
   font-family:
     Montserrat,
     Helvetica Neue,
@@ -51,6 +51,16 @@
 .loading[aria-busy='true']::after {
   -webkit-animation: load ease-out 5s infinite forwards;
   animation: load ease-out 5s infinite forwards;
+}
+
+@media (max-width: 767px) {
+  .loadingSubTxt {
+    font-size: 2em;
+  }
+  .loading::before,
+  .loading::after {
+    font-size: 4em;
+  }
 }
 
 @-webkit-keyframes load {
