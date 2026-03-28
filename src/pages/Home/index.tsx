@@ -69,7 +69,7 @@ function Home() {
         <div className={styles.keyVisualImgWrap}>
           <img
             className={styles.keyVisualImg}
-            src="/public/assets/images/img-keyVisual.png"
+            src="/assets/images/img-keyVisual.png"
             alt=""
           />
         </div>
@@ -96,7 +96,7 @@ function Home() {
           </div>
           <div className={styles.imgWrap}>
             <img
-              src="/public/assets/images/img-landing01.png"
+              src="/assets/images/img-landing01.png"
               alt="직관적인 리뷰 시스템 이미지"
             />
           </div>
@@ -110,7 +110,7 @@ function Home() {
         >
           <div className={styles.imgWrap}>
             <img
-              src="/public/assets/images/img-landing02.png"
+              src="/assets/images/img-landing02.png"
               alt="다양한 필터 이미지"
             />
           </div>
@@ -143,7 +143,7 @@ function Home() {
           </div>
           <div className={styles.imgWrap}>
             <img
-              src="/public/assets/images/img-landing03.png"
+              src="/assets/images/img-landing03.png"
               alt="새롭게 만나는 와인 추천 콘텐츠 이미지"
             />
           </div>
