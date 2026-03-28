@@ -5,6 +5,7 @@
 
 .imageWrapper {
   display: flex;
+  align-items: center;
   justify-content: center;
   margin-bottom: 24px;
 }
@@ -38,9 +39,22 @@
   margin-bottom: 4px;
 }
 
+.topErrorMessage {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--color-error-icon);
+}
+
 label {
   color: var(--color-gray-700);
   line-height: 20px;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 @media (max-width: 767px) {

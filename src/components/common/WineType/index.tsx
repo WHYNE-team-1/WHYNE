@@ -6,6 +6,7 @@ interface WineTypeProps {
   isReadOnly?: boolean; // 읽기 전용(칩 모드)인지 여부 / 칩 모드, 라디오 버튼 모드가 있음.
   isSelected?: boolean; // 현재 선택된 상태인지 여부
   onSelect?: (type: WineTypeKind) => void; // 클릭했을 때 실행할 함수 (어떤 것이 클릭됐는지 전달)
+  status?: 'default' | 'modalError';
 }
 
 export default function WineType({
@@ -13,6 +14,7 @@ export default function WineType({
   isReadOnly = false, // 기본값은 라디오 버튼 모드
   isSelected = false, // 기본값은 미선택 상태
   onSelect,
+  status = 'default',
 }: WineTypeProps) {
   const info = WINE_TYPES[type]; // WINE_TYPES 객체에서 현재 type(예: 'RED')에 맞는 정보(이미지, 라벨)를 꺼냄.
 
@@ -21,6 +23,7 @@ export default function WineType({
     ${styles.wrapper} 
     ${isReadOnly ? styles.readOnly : ''} 
     ${isSelected ? styles.selected : ''}
+    ${status === 'modalError' ? styles.error : ''}
   `.trim();
 
   return (
@@ -34,6 +37,7 @@ export default function WineType({
         <input
           type="radio"
           checked={isSelected}
+          readOnly
           className={styles.hiddenInput}
         />
       )}

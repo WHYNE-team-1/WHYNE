@@ -22,7 +22,7 @@ type Props = {
   wines: Wine[];
 };
 
-export default function RecommendedWineSlider({ wines }: Props) {
+export default function WineSlider({ wines }: Props) {
   // 평점 4.3 초과인 와인만
   const highRatedWines = wines.filter((wine) => wine.avgRating > 4.3);
 
@@ -37,6 +37,7 @@ export default function RecommendedWineSlider({ wines }: Props) {
       <Swiper
         modules={[Navigation]}
         navigation
+        className={styles.swiper}
         spaceBetween={24}
         slidesPerView={4}
         breakpoints={{
@@ -67,7 +68,7 @@ export default function RecommendedWineSlider({ wines }: Props) {
 
               <p className={styles.name}>{wine.name}</p>
               <p className={styles.sub}>
-                {wine.region}, {wine.country}
+                {[wine.region, wine.country].filter(Boolean).join(', ')}
               </p>
               <p className={styles.rating}>⭐ {wine.avgRating.toFixed(1)}</p>
             </Link>

@@ -43,10 +43,15 @@ export default function WineAddModal() {
   const [imageError, setImageError] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
+  const [typeStatus, setTypeStatus] = useState<'default' | 'modalError'>(
+    'default'
+  );
+  const [typeError, setTypeError] = useState('');
+
   const validateName = () => {
     if (!name.trim()) {
       setNameStatus('modalError');
-      setNameError('와인 이름을 입력해주세요.');
+      setNameError('와인 이름을 필수 입력이에요');
       return false;
     }
 
@@ -58,7 +63,7 @@ export default function WineAddModal() {
   const validatePrice = () => {
     if (!price.trim()) {
       setPriceStatus('modalError');
-      setPriceError('가격을 입력해주세요.');
+      setPriceError('가격은 필수 입력이에요');
       return false;
     }
 
@@ -76,7 +81,7 @@ export default function WineAddModal() {
   const validateRegion = () => {
     if (!region.trim()) {
       setRegionStatus('modalError');
-      setRegionError('원산지를 입력해주세요.');
+      setRegionError('원산지는 필수 입력이에요');
       return false;
     }
 
@@ -95,6 +100,17 @@ export default function WineAddModal() {
     return true;
   };
 
+  const validateType = () => {
+    if (!selectedType) {
+      setTypeStatus('modalError');
+      setTypeError('와인 타입은 필수 입력이에요');
+      return false;
+    }
+    setTypeStatus('default');
+    setTypeError('');
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -102,13 +118,15 @@ export default function WineAddModal() {
     const isPriceValid = validatePrice();
     const isRegionValid = validateRegion();
     const isImageValid = validateImage();
+    const isTypeValid = validateType();
 
-    if (!selectedType) {
-      alert('와인 타입을 선택해주세요.');
-      return;
-    }
-
-    if (!isNameValid || !isPriceValid || !isRegionValid || !isImageValid) {
+    if (
+      !isNameValid ||
+      !isPriceValid ||
+      !isRegionValid ||
+      !isImageValid ||
+      isTypeValid
+    ) {
       return;
     }
 
@@ -116,6 +134,9 @@ export default function WineAddModal() {
       alert('이미지를 업로드해주세요.');
       return;
     }
+
+    const type = selectedType;
+    if (!type) return;
 
     try {
       //1.이미지 업로드
@@ -220,15 +241,25 @@ export default function WineAddModal() {
             </div>
 
             <div className={styles.field}>
-              <span>타입</span>
+              <div className={styles.labelWrapper}>
+                <span className={styles.label}>타입</span>
+                {typeStatus === 'modalError' && typeError && (
+                  <span className={styles.topErrorMessage}>{typeError}</span>
+                )}
+              </div>
 
-              <div style={{ display: 'flex', gap: '12px' }}>
+              <div className={styles.typeList}>
                 {WINE_TYPE_KEYS.map((type) => (
                   <WineType
                     key={type}
                     type={type}
                     isSelected={selectedType === type}
-                    onSelect={setSelectedType}
+                    status={typeStatus}
+                    onSelect={(value) => {
+                      setSelectedType(value);
+                      setTypeStatus('default');
+                      setTypeError('');
+                    }}
                   />
                 ))}
               </div>

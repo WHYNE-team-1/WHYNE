@@ -5,7 +5,7 @@ import SearchBar from '@/components/common/SearchBar';
 import WineFilter from '@/components/list/WineFilter';
 import styles from './index.module.css';
 import WineAddModal from '@/components/list/WineAddModal';
-import RecommendedWineSlider from '@/components/list/WineSlider';
+import WineSlider from '@/components/list/WineSlider';
 
 function WinesList() {
   const [allWines2, setAllWines2] = useState<Wine[]>(
@@ -97,7 +97,7 @@ function WinesList() {
       {/* 수정님이 만드실 슬라이더 영역 */}
       <section className={styles.sliderPlaceholder}>
         {/* 여기에 와인 슬라이더가 들어올 예정 */}
-        <RecommendedWineSlider wines={allWines2} />
+        <WineSlider wines={allWines2} />
       </section>
 
       {/* 메인 콘텐츠 영역 */}
