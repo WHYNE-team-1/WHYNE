@@ -14,19 +14,26 @@ function WineFilterModal({ onApply }: WineFilterModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { resetFilters } = useWineStore(); // zustand에서 초기화 함수 가져오기
 
-  // 모달 오픈 시 뒷배경 스크롤 방지
+  // 모달 오픈 시 뒷배경 스크롤 차단하는 로직
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    // 모달이 열리지 않은 상태
+    if (!isOpen) {
+      return;
     }
 
-    // 컴포넌트가 언마운트될 때 혹시 모르니 스크롤을 다시 풀어줌.
+    // 현재 브라우저의 body에 적용된 스타일(overflow) 값을 저장함.
+    // 모달을 닫을 때, 원래 상태로 복구하기 위함.
+    const originalOverflow = window.getComputedStyle(document.body).overflow;
+
+    // 모달이 떴으니 뒷배경이 움직이지 않게 스크롤 차단
+    document.body.style.overflow = 'hidden';
+
+    // Clean-up 함수: 모달이 닫히거나 컴포넌트가 언마운트될 때 실행됨.
     return () => {
-      document.body.style.overflow = 'unset';
+      // 저장해뒀던 원래 상태로 돌려놓음.
+      document.body.style.overflow = originalOverflow;
     };
-  }, [isOpen]);
+  }, [isOpen]); // 모달의 열림,닫힘 상태가 변할 때마다 과정 반복
 
   // 필터 적용 버튼 핸들러
   const handleApply = () => {

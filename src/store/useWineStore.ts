@@ -31,7 +31,6 @@ export const useWineStore = create<WineFilterState>((set) => ({
   // 필터 초기화 : 모든 필터 상태를 리셋
   resetFilters: () =>
     set({
-      keyword: '',
       selectedTypes: [],
       priceRange: [0, 1000000],
       selectedRatings: ['전체'],
