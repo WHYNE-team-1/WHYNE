@@ -8,6 +8,10 @@ import { ReviewAroma } from '@/components/common/Aroma';
 import type { ReviewListItem } from '@/pages/WineDetail/WineDetail.types';
 import ReviewModal from '@/components/ReviewModal';
 import ConfirmModal from '../ModalConfirm';
+import StarRatingBadge from '@/components/common/StarRatingBadge';
+import IconArrowUp from '@/assets/icons/ic-arrow-up.svg';
+import IconArrowDown from '@/assets/icons/ic-arrow-down.svg';
+
 const cx = classNames.bind(styles);
 
 interface User {
@@ -54,7 +58,12 @@ export default function ReviewCard({
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const isMyReview = loginUser?.id === data.user?.id;
-
+  const currentFlavorScores = flavorScores || {
+    lightBold: data.lightBold || 0,
+    smoothTannic: data.smoothTannic || 0,
+    drySweet: data.drySweet || 0,
+    softAcidic: data.softAcidic || 0,
+  };
   // profile은 항상 슬라이더가 보이고, detail는 화살표를 눌렀을 때만 보임
   const showTasteSliders = type === 'profile' || isExpanded;
 
@@ -73,7 +82,7 @@ export default function ReviewCard({
           <div className={cx('headerTopRow')}>
             {/* 뱃지 + 시간 */}
             <div className={cx('badgeGroup')}>
-              {/* <StarRatingBadge rating={rating} /> */}
+              <StarRatingBadge rating={data.rating} />
               {type === 'profile' && (
                 <span className={cx('timeProfile')}>{time}</span>
               )}
@@ -130,7 +139,7 @@ export default function ReviewCard({
           {/* 슬라이더 표시 로직  */}
           {showTasteSliders && (
             <div className={cx('tasteSliders')}>
-              <WineTasteSlider readOnly initialScores={flavorScores} />
+              <WineTasteSlider readOnly initialScores={currentFlavorScores} />
             </div>
           )}
         </div>
@@ -149,7 +158,11 @@ export default function ReviewCard({
               className={cx('expandBtn')}
               onClick={() => setIsExpanded(!isExpanded)}
             >
-              {isExpanded ? '˄' : '˅'}
+              {isExpanded ? (
+                <img src={IconArrowUp} alt="접기" />
+              ) : (
+                <img src={IconArrowDown} alt="더보기" />
+              )}
             </button>
           )}
         </div>

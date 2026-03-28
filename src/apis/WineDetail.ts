@@ -23,7 +23,7 @@ export async function addWineReview(data: {
 }
 
 export async function editWineReview(
-  id: string,
+  id: number,
   data: {
     rating: number;
     lightBold: number;
