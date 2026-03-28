@@ -33,6 +33,31 @@ const WINE_TYPE_MAP: Record<
   },
 };
 
+const calculateAverageTastes = (reviews: WineDetailType['reviews']) => {
+  if (!reviews || reviews.length === 0) {
+    return { lightBold: 0, smoothTannic: 0, drySweet: 0, softAcidic: 0 };
+  }
+
+  const totalScores = reviews.reduce(
+    (acc, review) => {
+      acc.lightBold += review.lightBold || 0;
+      acc.smoothTannic += review.smoothTannic || 0;
+      acc.drySweet += review.drySweet || 0;
+      acc.softAcidic += review.softAcidic || 0;
+      return acc;
+    },
+    { lightBold: 0, smoothTannic: 0, drySweet: 0, softAcidic: 0 }
+  );
+
+  const count = reviews.length;
+  return {
+    lightBold: Math.round(totalScores.lightBold / count),
+    smoothTannic: Math.round(totalScores.smoothTannic / count),
+    drySweet: Math.round(totalScores.drySweet / count),
+    softAcidic: Math.round(totalScores.softAcidic / count),
+  };
+};
+
 function WineDetailPage() {
   const { id } = useParams();
   const [wine, setWine] = useState<WineDetailType | null>(null);
@@ -61,7 +86,7 @@ function WineDetailPage() {
   if (!wine) {
     return <div>로딩중...</div>;
   }
-
+  const averageFlavorScores = calculateAverageTastes(wine.reviews);
   const currentWineType = wine.type ? wine.type.toUpperCase() : 'RED';
   const typeInfo = WINE_TYPE_MAP[currentWineType];
 
@@ -126,13 +151,7 @@ function WineDetailPage() {
               labelStyle="box"
               readOnly={true} // 보기 전용
               hideLeftDesc={true} // 왼쪽 숨김
-              initialScores={{
-                // 임시
-                lightBold: 4,
-                smoothTannic: 4,
-                drySweet: 4,
-                softAcidic: 4,
-              }}
+              initialScores={averageFlavorScores}
             />
           </div>
         </div>
