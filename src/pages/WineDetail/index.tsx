@@ -2,12 +2,12 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import { getWineDetail } from '@/apis/WineDetail';
 import WineReview from '@/components/WineReview';
-import type { WineDetail } from './WineDetail.types';
+import type { WineDetail as WineDetailType } from './WineDetail.types';
 import styles from './index.module.css';
 
-function WineDetail() {
+export default function WineDetail() {
   const { id } = useParams();
-  const [wine, setWine] = useState<WineDetail | null>(null);
+  const [wine, setWine] = useState<WineDetailType | null>(null);
 
   const fetchData = useCallback(async () => {
     if (!id) {
@@ -34,5 +34,3 @@ function WineDetail() {
     </div>
   );
 }
-
-export default WineDetail;

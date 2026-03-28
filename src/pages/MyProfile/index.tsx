@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import { ENV } from '@/apis/env';
 import ConfirmModal from '@/components/common/ModalConfirm';
 import ProFile from '@/components/common/ProFile';
+import MyReviews from './myReviews';
+import styles from './index.module.css';
 
 const PROFILE_STORAGE_KEY = 'myProfileDraft';
 const ACCESS_TOKEN_KEY = 'accessToken';
 const DEFAULT_NICKNAME = 'light797';
-const MISSING_TOKEN_MESSAGE = 'accessToken\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.';
-const SAVE_ERROR_PREFIX = '\ud504\ub85c\ud544 \uc800\uc7a5 \uc2e4\ud328';
-const SAVE_ERROR_MESSAGE =
-  '\ud504\ub85c\ud544 \uc800\uc7a5\uc5d0 \uc2e4\ud328\ud588\uc2b5\ub2c8\ub2e4.';
-const CONFIRM_TEXT = '\ubcc0\uacbd\ud558\uae30';
-const CANCEL_TEXT = '\ucde8\uc18c';
-const CONFIRM_SUFFIX = '"(\uc73c)\ub85c';
-const CONFIRM_QUESTION =
-  '\ub2c9\ub124\uc784\uc744 \ubcc0\uacbd\ud560\uae4c\uc694?';
+const MISSING_TOKEN_MESSAGE = 'accessToken이 없습니다.';
+const SAVE_ERROR_PREFIX = '프로필 저장 실패';
+const SAVE_ERROR_MESSAGE = '프로필 저장에 실패했습니다.';
+const CONFIRM_TEXT = '변경하기';
+const CANCEL_TEXT = '취소';
+const CONFIRM_SUFFIX = '"(으)로';
+const CONFIRM_QUESTION = '닉네임을 변경할까요?';
 
 type StoredProfile = {
   image: string;
@@ -44,7 +44,8 @@ function getStoredProfile(): StoredProfile {
 
   try {
     return JSON.parse(rawProfile) as StoredProfile;
-  } catch {
+  } catch (error) {
+    console.error('저장된 프로필 초안(Draft)을 분석하지 못했습니다.', error);
     return fallbackProfile;
   }
 }
@@ -58,15 +59,16 @@ export default function MyProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
+  // 저장 전까지는 현재 편집 중인 값을 로컬 스토리지에 보관한다.
   useEffect(() => {
     localStorage.setItem(
       PROFILE_STORAGE_KEY,
       JSON.stringify({
         image,
-        nickname,
+        nickname: draftNickname,
       })
     );
-  }, [image, nickname]);
+  }, [image, draftNickname]);
 
   const handleImageChange = (imageUrl: string, file?: File) => {
     setImage(imageUrl);
@@ -89,6 +91,7 @@ export default function MyProfile() {
     }
   };
 
+  // 닉네임과 이미지 파일을 FormData에 담아 프로필 API로 전송한다.
   const handleSave = async () => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)?.trim();
 
@@ -126,9 +129,8 @@ export default function MyProfile() {
       setImage(data.image ?? '');
       setSelectedFile(null);
       setIsConfirmOpen(false);
-      console.log('profile save success', data);
     } catch (error) {
-      console.error('profile save failed', error);
+      console.error('Failed to save profile changes.', error);
       alert(SAVE_ERROR_MESSAGE);
     } finally {
       setIsLoading(false);
@@ -136,21 +138,23 @@ export default function MyProfile() {
   };
 
   return (
-    <main
-      style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '48px 24px',
-      }}
-    >
-      <ProFile
-        imageUrl={image}
-        nickname={nickname}
-        onImageChange={handleImageChange}
-        onNicknameChange={handleNicknameChange}
-        onSave={handleOpenConfirm}
-        isLoading={isLoading}
-      />
+    <>
+      <div className={styles.wrapper}>
+        <section className={styles.layout}>
+          <ProFile
+            imageUrl={image}
+            nickname={nickname}
+            onImageChange={handleImageChange}
+            onNicknameChange={handleNicknameChange}
+            onSave={handleOpenConfirm}
+            isLoading={isLoading}
+          />
+
+          <div className={styles.reviewsColumn}>
+            <MyReviews />
+          </div>
+        </section>
+      </div>
 
       <ConfirmModal
         isOpen={isConfirmOpen}
@@ -158,7 +162,7 @@ export default function MyProfile() {
         onConfirm={handleSave}
         title={
           <>
-            "{draftNickname}
+            &quot;{draftNickname}
             {CONFIRM_SUFFIX}
             <br />
             {CONFIRM_QUESTION}
@@ -168,6 +172,6 @@ export default function MyProfile() {
         cancelText={CANCEL_TEXT}
         confirmVariant="primary"
       />
-    </main>
+    </>
   );
 }

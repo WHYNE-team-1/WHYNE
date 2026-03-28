@@ -7,6 +7,7 @@ import WinesList from '@/pages/WinesList/index';
 import WineDetail from '@/pages/WineDetail/index';
 import AddItem from '@/pages/AddItem/index';
 import MyProfile from '@/pages/MyProfile/index';
+import KakaoCallback from '@/pages/KakaoCallback';
 
 import DropdownSample from '@/storybook/drop-down';
 import WineTasteSliderStorybook from '@/storybook/wine-taste-silder';
@@ -17,7 +18,7 @@ import LinkButton from '@/storybook/link-button';
 import Input from '@/storybook/input';
 import AromaStoryBook from '@/storybook/aroma';
 
-import ModalTestPage from '@/storybook/modal';
+import ModalTestPage from '@/storybook/Modal';
 import ModalConfirmTestPage from '@/storybook/ModalConfirm';
 
 import WineTypeTestPage from '@/storybook/wine-type';
@@ -44,9 +45,9 @@ export default function AppRoutes() {
       </Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/oauth/kakao" element={<KakaoCallback />} />
 
       <Route path="/storybook/rating" element={<StarRatingTestPage />} />
-
       <Route path="/storybook/auth-test" element={<AuthTest />} />
       <Route path="/storybook/dropdown" element={<DropdownSample />} />
       <Route path="/storybook/review-card" element={<ReviewCardStorybook />} />

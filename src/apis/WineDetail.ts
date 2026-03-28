@@ -21,3 +21,30 @@ export async function addWineReview(data: {
 
   return result;
 }
+
+export async function editWineReview(
+  id: string,
+  data: {
+    rating: number;
+    lightBold: number;
+    smoothTannic: number;
+    drySweet: number;
+    softAcidic: number;
+    aroma: string[];
+    content: string;
+  }
+) {
+  const result = await apiFetch(`/reviews/${id}`, {
+    // /wines → /reviews
+    method: 'PATCH',
+    body: JSON.stringify(data), // headers 제거
+  });
+  return result;
+}
+
+export async function deleteWineReview(id: number) {
+  const result = await apiFetch(`/reviews/${id}`, {
+    method: 'DELETE',
+  });
+  return result;
+}

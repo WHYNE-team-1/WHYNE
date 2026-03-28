@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react';
 import { getWines, type GetWinesParams } from '@/apis/wine';
+import { useWineStore } from '@/store/useWineStore';
 import WineListGrid, { type Wine } from '@/components/list/WineListGrid';
 import SearchBar from '@/components/common/SearchBar';
 import WineFilter from '@/components/list/WineFilter';
-import styles from './index.module.css';
 import WineAddModal from '@/components/list/WineAddModal';
 import RecommendedWineSlider from '@/components/list/WineSlider';
+import WineFilterModal from '@/components/list/WineFilterModal';
+import styles from './index.module.css';
 
 function WinesList() {
+  // 기존 useState들을 지우고 Zustand 스토어에서 상태와 함수를 가져옴.
+  const {
+    keyword,
+    setKeyword,
+    selectedTypes,
+    setSelectedTypes,
+    priceRange,
+    setPriceRange,
+    selectedRatings,
+    setSelectedRatings,
+  } = useWineStore();
+  
   const [winesForSlider, setWinesForSlider] = useState<Wine[]>([]); /* 와인 추천 슬라이더용 전체 와인 목록 */
-
+  // 리스트 데이터와 로딩 상태는 이 페이지에서만 쓰이므로 useState로 남겨둠.
   const [wines, setWines] = useState<Wine[]>([]); // 화면에 보여줄 와인 목록 상태
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
-  const [keyword, setKeyword] = useState(''); // 사용자가 입력 창에 타이핑하는 글자 상태
-
-  // 필터 관련 상태들
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]); // 선택된 와인 타입
-  const [priceRange, setPriceRange] = useState<number[]>([0, 1000000]); // 가격 슬라이더 범위 [최소, 최대]
-  const [selectedRatings, setSelectedRatings] = useState<string[]>(['전체']); // 선택된 평점 구간
 
   // 데이터를 가져오고 필터링하는 공통 함수
   const fetchWinesData = async () => {
@@ -93,7 +101,7 @@ function WinesList() {
   return (
     <div className={styles.container}>
       {/* 수정님이 만드실 슬라이더 영역 */}
-      <section className={styles.sliderPlaceholder}>
+      <section className={styles.sliderContent}>
         {/* 여기에 와인 슬라이더가 들어올 예정 */}
         <RecommendedWineSlider wines={winesForSlider} />
       </section>
@@ -102,18 +110,12 @@ function WinesList() {
       <div className={styles.mainContent}>
         {/* 좌측 필터 영역 */}
         <aside className={styles.filterAside}>
-          <div className={styles.filterPlaceholder}>
+          <div className={styles.filterWrapper}>
             {/* 조립한 필터 컴포넌트에 상태 전달 */}
-            <WineFilter
-              selectedTypes={selectedTypes}
-              setSelectedTypes={setSelectedTypes}
-              priceRange={priceRange}
-              setPriceRange={setPriceRange}
-              selectedRatings={selectedRatings}
-              setSelectedRatings={setSelectedRatings}
-              onApply={handleApplyFilters}
-            />
-            <WineAddModal />
+            <WineFilter onApply={handleApplyFilters} />
+            <div className={styles.addModalWrapper}>
+              <WineAddModal />
+            </div>
           </div>
         </aside>
 
@@ -127,6 +129,16 @@ function WinesList() {
               onSearchSubmit={handleApplyFilters}
             />
           </section>
+
+          {/* 태블릿/모바일 전용 버튼 영역 추가 */}
+          <div className={styles.mobileActionButtons}>
+            <WineFilterModal onApply={handleApplyFilters} />
+
+            {/* 와인 등록 버튼 (모바일용 위치) */}
+            <div className={styles.mobileAddModal}>
+              <WineAddModal />
+            </div>
+          </div>
 
           {/* 리스트 영역 */}
           <main className={styles.listSection}>
